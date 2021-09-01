@@ -1,0 +1,43 @@
+body {
+  font-family: DM Sans, sans sérif;
+}
+a {
+  @include links-style;
+}
+
+.header {
+  &__text--top {
+    // visibility: hidden;
+    padding: 3px;
+    background-color: $color-tertiary;
+    // text-align: center;
+  }
+  &__nav {
+    margin: 20px 10px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__logo {
+    @include logo;
+  }
+  &__filters {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  &__filters li {
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 15px;
+    padding: 2px 3px;
+    margin: 2px;
+  }
+  &__filters a {
+    color: $color-primary;
+  }
+  &__text--bottom {
+    color: $color-primary;
+    font-size: 20px;
+  }
+}

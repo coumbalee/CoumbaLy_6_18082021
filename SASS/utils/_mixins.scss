@@ -1,0 +1,13 @@
+@mixin links-style {
+  text-decoration: none;
+  color: $color-black;
+}
+@mixin logo {
+  height: 38px;
+  // width: 150px;
+  // position: absolute;
+  // left: 0%;
+  // right: 87.64%;
+  // top: 1.82%;
+  // bottom: 21.61%;
+}
