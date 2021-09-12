@@ -132,16 +132,12 @@ table {
 
 body {
   font-family: DM Sans, sans sérif;
+  font-size: 18px;
 }
 
 a {
   text-decoration: none;
   color: #000000;
-}
-
-.header__text--top {
-  padding: 3px;
-  background-color: #db8876;
 }
 
 .header__nav {
@@ -158,35 +154,32 @@ a {
           align-items: center;
 }
 
-.header__logo {
-  height: 38px;
+.header__logo img {
+  height: 30px;
 }
 
-.header__filters {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+.header__link--top {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  background-color: #db8876;
+  padding: 3px;
+  margin-top: 1px;
+  border-radius: 3px;
 }
 
-.header__filters li {
-  border: 1px solid #dadada;
-  border-radius: 15px;
-  padding: 2px 3px;
-  margin: 2px;
-}
-
-.header__filters a {
-  color: #901c1c;
-}
-
-.header__text--bottom {
+.header__link--right {
   color: #901c1c;
   font-size: 20px;
+}
+
+.header .tags span {
+  font-size: 14px;
+  color: #901c1c;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 15px;
+  border: solid 1px #c4c4c4;
 }
 /*# sourceMappingURL=style.css.map */
