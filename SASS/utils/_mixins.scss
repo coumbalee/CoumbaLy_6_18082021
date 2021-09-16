@@ -3,11 +3,17 @@
   color: $color-black;
 }
 @mixin logo {
-  height: 30px;
-  // width: 150px;
-  // position: absolute;
-  // left: 0%;
-  // right: 87.64%;
-  // top: 1.82%;
-  // bottom: 21.61%;
+  height: 3rem;
+}
+@mixin titles {
+  color: $color-primary;
+  font-size: 1.875rem;
+}
+@mixin tags {
+  font-size: 12px;
+  color: $color-primary;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 15px;
+  border: solid 1px #c4c4c4;
 }
