@@ -1,12 +1,14 @@
 body {
   font-family: DM Sans, sans sérif;
   font-size: 18px;
+  margin: 2% 5%;
 }
 a {
   @include links-style;
 }
 
 .header {
+  // margin: 30px 10px;
   &__nav {
     margin: 20px 10px;
     background-color: #fff;
@@ -17,42 +19,59 @@ a {
   &__logo img {
     @include logo;
   }
-  // &__filters {
-  //   display: flex;
-  //   flex-direction: row;
-  //   flex-wrap: wrap;
-  // }
-  // &__filters li {
-  //   border: 1px solid rgb(218, 218, 218);
-  //   border-radius: 15px;
-  //   padding: 2px 3px;
-  //   margin: 2px;
-  // }
-  // &__filters a {
-  //   color: $color-primary;
-  // }
-  &__link--top {
+  &__link {
     text-align: center;
     position: absolute;
-    left: 50%;
+    left: 45%;
     top: 0%;
+    font-weight: bold;
     background-color: $color-tertiary;
     padding: 3px;
     margin-top: 1px;
     border-radius: 3px;
   }
 
-  &__link--right {
-    color: $color-primary;
-    font-size: 20px;
+  .tags {
+    width: 75%;
   }
-
   .tags span {
-    font-size: 14px;
-    color: $color-primary;
-    padding: 0 5px;
-    margin: 0 2px;
-    border-radius: 15px;
-    border: solid 1px #c4c4c4;
+    @include tags;
+  }
+}
+.h1 {
+  @include titles;
+  position: absolute;
+  top: 5%;
+  right: 6%;
+}
+.photographers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  // margin-left: 3%;
+  .photographer {
+    width: 30%;
+    margin-top: 10%;
+    // background-color: cadetblue;
+    text-align: center;
+    &__name {
+      color: $color-secondary;
+      font-size: 2rem;
+    }
+    &__localisation {
+      font-size: 1rem;
+      color: $color-primary;
+    }
+    &__tagline {
+      font-size: 0.825rem;
+    }
+    &__price {
+      color: #757575;
+      font-size: 0.825rem;
+    }
+    &__tags {
+      color: $color-primary;
+      font-size: 0.825rem;
+    }
   }
 }
