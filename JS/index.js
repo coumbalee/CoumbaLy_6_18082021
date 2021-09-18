@@ -7,6 +7,7 @@ import {
 generateHeader();
 // afficher les tags des photographers en html
 getPhotographersFromJson().then((photographers) => {
+  console.log(photographers);
   const tags = getAllTagsFromPhotographers(photographers);
   console.log(tags);
   displayTagsMenu(tags);
@@ -19,13 +20,22 @@ function showPhotographers(photographers) {
   let photographersElt = document.querySelector("#photographers");
   photographers.forEach((photographer) => {
     photographersElt.innerHTML += `
-    <li class="photographer">
-    <img src ="${photographer.portrait} ">
+    <li class="photographer"><a href="#">
+    <img src ="./IMAGES/Photographers%20ID%20Photos/${
+      photographer.portrait
+    }" class ="photographer__img">
+    <div class= "photographer__content">
       <h2 class="photographer__name">${photographer.name}</h2>
-      <p class="photographer__localisation">${photographer.city}, ${photographer.country}</p>
+      <p class="photographer__localisation">${photographer.city}, ${
+      photographer.country
+    }</p>
       <p class="photographer__tagline">${photographer.tagline}</p>
       <p class="photographer__price">${photographer.price} / jour</p>
-      <span class="photographer__tags"> #${photographer.tags}</span>
+      <div class="photographer__tags">${photographer.tags
+        .map((tag) => `<button class="tag" data-tag="${tag}">#${tag}</button>`)
+        .join("")}</div>
+    </div>    
+      </a>
 </li>
       `;
   });
@@ -34,11 +44,11 @@ function showPhotographers(photographers) {
 function displayTagsMenu(tags) {
   let tagsElt = document.querySelector("#tags");
   tags.forEach((tag) => {
-    tagsElt.innerHTML += `<span data-tag="${tag}">#${tag}</span>`;
+    tagsElt.innerHTML += `<button class="tag" data-tag="${tag}">#${tag}</button>`;
   });
   document.querySelectorAll("#tags span").forEach((span) => {
     span.addEventListener("click", (e) => {
-      alert(e.target.dataset.tag);
+      // alert(e.target.dataset.tag);
     });
   });
 }
@@ -62,3 +72,23 @@ function generateHeader() {
   mainTitle.innerHTML = "Nos photographes";
   main.prepend(mainTitle);
 }
+
+// Fonction de filtres des photographes par tags
+document.querySelector("tags").onclick = function () {
+  // selection des tags
+  const tags = [];
+  // filtrer les tags selon critères de matching avec profils
+  const filtered = tags.filter();
+  // retourner les profils correspondants
+  return;
+};
+
+// Recuperer TOUS les tags qui ont la class tag
+
+// Ajouter un eventListener sur chacun des tag
+
+// quand je clique sur le tag je recup la valeur du tag
+
+// on trie le tableau des photographes pour n'avoir que les photographes qui ont se tag
+
+// on affiche que les photographes qui ont le tag
