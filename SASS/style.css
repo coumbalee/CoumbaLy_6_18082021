@@ -175,13 +175,14 @@ a {
   width: 75%;
 }
 
-.header .tags span {
+.tag {
   font-size: 12px;
   color: #901c1c;
   padding: 0 5px;
   margin: 0 2px;
   border-radius: 15px;
   border: solid 1px #c4c4c4;
+  background-color: white;
 }
 
 .h1 {
@@ -201,6 +202,8 @@ a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-left: -6%;
+  margin-right: -6%;
 }
 
 .photographers .photographer {
@@ -209,9 +212,23 @@ a {
   text-align: center;
 }
 
+.photographers .photographer__img {
+  width: 45%;
+  height: 170px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.photographers .photographer__content {
+  height: 200px;
+  line-height: 1.5rem;
+  padding-top: 20px;
+}
+
 .photographers .photographer__name {
   color: #d3573c;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .photographers .photographer__localisation {
