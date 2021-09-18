@@ -30,13 +30,18 @@ a {
     margin-top: 1px;
     border-radius: 3px;
   }
-
   .tags {
     width: 75%;
   }
-  .tags span {
-    @include tags;
-  }
+}
+.tag {
+  font-size: 12px;
+  color: $color-primary;
+  padding: 0 5px;
+  margin: 0 2px;
+  border-radius: 15px;
+  border: solid 1px #c4c4c4;
+  background-color: white;
 }
 .h1 {
   @include titles;
@@ -48,15 +53,29 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  // margin-left: 3%;
+  margin-left: -6%;
+  margin-right: -6%;
+
   .photographer {
     width: 30%;
     margin-top: 10%;
     // background-color: cadetblue;
     text-align: center;
+    &__img {
+      width: 45%;
+      height: 170px;
+      border-radius: 50%;
+      // padding: 0px 200px;
+      object-fit: cover;
+    }
+    &__content {
+      height: 200px;
+      line-height: 1.5rem;
+      padding-top: 20px;
+    }
     &__name {
       color: $color-secondary;
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
     &__localisation {
       font-size: 1rem;
