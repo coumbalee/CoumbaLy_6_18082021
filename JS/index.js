@@ -6,7 +6,6 @@ import {
 
 generateHeader();
 displayPage();
-console.log("on continue le chargement de la page");
 
 function showPhotographers(photographers) {
   let photographersElt = document.querySelector("#photographers");
@@ -62,36 +61,41 @@ function generateHeader() {
   mainTitle.innerHTML = "Nos photographes";
   main.prepend(mainTitle);
 }
-
+// Fonction qui ajoute un eventlistener au clic
 function manageListeners(tags, photographers) {
   tags.forEach((tag) => {
     tag.addEventListener("click", (e) => {
       //quand je clique sur le tag, je récupère la valeur du tag
       console.log(tag.dataset.tag);
+      // filtrage des photographes par tags cliqué
       let filteredPhotographers = photographers.filter((elt) =>
         elt.tags.includes(tag.dataset.tag)
       );
       console.log(filteredPhotographers);
+      // Affichage des photographes filtrés
       showPhotographers(filteredPhotographers);
       let photographersElt = document.querySelector("#photographers");
       let tagsElts = photographersElt.querySelectorAll(".tag");
+      // La fonction s' appelle elle même
       manageListeners(tagsElts, photographers);
     });
   });
 }
 
 async function displayPage() {
-  console.log("lance display page");
+  // On attend de récupérer les photographes
   const photographers = await getPhotographersFromJson();
-  console.log("Photographes recuperes");
   console.log(photographers);
+  // Récupération de tous les tags
   const tags = getAllTagsFromPhotographers(photographers);
   console.log(tags);
+  // Affichage des tags
   displayTagsMenu(tags);
+  // Affichage des photographes
   showPhotographers(photographers);
   // Recuperer TOUS les tags qui ont la class tag
   const tagsElts = document.querySelectorAll(".tag");
   console.log(tagsElts);
-  // Ajouter un eventListener sur chacun des tag
+  // Ajouter un eventListener sur chacun des tags
   manageListeners(tagsElts, photographers);
 }
