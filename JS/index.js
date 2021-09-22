@@ -5,19 +5,12 @@ import {
 } from "./dataFunction.js";
 
 generateHeader();
-// afficher les tags des photographers en html
-getPhotographersFromJson().then((photographers) => {
-  console.log(photographers);
-  const tags = getAllTagsFromPhotographers(photographers);
-  console.log(tags);
-  displayTagsMenu(tags);
-  showPhotographers(photographers);
-});
-
-// Afficher les valeurs des propriétés de chaque photographe
+displayPage();
+console.log("on continue le chargement de la page");
 
 function showPhotographers(photographers) {
   let photographersElt = document.querySelector("#photographers");
+  photographersElt.innerHTML = "";
   photographers.forEach((photographer) => {
     photographersElt.innerHTML += `
     <li class="photographer"><a href="#">
@@ -40,16 +33,13 @@ function showPhotographers(photographers) {
       `;
   });
 }
-
 function displayTagsMenu(tags) {
   let tagsElt = document.querySelector("#tags");
   tags.forEach((tag) => {
     tagsElt.innerHTML += `<button class="tag" data-tag="${tag}">#${tag}</button>`;
   });
   document.querySelectorAll("#tags span").forEach((span) => {
-    span.addEventListener("click", (e) => {
-      // alert(e.target.dataset.tag);
-    });
+    span.addEventListener("click", (e) => {});
   });
 }
 function generateHeader() {
@@ -73,22 +63,35 @@ function generateHeader() {
   main.prepend(mainTitle);
 }
 
-// Fonction de filtres des photographes par tags
-document.querySelector("tags").onclick = function () {
-  // selection des tags
-  const tags = [];
-  // filtrer les tags selon critères de matching avec profils
-  const filtered = tags.filter();
-  // retourner les profils correspondants
-  return;
-};
+function manageListeners(tags, photographers) {
+  tags.forEach((tag) => {
+    tag.addEventListener("click", (e) => {
+      //quand je clique sur le tag, je récupère la valeur du tag
+      console.log(tag.dataset.tag);
+      let filteredPhotographers = photographers.filter((elt) =>
+        elt.tags.includes(tag.dataset.tag)
+      );
+      console.log(filteredPhotographers);
+      showPhotographers(filteredPhotographers);
+      let photographersElt = document.querySelector("#photographers");
+      let tagsElts = photographersElt.querySelectorAll(".tag");
+      manageListeners(tagsElts, photographers);
+    });
+  });
+}
 
-// Recuperer TOUS les tags qui ont la class tag
-
-// Ajouter un eventListener sur chacun des tag
-
-// quand je clique sur le tag je recup la valeur du tag
-
-// on trie le tableau des photographes pour n'avoir que les photographes qui ont se tag
-
-// on affiche que les photographes qui ont le tag
+async function displayPage() {
+  console.log("lance display page");
+  const photographers = await getPhotographersFromJson();
+  console.log("Photographes recuperes");
+  console.log(photographers);
+  const tags = getAllTagsFromPhotographers(photographers);
+  console.log(tags);
+  displayTagsMenu(tags);
+  showPhotographers(photographers);
+  // Recuperer TOUS les tags qui ont la class tag
+  const tagsElts = document.querySelectorAll(".tag");
+  console.log(tagsElts);
+  // Ajouter un eventListener sur chacun des tag
+  manageListeners(tagsElts, photographers);
+}
