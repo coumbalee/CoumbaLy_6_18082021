@@ -8,16 +8,24 @@ a {
 }
 
 .header {
-  // margin: 30px 10px;
   &__nav {
     margin: 20px 10px;
     background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 599px) {
+      margin: 0;
+      flex-direction: column;
+    }
   }
   &__logo img {
     @include logo;
+    @media (max-width: 599px) {
+      height: 2rem;
+      position: absolute;
+      left: 3%;
+    }
   }
   &__link {
     text-align: center;
@@ -29,9 +37,17 @@ a {
     padding: 3px;
     margin-top: 1px;
     border-radius: 3px;
+    @media (max-width: 599px) {
+      display: none;
+    }
   }
   .tags {
-    width: 75%;
+    width: 72%;
+    @media (max-width: 599px) {
+      flex-wrap: wrap;
+      margin-top: 50px;
+      width: 80%;
+    }
   }
 }
 .tag {
@@ -48,6 +64,11 @@ a {
   position: absolute;
   top: 5%;
   right: 6%;
+  @media (max-width: 599px) {
+    font-size: 1rem;
+    top: 2%;
+    right: 3%;
+  }
 }
 .photographers {
   display: flex;
@@ -55,14 +76,18 @@ a {
   justify-content: space-between;
   margin-left: -6%;
   margin-right: -6%;
-
+  @media (max-width: 599px) {
+    flex-direction: column;
+  }
   .photographer {
     width: 30%;
     margin-top: 10%;
-    // background-color: cadetblue;
     text-align: center;
+    @media (max-width: 700px) {
+      width: 100%;
+    }
     &__img {
-      width: 45%;
+      width: 40%;
       height: 170px;
       border-radius: 50%;
       // padding: 0px 200px;
