@@ -29,6 +29,7 @@ function showPhotographers(photographers) {
     </div>    
       </a>
 </li>
+
       `;
   });
 }
@@ -45,6 +46,7 @@ function generateHeader() {
   // création du lien  du header
   const header = document.querySelector("header");
   const headerLink = document.createElement("a");
+  headerLink.href = "#main";
   headerLink.classList.add("header__link");
   headerLink.innerHTML = "Passer au contenu";
   header.prepend(headerLink);
@@ -53,14 +55,18 @@ function generateHeader() {
   const img = document.createElement("img");
   img.src = "/IMAGES/logo.png";
   document.querySelector(".header__logo").appendChild(img);
-
-  // création du titre 'Nos photographes' dans main
-  const main = document.querySelector("main");
-  const mainTitle = document.createElement("h1");
-  mainTitle.classList.add("h1");
-  mainTitle.innerHTML = "Nos photographes";
-  main.prepend(mainTitle);
 }
+
+// création du lien 'Nos photographes' dans main
+const main = document.querySelector("main");
+const mainLink = document.createElement("a");
+mainLink.href = "#main";
+const mainTitle = document.createElement("h1");
+mainTitle.innerHTML = "Nos photographes";
+mainTitle.classList.add("h1");
+main.prepend(mainLink);
+mainLink.prepend(mainTitle);
+
 // Fonction qui ajoute un eventlistener au clic
 function manageListeners(tags, photographers) {
   tags.forEach((tag) => {
@@ -72,12 +78,15 @@ function manageListeners(tags, photographers) {
         elt.tags.includes(tag.dataset.tag)
       );
       console.log(filteredPhotographers);
+
       // Affichage des photographes filtrés
       showPhotographers(filteredPhotographers);
       let photographersElt = document.querySelector("#photographers");
       let tagsElts = photographersElt.querySelectorAll(".tag");
       // La fonction s' appelle elle même
       manageListeners(tagsElts, photographers);
+      console.log(filteredPhotographers);
+      // addClasslist("photographer", "filtered-photographers");
     });
   });
 }
@@ -91,6 +100,7 @@ async function displayPage() {
   console.log(tags);
   // Affichage des tags
   displayTagsMenu(tags);
+
   // Affichage des photographes
   showPhotographers(photographers);
   // Recuperer TOUS les tags qui ont la class tag
