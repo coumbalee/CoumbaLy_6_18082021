@@ -4,18 +4,24 @@ import {
   getAllTagsFromPhotographers,
 } from "./dataFunction.js";
 
-generateHeader();
+generateIndexHeader();
+generateIndexMain();
 displayPage();
+// addListenerToPhotographer();
+console.log("je");
 
 function showPhotographers(photographers) {
   let photographersElt = document.querySelector("#photographers");
   photographersElt.innerHTML = "";
   photographers.forEach((photographer) => {
     photographersElt.innerHTML += `
-    <li class="photographer"><a href="#">
-    <img src ="./IMAGES/Photographers%20ID%20Photos/${
+    <li class="photographer">
+    <a href =" 
+    ./photographe.html?id=${
+      photographer.id
+    } "><img src ="./IMAGES/Photographers%20ID%20Photos/${
       photographer.portrait
-    }" class ="photographer__img">
+    }" class ="photographer__img"></a>
     <div class= "photographer__content">
       <h2 class="photographer__name">${photographer.name}</h2>
       <p class="photographer__localisation">${photographer.city}, ${
@@ -27,7 +33,7 @@ function showPhotographers(photographers) {
         .map((tag) => `<button class="tag" data-tag="${tag}">#${tag}</button>`)
         .join("")}</div>
     </div>    
-      </a>
+      
 </li>
 
       `;
@@ -38,11 +44,8 @@ function displayTagsMenu(tags) {
   tags.forEach((tag) => {
     tagsElt.innerHTML += `<button class="tag" data-tag="${tag}">#${tag}</button>`;
   });
-  document.querySelectorAll("#tags span").forEach((span) => {
-    span.addEventListener("click", (e) => {});
-  });
 }
-function generateHeader() {
+function generateIndexHeader() {
   // création du lien  du header
   const header = document.querySelector("header");
   const headerLink = document.createElement("a");
@@ -57,15 +60,17 @@ function generateHeader() {
   document.querySelector(".header__logo").appendChild(img);
 }
 
-// création du lien 'Nos photographes' dans main
-const main = document.querySelector("main");
-const mainLink = document.createElement("a");
-mainLink.href = "#main";
-const mainTitle = document.createElement("h1");
-mainTitle.innerHTML = "Nos photographes";
-mainTitle.classList.add("h1");
-main.prepend(mainLink);
-mainLink.prepend(mainTitle);
+function generateIndexMain() {
+  // création du titre Nos photographes
+  const main = document.querySelector("main");
+  const mainLink = document.createElement("a");
+  mainLink.href = "#main";
+  const mainTitle = document.createElement("h1");
+  mainTitle.innerHTML = "Nos photographes";
+  mainTitle.classList.add("h1");
+  main.prepend(mainLink);
+  mainLink.prepend(mainTitle);
+}
 
 // Fonction qui ajoute un eventlistener au clic
 function manageListeners(tags, photographers) {
@@ -86,10 +91,11 @@ function manageListeners(tags, photographers) {
       // La fonction s' appelle elle même
       manageListeners(tagsElts, photographers);
       console.log(filteredPhotographers);
-      // addClasslist("photographer", "filtered-photographers");
     });
   });
 }
+
+// );
 
 async function displayPage() {
   // On attend de récupérer les photographes
