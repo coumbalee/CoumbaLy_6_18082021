@@ -10,7 +10,6 @@ export async function fetchData() {
 export async function getPhotographersFromJson() {
   const data = await fetchData();
   console.log(data.photographers);
-
   return data.photographers;
 }
 
@@ -32,12 +31,3 @@ export function getAllTagsFromPhotographers(photographers) {
   const tags = [...tagsSet];
   return tags;
 }
-
-// fonction qui récupère les villes des photographes
-// export function getAllCitiesFromPhotographers(photographers) {
-//   let allCities = [];
-//   for (const photographer of photographers) {
-//     allCities = allCities.concat(photographer.city);
-//   }
-//   console.log(allCities);
-// }
