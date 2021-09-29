@@ -29,8 +29,13 @@ function displayPhotographerInformation(photographer) {
         .map((tag) => `<button class="tag" data-tag="${tag}">#${tag}</button>`)
         .join("")}</div>
     </div>    
-    </div>
-    <button class ="photographer-section__contact>Contactez moi</button>`;
+    <button class="photographer-section__button">Contactez moi</button>
+    
+    <img src ="./IMAGES/Photographers%20ID%20Photos/${
+      photographer.portrait
+    }" class ="photographer-section__img">
+  
+    `;
 }
 
 async function displayPhotographerPage() {
