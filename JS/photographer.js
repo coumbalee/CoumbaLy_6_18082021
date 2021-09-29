@@ -9,9 +9,14 @@ displayPhotographerPage();
 
 // // Fonction qui génère le logo du header
 function generateHeader() {
+  const header = document.querySelector(".header-photographer");
+  const headerLink = document.createElement("a");
+  headerLink.href = "./index.html";
+  headerLink.classList.add(".header-photographer__link");
+  header.appendChild(headerLink);
   const img = document.createElement("img");
   img.src = "/IMAGES/logo.png";
-  document.querySelector(".header__logo").appendChild(img);
+  headerLink.appendChild(img);
 }
 
 // Fonction qui affiche les informations d'un photographe
