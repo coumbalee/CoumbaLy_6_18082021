@@ -1,3 +1,12 @@
+body {
+  margin: 2% 10%;
+}
+.header-photographer {
+  img {
+    @include logo;
+    margin-bottom: 30px;
+  }
+}
 .photographer-section {
   background-color: #fafafa;
   display: flex;
@@ -5,11 +14,11 @@
   height: 30vh;
   border-radius: 5px;
   &__content {
-    padding: 25px 20px 0 10px;
+    padding: 25px 20px 0 20px;
   }
   &__name {
     @include name;
-    font-size: 2.5rem;
+    font-size: 3rem;
     padding-bottom: 10px;
   }
   &__localisation {
@@ -24,12 +33,13 @@
   &__tags {
     @include tags;
     @include tag;
+    font-size: 1rem;
   }
   &__button {
     background-color: $color-primary;
     color: white;
     position: absolute;
-    left: 450px;
+    left: 600px;
     top: 130px;
     padding: 10px 20px;
     border: none;
