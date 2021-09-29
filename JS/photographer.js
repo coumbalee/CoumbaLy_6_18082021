@@ -16,15 +16,21 @@ function generateHeader() {
 
 // Fonction qui affiche les informations d'un photographe
 function displayPhotographerInformation(photographer) {
-  let photographerElt = document.querySelector(".photographer__section");
+  let photographerElt = document.querySelector(".photographer-section");
   console.log(photographerElt);
   photographerElt.innerHTML += `
-    <div class="photographer__content">
-       <h2 class="photographer__name">${photographer.name}</h2>
-      <p class="photographer__localisation">
+    <div class="photographer-section__content">
+       <h2 class="photographer-section__name">${photographer.name}</h2>
+       <p class="photographer-section__localisation">
          ${photographer.city}, ${photographer.country}
       </p>
-    </div>`;
+      <p class = "photographer-section__tagline"> ${photographer.tagline}</p>
+      <div class="photographer__tags">${photographer.tags
+        .map((tag) => `<button class="tag" data-tag="${tag}">#${tag}</button>`)
+        .join("")}</div>
+    </div>    
+    </div>
+    <button class ="photographer-section__contact>Contactez moi</button>`;
 }
 
 async function displayPhotographerPage() {
@@ -33,10 +39,9 @@ async function displayPhotographerPage() {
   const queryString = window.location.search;
   console.log(queryString);
   const urlParams = new URLSearchParams(queryString);
-
   const id = urlParams.get("id");
   console.log(id);
-  const photographer = photographers.find((elt) => elt.id == id);
+  const photographer = photographers.find((elt) => elt.id === parseInt(id, 10));
 
   displayPhotographerInformation(photographer);
 }
