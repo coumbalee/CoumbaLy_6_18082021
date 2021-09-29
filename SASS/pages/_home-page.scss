@@ -51,13 +51,7 @@ a {
   }
 }
 .tag {
-  font-size: 12px;
-  color: $color-primary;
-  padding: 0 5px;
-  margin: 0 2px;
-  border-radius: 15px;
-  border: solid 1px #c4c4c4;
-  background-color: white;
+  @include tag;
 }
 .h1 {
   @include titles;
@@ -99,23 +93,20 @@ a {
       padding-top: 20px;
     }
     &__name {
-      color: $color-secondary;
-      font-size: 1.5rem;
+      @include name;
     }
     &__localisation {
-      font-size: 1rem;
-      color: $color-primary;
+      @include localisation;
     }
     &__tagline {
-      font-size: 0.825rem;
+      @include tagline;
     }
     &__price {
       color: #757575;
       font-size: 0.825rem;
     }
     &__tags {
-      color: $color-primary;
-      font-size: 0.825rem;
+      @include tags;
     }
   }
 }
