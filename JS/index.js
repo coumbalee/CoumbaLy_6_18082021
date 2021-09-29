@@ -17,7 +17,7 @@ function showPhotographers(photographers) {
     photographersElt.innerHTML += `
     <li class="photographer">
     <a href =" 
-    ./photographe.html?id=${
+    ./photographer.html?id=${
       photographer.id
     } "><img src ="./IMAGES/Photographers%20ID%20Photos/${
       photographer.portrait
