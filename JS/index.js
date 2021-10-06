@@ -7,8 +7,6 @@ import {
 generateIndexHeader();
 generateIndexMain();
 displayPage();
-// addListenerToPhotographer();
-console.log("je");
 
 function showPhotographers(photographers) {
   let photographersElt = document.querySelector("#photographers");
