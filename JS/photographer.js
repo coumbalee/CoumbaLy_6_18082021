@@ -39,11 +39,11 @@ function displayPhotographerInformation(photographer) {
     <img src ="./IMAGES/Photographers%20ID%20Photos/${
       photographer.portrait
     }" class ="photographer-section__img">
-  
     `;
 }
 
 async function displayPhotographerPage() {
+  // PHOTOGRAPHES
   const photographers = await getPhotographersFromJson();
   console.log(photographers);
   const queryString = window.location.search;
@@ -52,6 +52,84 @@ async function displayPhotographerPage() {
   const id = urlParams.get("id");
   console.log(id);
   const photographer = photographers.find((elt) => elt.id === parseInt(id, 10));
-
+  const photographerSurname = getSurname(photographer.name);
+  console.log(photographerSurname);
   displayPhotographerInformation(photographer);
+
+  // MEDIAS
+  const media = await getMediaFromJson();
+  console.log(media);
+  const photographerMedias = media.filter(
+    (elt) => elt.photographerId === parseInt(id, 10)
+  );
+  console.log(photographerMedias);
+
+  // créer ici une ul
+  let mediaElt = document.querySelector(".media-section");
+  const cardList = document.createElement("ul");
+  cardList.classList.add("media__cards");
+  mediaElt.append(cardList);
+
+  console.log(mediaElt);
+  photographerMedias.forEach((media) => {
+    let url = `./IMAGES/${photographerSurname}/${media.image} `;
+    let video = ` ./IMAGES/${photographerSurname}/${media.video} `;
+    if (imageExist(url)) {
+      cardList.innerHTML += `
+    <li class="media__card">
+    <img src="${url}" width="150">
+    
+    
+
+    <div class ="media__content">
+    <h2 class ="media__title">${media.title}</h2>
+    </div>
+
+    <div class ="media__likes">
+    <p class="media__likes-number">${media.likes}</p>
+    <i class="fas fa-heart"></i>
+    </li>
+
+    `;
+    }
+    if (imageExist(video)) {
+      cardList.innerHTML += `
+    <li class="media__card">
+    <video controls width="150">
+    <source src="${video}" 
+            >
+    </video>
+
+    <div class ="media__content">
+    <h2 class ="media__title">${media.title}</h2>
+    </div>
+
+    <div class ="media__likes">
+    <p class="media__likes-number">${media.likes}</p>
+    <i class="fas fa-heart"></i>
+    </li>
+
+    `;
+    }
+  });
+  //   displayPhotographerInformation();
+}
+function getSurname(name) {
+  let cuttedName = "";
+  // https://stackoverflow.com/a/26425713
+  var stringArray = name.split(/(\s+)/);
+  const surname = stringArray[0];
+  // https://stackoverflow.com/q/14262770
+  cuttedName = surname.replace("-", " ");
+  return cuttedName;
+}
+function imageExist(url) {
+  if (url) {
+    var req = new XMLHttpRequest();
+    req.open("GET", url, false);
+    req.send();
+    return req.status == 200;
+  } else {
+    return false;
+  }
 }
