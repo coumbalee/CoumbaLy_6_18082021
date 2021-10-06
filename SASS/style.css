@@ -132,7 +132,7 @@ table {
 
 body {
   font-family: DM Sans, sans sérif;
-  font-size: 18px;
+  font-size: 1.125rem;
   margin: 2% 5%;
 }
 
@@ -209,7 +209,7 @@ a {
 }
 
 .tag {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #901c1c;
   padding: 0 5px;
   margin: 0 2px;
@@ -269,8 +269,8 @@ a {
 }
 
 .photographers .photographer__img {
-  width: 40%;
-  height: 170px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -306,6 +306,15 @@ a {
   font-size: 0.825rem;
 }
 
+body {
+  margin: 2% 10%;
+}
+
+.header-photographer img {
+  height: 3rem;
+  margin-bottom: 30px;
+}
+
 .photographer-section {
   background-color: #fafafa;
   display: -webkit-box;
@@ -319,13 +328,13 @@ a {
 }
 
 .photographer-section__content {
-  padding: 25px 20px 0 10px;
+  padding: 25px 20px 0 20px;
 }
 
 .photographer-section__name {
   color: #d3573c;
   font-size: 1.5rem;
-  font-size: 2.5rem;
+  font-size: 3rem;
   padding-bottom: 10px;
 }
 
@@ -344,20 +353,21 @@ a {
 .photographer-section__tags {
   color: #901c1c;
   font-size: 0.825rem;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #901c1c;
   padding: 0 5px;
   margin: 0 2px;
   border-radius: 15px;
   border: solid 1px #c4c4c4;
   background-color: white;
+  font-size: 1rem;
 }
 
 .photographer-section__button {
   background-color: #901c1c;
   color: white;
   position: absolute;
-  left: 450px;
+  left: 600px;
   top: 130px;
   padding: 10px 20px;
   border: none;
