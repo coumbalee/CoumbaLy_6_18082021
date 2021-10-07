@@ -70,12 +70,14 @@ a {
   justify-content: space-between;
   margin-left: -6%;
   margin-right: -6%;
+  margin-top: 7%;
   @media (max-width: 599px) {
     flex-direction: column;
   }
   .photographer {
     width: 30%;
-    margin-top: 10%;
+    // height: 400px;
+    margin-top: -30px;
     text-align: center;
     @media (max-width: 700px) {
       width: 100%;
@@ -85,6 +87,8 @@ a {
       height: 160px;
       border-radius: 50%;
       object-fit: cover;
+      object-position: 40% 60%;
+      box-shadow: rgb(208, 207, 207) 2px 2px 2px 2px;
     }
     &__content {
       height: 200px;
