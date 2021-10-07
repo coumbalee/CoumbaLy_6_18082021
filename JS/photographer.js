@@ -63,11 +63,12 @@ async function displayPhotographerPage() {
     (elt) => elt.photographerId === parseInt(id, 10)
   );
   console.log(photographerMedias);
+  generateLighbox();
 
   // créer ici une ul
   let mediaElt = document.querySelector(".media-section");
   const cardList = document.createElement("ul");
-  cardList.classList.add("media__cards");
+  cardList.classList.add("media-section__cards");
   mediaElt.append(cardList);
 
   console.log(mediaElt);
@@ -76,11 +77,8 @@ async function displayPhotographerPage() {
     let video = ` ./IMAGES/${photographerSurname}/${media.video} `;
     if (imageExist(url)) {
       cardList.innerHTML += `
-    <li class="media__card">
-    <img src="${url}" width="150">
-    
-    
-
+    <li class="media-section__card">
+    <img src="${url}" data-img="${url}" >
     <div class ="media__content">
     <h2 class ="media__title">${media.title}</h2>
     </div>
@@ -92,11 +90,12 @@ async function displayPhotographerPage() {
 
     `;
     }
+
     if (imageExist(video)) {
       cardList.innerHTML += `
-    <li class="media__card">
-    <video controls width="150">
-    <source src="${video}" 
+    <li class="media-section__card">
+    <video controls >
+    <source src="${video}" data-video="${video}" 
             >
     </video>
 
@@ -112,7 +111,6 @@ async function displayPhotographerPage() {
     `;
     }
   });
-  //   displayPhotographerInformation();
 }
 function getSurname(name) {
   let cuttedName = "";
@@ -132,4 +130,34 @@ function imageExist(url) {
   } else {
     return false;
   }
+}
+
+// création  de la lightbox
+function generateLighbox() {
+  // / div class lighbox
+  let mediaBox = document.querySelector(".media-section");
+  const lightbox = document.createElement("div");
+  lightbox.classList.add("lightbox");
+  mediaBox.append(lightbox);
+  // button class close
+  const btnClose = document.createElement("button");
+  btnClose.classList.add("close");
+  // button class prev
+  const btnPrev = document.createElement("button");
+  btnPrev.classList.add("prev");
+  // button class next
+  const btnNext = document.createElement("button");
+  btnNext.classList.add("next");
+  // div class lightbox container
+  const lightboxContainer = document.createElement("div");
+  lightboxContainer.classList.add("lightbox__container");
+
+  lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
+}
+
+// fonction qui affiche la lightbox grace a un evenement
+function displayLightbox(image) {
+  let images = `./IMAGES/${photographerSurname}/${media.image} `;
+  let video = ` ./IMAGES/${photographerSurname}/${media.video} `;
+  images.forEach((image) => image.addEventListener("click", (e) => {}));
 }
