@@ -53,6 +53,10 @@ a {
 .tag {
   @include tag;
 }
+.tag:hover {
+  background-color: $color-primary;
+  color: white;
+}
 .h1 {
   @include titles;
   position: absolute;
@@ -88,7 +92,7 @@ a {
       border-radius: 50%;
       object-fit: cover;
       object-position: 40% 60%;
-      box-shadow: rgb(208, 207, 207) 2px 2px 2px 2px;
+      box-shadow: 0px 4px 12px 0px #00000040;
     }
     &__content {
       height: 200px;
