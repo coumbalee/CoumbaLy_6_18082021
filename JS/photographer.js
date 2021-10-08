@@ -79,13 +79,14 @@ async function displayPhotographerPage() {
       cardList.innerHTML += `
     <li class="media-section__card">
     <img src="${url}" data-img="${url}" >
-    <div class ="media__content">
-    <h2 class ="media__title">${media.title}</h2>
-    </div>
+    <div class ="media-section__content">
+    <h2 class ="media-section__title">${media.title}</h2>
 
-    <div class ="media__likes">
-    <p class="media__likes-number">${media.likes}</p>
+    <div class ="media-section__likes">
+    <p class="media-section__number">${media.likes}</p>
     <i class="fas fa-heart"></i>
+    </div>
+    </div>
     </li>
 
     `;
@@ -141,13 +142,16 @@ function generateLighbox() {
   mediaBox.append(lightbox);
   // button class close
   const btnClose = document.createElement("button");
-  btnClose.classList.add("close");
+  btnClose.classList.add("lightbox__close");
+  btnClose.innerHTML += `<i class="fas fa-times"></i>`;
   // button class prev
   const btnPrev = document.createElement("button");
-  btnPrev.classList.add("prev");
+  btnPrev.classList.add("lightbox__prev");
+  btnPrev.innerHTML += `<i class="fas fa-chevron-left"></i>`;
   // button class next
   const btnNext = document.createElement("button");
-  btnNext.classList.add("next");
+  btnNext.classList.add("lightbox__next");
+  btnNext.innerHTML += `<i class="fas fa-chevron-right"></i>`;
   // div class lightbox container
   const lightboxContainer = document.createElement("div");
   lightboxContainer.classList.add("lightbox__container");
@@ -156,8 +160,8 @@ function generateLighbox() {
 }
 
 // fonction qui affiche la lightbox grace a un evenement
-function displayLightbox(image) {
-  let images = `./IMAGES/${photographerSurname}/${media.image} `;
-  let video = ` ./IMAGES/${photographerSurname}/${media.video} `;
-  images.forEach((image) => image.addEventListener("click", (e) => {}));
-}
+// function displayLightbox(image) {
+//   let images = `./IMAGES/${photographerSurname}/${media.image} `;
+//   let video = ` ./IMAGES/${photographerSurname}/${media.video} `;
+//   images.forEach((image) => image.addEventListener("click", (e) => {}));
+// }
