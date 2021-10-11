@@ -2,6 +2,7 @@ body {
   font-family: DM Sans, sans sérif;
   font-size: 1.125rem;
   margin: 2% 5%;
+  box-sizing: border-box;
 }
 a {
   @include links-style;
