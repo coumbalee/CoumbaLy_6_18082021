@@ -134,6 +134,8 @@ body {
   font-family: DM Sans, sans sérif;
   font-size: 1.125rem;
   margin: 2% 5%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 a {
@@ -410,13 +412,14 @@ body {
 
 .media-section__card img,
 .media-section video {
-  width: 350px;
+  width: 360px;
   height: 350px;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: 50% 30%;
      object-position: 50% 30%;
   padding-top: 10px;
+  cursor: pointer;
 }
 
 .media-section__content {
@@ -448,13 +451,49 @@ body {
   z-index: 30;
 }
 
+.lightbox__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.lightbox__container img {
+  width: 40%;
+  height: 80vh;
+}
+
 .lightbox button {
   border: none;
   background-color: rgba(254, 254, 254, 0.9);
   color: #901c1c;
+  width: 100%;
 }
 
 .lightbox .fas {
-  font-size: 30px;
+  font-size: 40px;
+}
+
+.lightbox .fa-chevron-left {
+  position: absolute;
+  left: 380px;
+  top: 320px;
+}
+
+.lightbox .fa-chevron-right {
+  position: absolute;
+  right: 380px;
+  top: 320px;
+}
+
+.lightbox .fa-times {
+  position: absolute;
+  right: 380px;
+  top: 55px;
 }
 /*# sourceMappingURL=style.css.map */
