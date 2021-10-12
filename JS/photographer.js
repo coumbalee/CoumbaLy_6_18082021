@@ -41,7 +41,7 @@ function displayPhotographerInformation(photographer) {
     }" class ="photographer-section__img">
     `;
 }
-
+// fonction asynchrone qui gere l' affichage de la page
 async function displayPhotographerPage() {
   // PHOTOGRAPHES
   const photographers = await getPhotographersFromJson();
@@ -63,56 +63,57 @@ async function displayPhotographerPage() {
     (elt) => elt.photographerId === parseInt(id, 10)
   );
   console.log(photographerMedias);
-  generateLighbox();
 
   // créer ici une ul
   let mediaElt = document.querySelector(".media-section");
   const cardList = document.createElement("ul");
   cardList.classList.add("media-section__cards");
   mediaElt.append(cardList);
-
   console.log(mediaElt);
   photographerMedias.forEach((media) => {
     let url = `./IMAGES/${photographerSurname}/${media.image} `;
     let video = ` ./IMAGES/${photographerSurname}/${media.video} `;
+
     if (imageExist(url)) {
       cardList.innerHTML += `
-    <li class="media-section__card">
-    <img src="${url}" data-img="${url}" >
-    <div class ="media-section__content">
-    <h2 class ="media-section__title">${media.title}</h2>
-
-    <div class ="media-section__likes">
-    <p class="media-section__number">${media.likes}</p>
-    <i class="fas fa-heart"></i>
-    </div>
-    </div>
-    </li>
-
-    `;
+      <li class="media-section__card"  >
+      <img src="${url}"  class="mediaImg" >
+      <div class ="media-section__content">
+      <h2 class ="media-section__title">${media.title}</h2>
+      
+      <div class ="media-section__likes">
+      <p class="media-section__number">${media.likes}</p>
+      <i class="fas fa-heart"></i>
+      </div>
+      </div>
+      </li>
+      
+      `;
     }
 
     if (imageExist(video)) {
       cardList.innerHTML += `
-    <li class="media-section__card">
-    <video controls >
-    <source src="${video}" data-video="${video}" 
-            >
-    </video>
-
-    <div class ="media__content">
-    <h2 class ="media__title">${media.title}</h2>
-    </div>
-
-    <div class ="media__likes">
-    <p class="media__likes-number">${media.likes}</p>
-    <i class="fas fa-heart"></i>
-    </li>
-
-    `;
+      <li class="media-section__card">
+      <video controls >
+      <source src="${video}"  class="mediaVideo"
+      >
+      </video>
+      <div class ="media-section__content">
+      <h2 class ="media-section__title">${media.title}</h2>
+      <div class ="media-section__likes">
+      <p class="media-section__number">${media.likes}</p>
+      <i class="fas fa-heart"></i>
+      </div>
+      </div>
+      
+      </li>
+      
+      `;
     }
   });
+  displayLightbox();
 }
+
 function getSurname(name) {
   let cuttedName = "";
   // https://stackoverflow.com/a/26425713
@@ -133,35 +134,36 @@ function imageExist(url) {
   }
 }
 
-// création  de la lightbox
-function generateLighbox() {
-  // / div class lighbox
-  let mediaBox = document.querySelector(".media-section");
-  const lightbox = document.createElement("div");
-  lightbox.classList.add("lightbox");
-  mediaBox.append(lightbox);
-  // button class close
-  const btnClose = document.createElement("button");
-  btnClose.classList.add("lightbox__close");
-  btnClose.innerHTML += `<i class="fas fa-times"></i>`;
-  // button class prev
-  const btnPrev = document.createElement("button");
-  btnPrev.classList.add("lightbox__prev");
-  btnPrev.innerHTML += `<i class="fas fa-chevron-left"></i>`;
-  // button class next
-  const btnNext = document.createElement("button");
-  btnNext.classList.add("lightbox__next");
-  btnNext.innerHTML += `<i class="fas fa-chevron-right"></i>`;
-  // div class lightbox container
-  const lightboxContainer = document.createElement("div");
-  lightboxContainer.classList.add("lightbox__container");
-
-  lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
+// affichage de la lightbox au click sur l' image ou video
+function displayLightbox() {
+  // const mediaImages = document.querySelectorAll(".mediaImg", ".mediaVideo");
+  const mediaImages = document.querySelectorAll(".mediaImg", ".mediaVideo");
+  mediaImages.forEach((mediaImg) => {
+    mediaImg.addEventListener("click", (e) => {
+      // generateLightbox();// / div class lighbox
+      let mediaBox = document.querySelector(".media-section");
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      mediaBox.append(lightbox);
+      // button class close
+      const btnClose = document.createElement("button");
+      btnClose.classList.add("lightbox__close");
+      btnClose.innerHTML += `<i class="fas fa-times"></i>`;
+      // button class prev
+      const btnPrev = document.createElement("button");
+      btnPrev.classList.add("lightbox__prev");
+      btnPrev.innerHTML += `<i class="fas fa-chevron-left"></i>`;
+      // button class next
+      const btnNext = document.createElement("button");
+      btnNext.classList.add("lightbox__next");
+      btnNext.innerHTML += `<i class="fas fa-chevron-right"></i>`;
+      // div class lightbox container
+      const lightboxContainer = document.createElement("div");
+      lightboxContainer.classList.add("lightbox__container");
+      const img = document.createElement("img");
+      img.src = mediaImg.currentSrc;
+      lightboxContainer.prepend(img);
+      lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
+    });
+  });
 }
-
-// fonction qui affiche la lightbox grace a un evenement
-// function displayLightbox(image) {
-//   let images = `./IMAGES/${photographerSurname}/${media.image} `;
-//   let video = ` ./IMAGES/${photographerSurname}/${media.video} `;
-//   images.forEach((image) => image.addEventListener("click", (e) => {}));
-// }
