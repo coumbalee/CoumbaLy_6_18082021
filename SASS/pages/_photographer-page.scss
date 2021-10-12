@@ -62,11 +62,12 @@ body {
   }
   &__card img,
   video {
-    width: 350px;
+    width: 360px;
     height: 350px;
     object-fit: cover;
     object-position: 50% 30%;
     padding-top: 10px;
+    cursor: pointer;
   }
   &__content {
     display: flex;
@@ -79,12 +80,7 @@ body {
   }
 }
 .lightbox {
-  button {
-    // display: none;
-    border: none;
-    background-color: rgba(254, 254, 254, 0.9);
-    color: $color-primary;
-  }
+  // display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -92,8 +88,38 @@ body {
   height: 100%;
   background-color: rgba(254, 254, 254, 0.9);
   z-index: 30;
-
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__container img {
+    width: 40%;
+    height: 80vh;
+  }
+  button {
+    // display: none;
+    border: none;
+    background-color: rgba(254, 254, 254, 0.9);
+    color: $color-primary;
+    width: 100%;
+  }
   .fas {
-    font-size: 30px;
+    font-size: 40px;
+  }
+  .fa-chevron-left {
+    position: absolute;
+    left: 380px;
+    top: 320px;
+  }
+  .fa-chevron-right {
+    position: absolute;
+    right: 380px;
+    top: 320px;
+  }
+  .fa-times {
+    position: absolute;
+    right: 380px;
+    top: 55px;
   }
 }
