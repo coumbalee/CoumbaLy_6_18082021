@@ -105,9 +105,7 @@ async function displayPhotographerPage() {
       <i class="fas fa-heart"></i>
       </div>
       </div>
-      
       </li>
-      
       `;
     }
   });
@@ -134,36 +132,43 @@ function imageExist(url) {
   }
 }
 
-// affichage de la lightbox au click sur l' image ou video
+// affichage de la lightbox au click sur l' image
 function displayLightbox() {
-  // const mediaImages = document.querySelectorAll(".mediaImg", ".mediaVideo");
   const mediaImages = document.querySelectorAll(".mediaImg", ".mediaVideo");
   mediaImages.forEach((mediaImg) => {
     mediaImg.addEventListener("click", (e) => {
-      // generateLightbox();// / div class lighbox
+      //  création de la div class lighbox et de tous les éléments qu' elle contient
       let mediaBox = document.querySelector(".media-section");
       const lightbox = document.createElement("div");
       lightbox.classList.add("lightbox");
       mediaBox.append(lightbox);
-      // button class close
       const btnClose = document.createElement("button");
-      btnClose.classList.add("lightbox__close");
-      btnClose.innerHTML += `<i class="fas fa-times"></i>`;
-      // button class prev
+      btnClose.innerHTML += `<i class="fas fa-times  lightbox__close"></i>`;
       const btnPrev = document.createElement("button");
-      btnPrev.classList.add("lightbox__prev");
-      btnPrev.innerHTML += `<i class="fas fa-chevron-left"></i>`;
+      btnPrev.innerHTML += `<i class="fas fa-chevron-left  lightbox__prev"></i>`;
       // button class next
       const btnNext = document.createElement("button");
-      btnNext.classList.add("lightbox__next");
-      btnNext.innerHTML += `<i class="fas fa-chevron-right"></i>`;
+      btnNext.innerHTML += `<i class="fas fa-chevron-right  lightbox__next"></i>`;
       // div class lightbox container
       const lightboxContainer = document.createElement("div");
       lightboxContainer.classList.add("lightbox__container");
+      // cration de l' image contenu dans le container
       const img = document.createElement("img");
+      // la source de l' image crée sera la même que celle sur laquelle on aura cliqué
       img.src = mediaImg.currentSrc;
       lightboxContainer.prepend(img);
       lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
+      // fermeture de la lightbox au clic sur le bouton x
+      document
+        .querySelector(".lightbox__close")
+        .addEventListener("click", function () {
+          removeLightbox();
+        });
     });
   });
+}
+
+function removeLightbox() {
+  const removeLightbox = document.querySelector(".lightbox");
+  removeLightbox.remove();
 }
