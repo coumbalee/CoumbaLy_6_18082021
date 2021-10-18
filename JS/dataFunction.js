@@ -31,3 +31,9 @@ export function getAllTagsFromPhotographers(photographers) {
   const tags = [...tagsSet];
   return tags;
 }
+
+export async function getMediaFromPhotographer(id) {
+  const media = await getMediaFromJson();
+  const photographerMedias = media.filter((elt) => elt.photographerId === id);
+  return photographerMedias;
+}
