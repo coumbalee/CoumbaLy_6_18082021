@@ -96,6 +96,7 @@ body {
   &__container img {
     width: 40%;
     height: 80vh;
+    border-radius: 5px;
   }
   button {
     // display: none;
@@ -103,6 +104,7 @@ body {
     background-color: rgba(254, 254, 254, 0.9);
     color: $color-primary;
     width: 100%;
+    cursor: pointer;
   }
   .fas {
     font-size: 40px;
@@ -121,5 +123,9 @@ body {
     position: absolute;
     right: 380px;
     top: 55px;
+  }
+  .fa-times:hover {
+    color: $color-secondary;
+    transform: scale(1.1);
   }
 }
