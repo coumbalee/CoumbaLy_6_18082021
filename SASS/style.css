@@ -466,6 +466,7 @@ body {
 .lightbox__container img {
   width: 40%;
   height: 80vh;
+  border-radius: 5px;
 }
 
 .lightbox button {
@@ -473,6 +474,7 @@ body {
   background-color: rgba(254, 254, 254, 0.9);
   color: #901c1c;
   width: 100%;
+  cursor: pointer;
 }
 
 .lightbox .fas {
@@ -495,5 +497,11 @@ body {
   position: absolute;
   right: 380px;
   top: 55px;
+}
+
+.lightbox .fa-times:hover {
+  color: #d3573c;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 /*# sourceMappingURL=style.css.map */
