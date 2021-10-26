@@ -9,11 +9,10 @@ import {
   generateHeader,
   getPhotographerIdFromUrl,
   displayLightbox,
-  removeLightbox,
+  // removeLightbox,
 } from "./functions.js";
 generateHeader();
 displayPhotographerPage();
-
 // fonction asynchrone qui gere l' affichage de la page
 async function displayPhotographerPage() {
   // PHOTOGRAPHES
