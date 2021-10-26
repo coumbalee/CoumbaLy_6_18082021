@@ -378,12 +378,12 @@ body {
 .photographer-section__button {
   background-color: #901c1c;
   color: white;
-  position: absolute;
-  left: 600px;
-  top: 130px;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
+  position: absolute;
+  left: 600px;
+  top: 130px;
 }
 
 .photographer-section__img {
@@ -503,5 +503,106 @@ body {
   color: #d3573c;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
+}
+
+.form-section {
+  z-index: 1000;
+  position: absolute;
+  top: 1%;
+  left: 30%;
+}
+
+.form-section small {
+  display: none;
+}
+
+.form-section label {
+  font-size: 1.5rem;
+}
+
+.form-section .form {
+  background-color: #db8876;
+  width: 110%;
+}
+
+.form-section .form__content {
+  margin-left: 20px;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.form-section .form__head {
+  font-size: 1.875rem;
+  padding-top: 20px;
+}
+
+.form-section .form__close {
+  color: #fff;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 30px;
+  top: 15px;
+}
+
+.form-section .form__data {
+  margin: 20px 0px;
+}
+
+.form-section .form__input {
+  background-color: #fff;
+  border: #fff;
+  padding: 20px 250px 15px 5px;
+  margin-top: 10px;
+}
+
+.form-section .form__input::-webkit-input-placeholder {
+  font-size: 1rem;
+}
+
+.form-section .form__input:-ms-input-placeholder {
+  font-size: 1rem;
+}
+
+.form-section .form__input::-ms-input-placeholder {
+  font-size: 1rem;
+}
+
+.form-section .form__input::placeholder {
+  font-size: 1rem;
+}
+
+.form-section .form__text-area {
+  border: #fff;
+  padding-right: 225px;
+  margin-top: 10px;
+}
+
+.form-section .form__text-area::-webkit-input-placeholder {
+  font-size: 1rem;
+}
+
+.form-section .form__text-area:-ms-input-placeholder {
+  font-size: 1rem;
+}
+
+.form-section .form__text-area::-ms-input-placeholder {
+  font-size: 1rem;
+}
+
+.form-section .form__text-area::placeholder {
+  font-size: 1rem;
+}
+
+.form-section .form__button {
+  background-color: #901c1c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 90%;
 }
 /*# sourceMappingURL=style.css.map */
