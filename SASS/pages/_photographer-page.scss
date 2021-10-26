@@ -36,14 +36,10 @@ body {
     font-size: 1rem;
   }
   &__button {
-    background-color: $color-primary;
-    color: white;
+    @include button;
     position: absolute;
     left: 600px;
     top: 130px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
   }
   &__img {
     width: 170px;
@@ -127,5 +123,71 @@ body {
   .fa-times:hover {
     color: $color-secondary;
     transform: scale(1.1);
+  }
+}
+.form-section {
+  z-index: 1000;
+  position: absolute;
+  top: 1%;
+  left: 30%;
+  small {
+    display: none;
+  }
+  label {
+    font-size: 1.5rem;
+  }
+
+  .form {
+    background-color: $color-tertiary;
+    width: 110%;
+
+    &__content {
+      margin-left: 20px;
+      height: 100vh;
+      width: 100%;
+      position: relative;
+    }
+
+    &__head {
+      font-size: 1.875rem;
+      padding-top: 20px;
+    }
+    &__close {
+      color: $color-white;
+      font-size: 1.5rem;
+      position: absolute;
+      right: 30px;
+      top: 15px;
+    }
+    &__data {
+      margin: 20px 0px;
+    }
+
+    &__input {
+      background-color: $color-white;
+      @include input;
+      padding: 20px 250px 15px 5px;
+      margin-top: 10px;
+    }
+    &__input::placeholder {
+      font-size: 1rem;
+    }
+    &__text-area {
+      @include input;
+      padding-right: 225px;
+      margin-top: 10px;
+    }
+    &__text-area::placeholder {
+      font-size: 1rem;
+    }
+    &__button {
+      @include button;
+      display: block;
+      // margin: auto;
+      // margin-bottom: 20px;
+      position: absolute;
+      left: 50%;
+      top: 90%;
+    }
   }
 }
