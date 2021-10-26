@@ -41,3 +41,6 @@
   border: solid 1px #c4c4c4;
   background-color: white;
 }
+@mixin input {
+  border: $color-white;
+}
