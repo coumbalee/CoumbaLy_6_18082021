@@ -378,12 +378,14 @@ body {
 .photographer-section__button {
   background-color: #901c1c;
   color: white;
-  padding: 10px 20px;
+  font-size: 1rem;
+  padding: 20px 30px;
   border: none;
   border-radius: 5px;
   position: absolute;
   left: 600px;
   top: 130px;
+  cursor: pointer;
 }
 
 .photographer-section__img {
@@ -512,14 +514,6 @@ body {
   left: 30%;
 }
 
-.form-section small {
-  display: none;
-}
-
-.form-section label {
-  font-size: 1.5rem;
-}
-
 .form-section .form {
   background-color: #db8876;
   width: 110%;
@@ -545,15 +539,37 @@ body {
   top: 15px;
 }
 
-.form-section .form__data {
+.form-section .form__close:hover {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.form-section .form__control {
   margin: 20px 0px;
+}
+
+.form-section .form__label {
+  font-size: 1.5rem;
+}
+
+.form-section .form small {
+  visibility: hidden;
+}
+
+.form-section .form .success input {
+  border: 2px solid #2ecc71;
+}
+
+.form-section .form .error input {
+  border: 2px solid #e60b0b;
 }
 
 .form-section .form__input {
   background-color: #fff;
   border: #fff;
-  padding: 20px 250px 15px 5px;
+  padding: 20px 300px 15px 5px;
   margin-top: 10px;
+  font-family: inherit;
 }
 
 .form-section .form__input::-webkit-input-placeholder {
@@ -572,9 +588,13 @@ body {
   font-size: 1rem;
 }
 
+.form-section .form__input:hover {
+  opacity: 0.9;
+}
+
 .form-section .form__text-area {
   border: #fff;
-  padding-right: 225px;
+  padding-right: 275px;
   margin-top: 10px;
 }
 
@@ -594,15 +614,20 @@ body {
   font-size: 1rem;
 }
 
+.form-section .form__text-area:hover {
+  opacity: 0.9;
+}
+
 .form-section .form__button {
   background-color: #901c1c;
   color: white;
-  padding: 10px 20px;
+  font-size: 1rem;
+  padding: 20px 30px;
   border: none;
   border-radius: 5px;
   display: block;
   position: absolute;
-  left: 50%;
-  top: 90%;
+  left: 45%;
+  top: 87%;
 }
 /*# sourceMappingURL=style.css.map */
