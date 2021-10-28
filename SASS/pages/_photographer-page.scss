@@ -141,7 +141,7 @@ body {
 
     &__content {
       margin-left: 20px;
-      height: 100vh;
+      height: 110vh;
       width: 100%;
       position: relative;
     }
@@ -172,12 +172,20 @@ body {
     }
 
     .success input {
-      border: 2px solid #2ecc71;
+      border: 2px solid $color-white;
+    }
+    .success textarea {
+      border: 2px solid $color-white;
     }
     .error input {
-      border: 2px solid #e60b0b;
+      border: 2px solid $color-black;
     }
-
+    .error small {
+      visibility: visible;
+    }
+    .error textarea {
+      border: 2px solid $color-black;
+    }
     &__input {
       background-color: $color-white;
       @include input;
@@ -206,11 +214,12 @@ body {
     &__button {
       @include button;
       display: block;
-      // margin: auto;
+      margin-left: 20px;
+      margin-bottom: 15px;
 
       position: absolute;
-      left: 45%;
-      top: 87%;
+      left: 1%;
+      top: 90%;
     }
   }
 }

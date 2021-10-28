@@ -521,7 +521,7 @@ body {
 
 .form-section .form__content {
   margin-left: 20px;
-  height: 100vh;
+  height: 110vh;
   width: 100%;
   position: relative;
 }
@@ -557,11 +557,23 @@ body {
 }
 
 .form-section .form .success input {
-  border: 2px solid #2ecc71;
+  border: 2px solid #fff;
+}
+
+.form-section .form .success textarea {
+  border: 2px solid #fff;
 }
 
 .form-section .form .error input {
-  border: 2px solid #e60b0b;
+  border: 2px solid #000000;
+}
+
+.form-section .form .error small {
+  visibility: visible;
+}
+
+.form-section .form .error textarea {
+  border: 2px solid #000000;
 }
 
 .form-section .form__input {
@@ -626,8 +638,10 @@ body {
   border: none;
   border-radius: 5px;
   display: block;
+  margin-left: 20px;
+  margin-bottom: 15px;
   position: absolute;
-  left: 45%;
-  top: 87%;
+  left: 1%;
+  top: 90%;
 }
 /*# sourceMappingURL=style.css.map */
