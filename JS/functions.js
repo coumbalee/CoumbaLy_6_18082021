@@ -33,7 +33,6 @@ export function displayPhotographerInformation(photographer) {
     `;
   const contact = document.querySelector("#contact");
   contact.addEventListener("click", generateForm);
-  console.log(contact);
 }
 // // Fonction qui génère le logo du header
 export function generateHeader() {
@@ -46,6 +45,7 @@ export function generateHeader() {
   img.src = "/IMAGES/logo.png";
   headerLink.appendChild(img);
 }
+// fonction qui récupère l' id d'un photographe à partir de  l' url
 export function getPhotographerIdFromUrl() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -221,28 +221,12 @@ export function displayLightbox(mediaArray, baseUrl) {
   //   });
   // });
 }
-
+// fonction qui ferme la lightbox
 export function removeLightbox() {
   const removeLightbox = document.querySelector(".lightbox");
   removeLightbox.remove();
 }
-// console.log(generateForm);
-// export function generateForm() {
-//   console.log(generateForm);
-//   const contact = document.querySelector("#contact");
-//   console.log(contact);
-//   contact.addEventListener("click", (e) => {
-//     const formSection = document.createElement("section");
-//     formSection.classList.add("section-form");
-//     const form = document.createElement("form");
-//     form.setAttribute("method", "post");
-//     formSection.prepend(form);
-//   });
-//   // generateForm();
-// }
-
-// document.querySelector("#contact").addEventListener("click", generateForm());
-
+// fonction qui crée le formulaire de contact
 export function generateForm() {
   const formSection = document.createElement("section");
   const main = document.querySelector("main");
@@ -259,8 +243,8 @@ export function generateForm() {
     <div class="form__modal-body">
       <form name="form__contact"  action="photographer.html" method="get">
     <h1 class="form__head">Contactez-moi </h1>
-        <div class="form__data">
-          <label for="first">Prénom</label><br />
+        <div class="form__control ">
+          <label class ="form__label"for="first">Prénom</label><br />
           <input
             class="form__input"
             type="text"
@@ -271,8 +255,8 @@ export function generateForm() {
           <br />
           <small> Message d'erreur</small>
         </div>
-        <div class="form__data">
-          <label for="last">Nom</label><br />
+        <div class="form__control">
+          <label class ="form__label" for="last">Nom</label><br />
           <input
             class="form__input"
             type="text"
@@ -285,8 +269,8 @@ export function generateForm() {
         </div>
         </div>
 
-        <div class="form__data">
-        <label for="email">E-mail</label><br />
+        <div class="form__control">
+        <label class ="form__label" for="email">E-mail</label><br />
         <input
           class="form__input"
           type="email"
@@ -297,21 +281,107 @@ export function generateForm() {
         <small> Message d'erreur</small
       </div>
       </div>
-      <div class=" form__data">
-      <label for="text-area">Votre Message</label><br />
-      <textarea  name="text-area" class="form__text-area" cols="20" 
+      <div class="form__control">
+      <label class ="form__label" for="text-area">Votre Message</label><br />
+      <textarea  name="text-area" id="textArea" class="form__text-area" cols="20" 
       rows="10" required="" aria-required="true" placeholder="Bonjour..."></textarea><br/>
       <small> Message d'erreur</small>
       </div> 
     </div>
   </div>
-  <input class="form__button" type="submit" value="Envoyer">
+  <button class="form__button" type="submit">Envoyer</button>
         `;
-  document.querySelector(".form__close").addEventListener("click", function () {
-    removeForm();
-  });
+
+  document.querySelector(".form").addEventListener(
+    "click",
+    function (event) {
+      checkInputs();
+      event.preventDefault();
+    },
+    false
+  );
 }
+// fermeture du formulaire
 export function removeForm() {
   const removeForm = document.querySelector(".form");
   removeForm.remove();
+}
+// Vérification des champs du formulaire
+export function checkInputs() {
+  // console.log(checkInputs());
+  const form = document.querySelector(".form");
+  console.log(form);
+  const firstName = document.querySelector("#first");
+  console.log(firstName);
+  const lastName = document.querySelector("#last");
+  const email = document.querySelector("#email");
+  const area = document.querySelector("#textArea");
+  let isValid = true;
+
+  const firstNameValue = firstName.value.trim();
+  console.log(firstNameValue);
+  const lastNameValue = lastName.value.trim();
+  const emailValue = email.value.trim();
+  const areaValue = area.value.trim();
+
+  // Vérification de chaque champ
+  if (!firstNameValue) {
+    setErrorFor(firstName, "Veuillez saisir votre prénom ");
+  } else if (firstNameValue.length < 2) {
+    setErrorFor(
+      firstName,
+      "Veuillez saisir au moins 2 lettres pour votre prénom "
+    );
+  } else {
+    setSuccessFor(firstName);
+  }
+  if (!lastNameValue) {
+    setErrorFor(lastName, "Veuillez saisir votre nom");
+  } else if (lastNameValue.length < 2) {
+    setErrorFor(lastName, "Veuillez saisir au moins 2 lettres pour votre nom ");
+  } else {
+    setSuccessFor(lastName);
+  }
+  if (!emailValue) {
+    setErrorFor(email, "Veuillez saisir votre email");
+  } else if (!isEmail(emailValue)) {
+    setErrorFor(email, "Cet email n' est pas valide");
+  } else {
+    setSuccessFor(email);
+  }
+  // adapter ou créer une fonction en plus pour area
+  if (!areaValue) {
+    setErrorForArea(area, "Veuillez saisir votre message");
+  } else {
+    setSuccessForArea(area);
+  }
+}
+
+// Fonction regex  pour l'email
+export function isEmail(email) {
+  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    email
+  );
+}
+export function setSuccessFor(input) {
+  const formControl = input.parentElement;
+  formControl.className = "form__control success";
+}
+export function setErrorFor(input, message) {
+  const formControl = input.parentElement;
+  console.log(formControl);
+  const small = formControl.querySelector("small");
+  formControl.className = "form__control error";
+  small.innerText = message;
+}
+export function setErrorForArea(textarea, message) {
+  const areaControl = textarea.parentElement;
+  console.log(areaControl);
+  const small = areaControl.querySelector("small");
+  areaControl.className = "form__control error";
+  small.innerText = message;
+}
+export function setSuccessForArea(textarea) {
+  const areaControl = textarea.parentElement;
+  areaControl.className = "form__control success";
 }
