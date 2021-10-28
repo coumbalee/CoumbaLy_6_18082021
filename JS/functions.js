@@ -249,7 +249,7 @@ export function generateForm() {
             class="form__input"
             type="text"
             id="first"
-            name="first"
+            name="firstname"
             placeholder="John"
           />
           <br />
@@ -261,7 +261,7 @@ export function generateForm() {
             class="form__input"
             type="text"
             id="last"
-            name="last"
+            name="lastname"
             placeholder="Doe"
           />
           <br />
@@ -296,16 +296,16 @@ export function generateForm() {
     "click",
     function (event) {
       checkInputs();
+      // removeForm();
       event.preventDefault();
     },
     false
   );
+  document.querySelector(".form__close").addEventListener("click", function () {
+    displayModal();
+  });
 }
-// fermeture du formulaire
-export function removeForm() {
-  const removeForm = document.querySelector(".form");
-  removeForm.remove();
-}
+
 // Vérification des champs du formulaire
 export function checkInputs() {
   // console.log(checkInputs());
@@ -319,7 +319,6 @@ export function checkInputs() {
   let isValid = true;
 
   const firstNameValue = firstName.value.trim();
-  console.log(firstNameValue);
   const lastNameValue = lastName.value.trim();
   const emailValue = email.value.trim();
   const areaValue = area.value.trim();
@@ -327,33 +326,50 @@ export function checkInputs() {
   // Vérification de chaque champ
   if (!firstNameValue) {
     setErrorFor(firstName, "Veuillez saisir votre prénom ");
+    isValid = false;
+    // console.log(isValid);
   } else if (firstNameValue.length < 2) {
     setErrorFor(
       firstName,
       "Veuillez saisir au moins 2 lettres pour votre prénom "
     );
+    isValid = false;
   } else {
     setSuccessFor(firstName);
+    console.log(isValid);
   }
   if (!lastNameValue) {
     setErrorFor(lastName, "Veuillez saisir votre nom");
+    isValid = false;
   } else if (lastNameValue.length < 2) {
     setErrorFor(lastName, "Veuillez saisir au moins 2 lettres pour votre nom ");
+    isValid = false;
   } else {
     setSuccessFor(lastName);
+    console.log(isValid);
   }
   if (!emailValue) {
     setErrorFor(email, "Veuillez saisir votre email");
+    isValid = false;
   } else if (!isEmail(emailValue)) {
     setErrorFor(email, "Cet email n' est pas valide");
+    isValid = false;
   } else {
     setSuccessFor(email);
+    console.log(isValid);
   }
   // adapter ou créer une fonction en plus pour area
   if (!areaValue) {
     setErrorForArea(area, "Veuillez saisir votre message");
+    isValid = false;
+    // console.log(isValid);
   } else {
     setSuccessForArea(area);
+    console.log(isValid);
+  }
+  if (isValid) {
+    const removeForm = document.querySelector(".form");
+    removeForm.remove();
   }
 }
 
@@ -366,17 +382,17 @@ export function isEmail(email) {
 export function setSuccessFor(input) {
   const formControl = input.parentElement;
   formControl.className = "form__control success";
+  console.log(input.getAttribute("name"), " : ", input.value);
 }
 export function setErrorFor(input, message) {
   const formControl = input.parentElement;
-  console.log(formControl);
   const small = formControl.querySelector("small");
   formControl.className = "form__control error";
   small.innerText = message;
+  console.log(input.getAttribute("name"), " : ", input.value);
 }
 export function setErrorForArea(textarea, message) {
   const areaControl = textarea.parentElement;
-  console.log(areaControl);
   const small = areaControl.querySelector("small");
   areaControl.className = "form__control error";
   small.innerText = message;
@@ -384,4 +400,9 @@ export function setErrorForArea(textarea, message) {
 export function setSuccessForArea(textarea) {
   const areaControl = textarea.parentElement;
   areaControl.className = "form__control success";
+  console.log(textarea.getAttribute("name"), " : ", textarea.value);
+}
+export function displayModal() {
+  const modal = document.querySelector(".form");
+  modal.remove();
 }
