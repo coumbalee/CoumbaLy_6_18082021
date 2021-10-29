@@ -44,3 +44,6 @@
 @mixin input {
   border: $color-white;
 }
+@mixin placeholder {
+  font-size: 1.2rem;
+}
