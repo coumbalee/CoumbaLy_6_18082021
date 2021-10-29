@@ -579,29 +579,29 @@ body {
 .form-section .form__input {
   background-color: #fff;
   border: #fff;
-  padding: 20px 300px 15px 5px;
+  padding: 20px 350px 15px 5px;
   margin-top: 10px;
   font-family: inherit;
 }
 
 .form-section .form__input::-webkit-input-placeholder {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  margin-right: -50px;
 }
 
 .form-section .form__input:-ms-input-placeholder {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  margin-right: -50px;
 }
 
 .form-section .form__input::-ms-input-placeholder {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  margin-right: -50px;
 }
 
 .form-section .form__input::placeholder {
-  font-size: 1rem;
-}
-
-.form-section .form__input:hover {
-  opacity: 0.9;
+  font-size: 1.2rem;
+  margin-right: -50px;
 }
 
 .form-section .form__text-area {
@@ -611,23 +611,19 @@ body {
 }
 
 .form-section .form__text-area::-webkit-input-placeholder {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .form-section .form__text-area:-ms-input-placeholder {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .form-section .form__text-area::-ms-input-placeholder {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .form-section .form__text-area::placeholder {
-  font-size: 1rem;
-}
-
-.form-section .form__text-area:hover {
-  opacity: 0.9;
+  font-size: 1.2rem;
 }
 
 .form-section .form__button {

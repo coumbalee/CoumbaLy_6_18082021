@@ -131,9 +131,6 @@ body {
   position: absolute;
   top: 1%;
   left: 30%;
-  // small {
-  //   // display: none;
-  // }
 
   .form {
     background-color: $color-tertiary;
@@ -189,16 +186,13 @@ body {
     &__input {
       background-color: $color-white;
       @include input;
-      padding: 20px 300px 15px 5px;
+      padding: 20px 350px 15px 5px;
       margin-top: 10px;
       font-family: inherit;
-      // border: 2px solid #2ecc71;
     }
     &__input::placeholder {
-      font-size: 1rem;
-    }
-    &__input:hover {
-      opacity: 0.9;
+      @include placeholder;
+      margin-right: -50px;
     }
     &__text-area {
       @include input;
@@ -206,11 +200,9 @@ body {
       margin-top: 10px;
     }
     &__text-area::placeholder {
-      font-size: 1rem;
+      @include placeholder;
     }
-    &__text-area:hover {
-      opacity: 0.9;
-    }
+
     &__button {
       @include button;
       display: block;
