@@ -9,6 +9,7 @@ import {
   generateHeader,
   getPhotographerIdFromUrl,
   displayLightbox,
+  generateDropdownMenu,
   // removeLightbox,
 } from "./functions.js";
 generateHeader();
@@ -38,6 +39,7 @@ async function displayPhotographerPage() {
     }
   });
   displayLightbox(photographerMedias, baseUrl);
+  generateDropdownMenu();
 }
 
 function getSurname(name) {
