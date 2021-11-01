@@ -32,6 +32,7 @@ export function displayPhotographerInformation(photographer) {
     }" class ="photographer-section__img">
     `;
   const contact = document.querySelector("#contact");
+  // console.log(contact);
   contact.addEventListener("click", generateForm);
 }
 // // Fonction qui génère le logo du header
@@ -67,15 +68,16 @@ export function imageExist(url) {
 // affichage de la lightbox au click sur l' image
 export function displayLightbox(mediaArray, baseUrl) {
   // Images
-  const mediaImages = document.querySelectorAll(".mediaImg");
-  mediaImages.forEach((mediaImg, index) => {
-    mediaImg.addEventListener("click", (e) => {
+  const mediaElts = document.querySelectorAll(".media-section__card");
+  mediaElts.forEach((element, index) => {
+    element.addEventListener("click", (e) => {
       //  création de la div class lighbox et de tous les éléments qu' elle contient
       let mediaBox = document.querySelector(".media-section");
       const lightbox = document.createElement("div");
       lightbox.classList.add("lightbox");
       lightbox.dataset.index = index;
       let imgTitle = mediaArray[index].title;
+      // console.log(imgTitle);
       mediaBox.append(lightbox);
       const btnClose = document.createElement("button");
       btnClose.innerHTML += `<i class="fas fa-times  lightbox__close"></i>`;
@@ -83,151 +85,136 @@ export function displayLightbox(mediaArray, baseUrl) {
       btnPrev.innerHTML += `<i class="fas fa-chevron-left  lightbox__prev"></i>`;
 
       btnPrev.addEventListener("click", (e) => {
-        let oldIndex = lightbox.dataset.index;
+        let oldIndex = parseInt(lightbox.dataset.index);
         let newIndex = oldIndex == 0 ? mediaArray.length - 1 : oldIndex - 1;
         console.log(mediaArray[newIndex]);
 
         lightbox.dataset.index = newIndex;
 
-        let image = lightbox.querySelector(".lightbox-img");
+        // let image = lightbox.querySelector(".lightbox-img");
+        // Changement commence ici
+        let mediaContainer = lightbox.querySelector(".lightbox__container");
+        if (
+          checkImageOrVideo(mediaContainer) === "image" &&
+          mediaArray[newIndex].image
+        ) {
+          mediaContainer.firstElementChild.src =
+            baseUrl + "/" + mediaArray[newIndex].image;
+          imgTitle = mediaArray[newIndex].title;
+          console.log(imgTitle);
+          // title.innerHTML += imgTitle;
+        } else {
+          mediaContainer.firstElementChild.src =
+            baseUrl + "/" + mediaArray[newIndex].video;
+        }
 
-        image.src = mediaArray[newIndex].image
-          ? baseUrl + "/" + mediaArray[newIndex].image
-          : baseUrl + "/" + mediaArray[newIndex].video;
+        // mediaContainer.src = mediaArray[newIndex].image
+        // ? baseUrl + "/" + mediaArray[newIndex].image
+        // : baseUrl + "/" + mediaArray[newIndex].video;
         // console.log(mediaArray[oldIndex].title);
       });
       const btnNext = document.createElement("button");
       btnNext.innerHTML += `<i class="fas fa-chevron-right  lightbox__next"></i>`;
 
       btnNext.addEventListener("click", (e) => {
-        let oldIndex = lightbox.dataset.index;
+        let oldIndex = parseInt(lightbox.dataset.index);
         // fonctionne  à moitié
-        // let newIndex = oldIndex == 0 ? mediaArray.length - 1 : oldIndex + 1;
-        // let newIndex = oldIndex == 0 ? oldIndex + 1 : oldIndex++;
-        // let newIndex = oldIndex == 0 ? oldIndex++ : oldIndex + 1;
+        let newIndex =
+          oldIndex == mediaArray.length - 1 ? (oldIndex = 0) : oldIndex + 1;
 
         console.log(mediaArray[newIndex]);
 
         lightbox.dataset.index = newIndex;
+        let mediaContainer = lightbox.querySelector(".lightbox__container");
+        if (
+          checkImageOrVideo(mediaContainer) === "image" &&
+          mediaArray[newIndex].image
+        ) {
+          mediaContainer.firstElementChild.src =
+            baseUrl + "/" + mediaArray[newIndex].image;
+          imgTitle = mediaArray[newIndex].title;
+          console.log(imgTitle);
+          // title.innerHTML += imgTitle;
+        } else {
+          mediaContainer.firstElementChild.src =
+            baseUrl + "/" + mediaArray[newIndex].video;
+        }
 
-        let image = lightbox.querySelector(".lightbox-img");
+        // let image = lightbox.querySelector(".lightbox-img");
 
-        image.src = mediaArray[newIndex].image
-          ? baseUrl + "/" + mediaArray[newIndex].image
-          : baseUrl + "/" + mediaArray[newIndex].video;
+        // image.src = mediaArray[newIndex].image
+        //   ? baseUrl + "/" + mediaArray[newIndex].image
+        //   : baseUrl + "/" + mediaArray[newIndex].video;
       });
       const lightboxContainer = document.createElement("div");
       lightboxContainer.classList.add("lightbox__container");
-      // cration de l' image contenu dans le container
-      const img = document.createElement("img");
-      img.classList.add("lightbox-img");
-      // la source de l' image crée sera la même que celle sur laquelle on aura cliqué
-      img.src = mediaImg.currentSrc;
-      console.log(mediaImg);
-      lightboxContainer.prepend(img);
-      // Ajout du titre de l' image dans la lightbox
-      // lightbox.dataset.title = title;
-      const title = document.createElement("h2");
-      // title.innerHTML += mediaArray[oldIndex].title;
 
-      // title.innerHTML += b;
-      lightboxContainer.append(title);
-      title.innerHTML += imgTitle;
+      // Check if image or video
+      console.log("firstChild", element.firstElementChild);
+      if (checkImageOrVideo(element) === "image") {
+        console.log("image");
+        // cration de l' image contenu dans le container
+        const img = document.createElement("img");
+        img.classList.add("lightbox-img");
+        // la source de l' image crée sera la même que celle sur laquelle on aura cliqué
+        img.src = element.firstElementChild.currentSrc;
+        // console.log(element);
+        lightboxContainer.prepend(img);
+        // Ajout du titre de l' image dans la lightbox
+        // lightbox.dataset.title = title;
+        const title = document.createElement("h2");
+        // title.innerHTML += mediaArray[oldIndex].title;
 
-      lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
-      // fermeture de la lightbox au clic sur le bouton x
-      document
-        .querySelector(".lightbox__close")
-        .addEventListener("click", function () {
-          removeLightbox();
-        });
+        // title.innerHTML += b;
+        lightboxContainer.append(title);
+        title.innerHTML += imgTitle;
+
+        lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
+        // fermeture de la lightbox au clic sur le bouton x
+        document
+          .querySelector(".lightbox__close")
+          .addEventListener("click", function () {
+            removeLightbox();
+          });
+      } else {
+        console.log("video");
+        const video = document.createElement("video");
+        video.classList.add("lightbox-img");
+        // la source de l' image crée sera la même que celle sur laquelle on aura cliqué
+        video.src = element.firstElementChild.currentSrc;
+        // console.log(element);
+        lightboxContainer.prepend(video);
+        // Ajout du titre de l' image dans la lightbox
+        const title = document.createElement("h2");
+        // title.innerHTML += mediaArray[oldIndex].title;
+
+        lightboxContainer.append(title);
+        title.innerHTML += imgTitle;
+
+        lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
+        // fermeture de la lightbox au clic sur le bouton x
+        document
+          .querySelector(".lightbox__close")
+          .addEventListener("click", function () {
+            removeLightbox();
+          });
+      }
     });
   });
-  // // Vidéos
-  // const mediaImages = document.querySelectorAll(".mediaVideo");
-  // mediaImages.forEach((mediaVideo, index) => {
-  //   mediaVideo.addEventListener("click", (e) => {
-  //     //  création de la div class lighbox et de tous les éléments qu' elle contient
-  //     let mediaBox = document.querySelector(".media-section");
-  //     const lightbox = document.createElement("div");
-  //     lightbox.classList.add("lightbox");
-  //     lightbox.dataset.index = index;
-  //     let imgTitle = mediaArray[index].title;
-  //     mediaBox.append(lightbox);
-  //     const btnClose = document.createElement("button");
-  //     btnClose.innerHTML += `<i class="fas fa-times  lightbox__close"></i>`;
-  //     const btnPrev = document.createElement("button");
-  //     btnPrev.innerHTML += `<i class="fas fa-chevron-left  lightbox__prev"></i>`;
-
-  //     btnPrev.addEventListener("click", (e) => {
-  //       let oldIndex = lightbox.dataset.index;
-  //       let newIndex = oldIndex == 0 ? mediaArray.length - 1 : oldIndex - 1;
-  //       console.log(mediaArray[newIndex]);
-
-  //       lightbox.dataset.index = newIndex;
-
-  //       let image = lightbox.querySelector(".lightbox-img");
-
-  //       image.src = mediaArray[newIndex].image
-  //         ? baseUrl + "/" + mediaArray[newIndex].image
-  //         : baseUrl + "/" + mediaArray[newIndex].video;
-  //       // console.log(mediaArray[oldIndex].title);
-  //     });
-  //     const btnNext = document.createElement("button");
-  //     btnNext.innerHTML += `<i class="fas fa-chevron-right  lightbox__next"></i>`;
-
-  //     btnNext.addEventListener("click", (e) => {
-  //       let oldIndex = lightbox.dataset.index;
-  //       // fonctionne  à moitié
-  //       // let newIndex = oldIndex == 0 ? mediaArray.length - 1 : oldIndex + 1;
-  //       // let newIndex = oldIndex == 0 ? oldIndex + 1 : oldIndex++;
-  //       // let newIndex = oldIndex == 0 ? oldIndex++ : oldIndex + 1;
-
-  //       console.log(mediaArray[newIndex]);
-
-  //       lightbox.dataset.index = newIndex;
-
-  //       let image = lightbox.querySelector(".lightbox-img");
-
-  //       image.src = mediaArray[newIndex].image
-  //         ? baseUrl + "/" + mediaArray[newIndex].image
-  //         : baseUrl + "/" + mediaArray[newIndex].video;
-  //     });
-  //     const lightboxContainer = document.createElement("div");
-  //     lightboxContainer.classList.add("lightbox__container");
-  //     // cration de l' image contenu dans le container
-  //     const img = document.createElement("img");
-  //     img.classList.add("lightbox-img");
-  //     // la source de l' image crée sera la même que celle sur laquelle on aura cliqué
-  //     img.src = mediaImg.currentSrc;
-  //     console.log(mediaImg);
-  //     lightboxContainer.prepend(img);
-  //     // Ajout du titre de l' image dans la lightbox
-  //     // lightbox.dataset.title = title;
-  //     const title = document.createElement("h2");
-  //     // title.innerHTML += mediaArray[oldIndex].title;
-
-  //     // title.innerHTML += b;
-  //     lightboxContainer.append(title);
-  //     title.innerHTML += imgTitle;
-
-  //     lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
-  //     // fermeture de la lightbox au clic sur le bouton x
-  //     document
-  //       .querySelector(".lightbox__close")
-  //       .addEventListener("click", function () {
-  //         removeLightbox();
-  //       });
-  //   });
-  // });
 }
 // fonction qui ferme la lightbox
 export function removeLightbox() {
   const removeLightbox = document.querySelector(".lightbox");
   removeLightbox.remove();
 }
+function checkImageOrVideo(container) {
+  if (container.firstElementChild.nodeName.toLowerCase() === "img") {
+    return "image";
+  }
+  return "video";
+}
 // fonction qui crée le formulaire de contact
-export function generateForm() {
+export function generateForm(photographer) {
   const formSection = document.createElement("section");
   const main = document.querySelector("main");
   console.log(main);
@@ -242,7 +229,7 @@ export function generateForm() {
     <i class="fas fa-times  form__close"></i></span>
     <div class="form__modal-body">
       <form name="form__contact"  action="photographer.html" method="get">
-    <h1 class="form__head">Contactez-moi </h1>
+     <h1 class="form__head">Contactez-moi </h1>
         <div class="form__control ">
           <label class ="form__label"for="first">Prénom</label><br />
           <input
@@ -291,12 +278,12 @@ export function generateForm() {
   </div>
   <button class="form__button" type="submit">Envoyer</button>
         `;
+  console.log(photographer.name);
 
   document.querySelector(".form").addEventListener(
     "click",
     function (event) {
       checkInputs();
-      // removeForm();
       event.preventDefault();
     },
     false
@@ -405,4 +392,23 @@ export function setSuccessForArea(textarea) {
 export function displayModal() {
   const modal = document.querySelector(".form");
   modal.remove();
+}
+export function generateDropdownMenu() {
+  const section = document.querySelector(".media-filter-section");
+
+  // mettre une icone fontawesome dans span et renommer les class
+  section.innerHTML += `<div class="filter__dropdown">
+  <label for="filter" class="filter__label">Trier par</label>
+  <div class="filter__select">
+      
+<input name="mediaFilter" id="filter" class="filter__select" type="button" value="Popularité" role="button">
+
+      <span class="filter__custom-arrow" style="transform: rotate(180deg);"></span>
+      <ul class="filter__custom-menu filter__show" role="listbox" aria-labelledby="OrderBy">
+          <li role="option" class="filter__custom-option filter__selected" data-value="likes" id="likes" tabindex="0" aria-selected="true">Popularité</li>
+          <li role="option" class="filter__custom-option" data-value="date" id="date" tabindex="0" aria-selected="false">Date</li>
+          <li role="option" class="filter__custom-option" data-value="title" id="title" tabindex="0" aria-selected="false">Titre</li>
+      </ul>
+  </div>
+</div>`;
 }
