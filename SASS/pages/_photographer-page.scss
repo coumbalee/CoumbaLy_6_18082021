@@ -86,14 +86,19 @@ body {
   background-color: rgba(254, 254, 254, 0.9);
   z-index: 30;
   &__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    left: 30%;
+    width: 100%;
   }
-  &__container img {
-    width: 40%;
+  &__container img,
+  video {
+    width: 35%;
     height: 80vh;
     border-radius: 5px;
+  }
+  &__container h2 {
+    color: $color-primary;
+    font-size: 1.5rem;
   }
   button {
     // display: none;
@@ -108,18 +113,21 @@ body {
   }
   .fa-chevron-left {
     position: absolute;
-    left: 380px;
+    left: 390px;
     top: 320px;
+    z-index: 1000;
   }
   .fa-chevron-right {
     position: absolute;
-    right: 380px;
+    right: 450px;
     top: 320px;
+    z-index: 1000;
   }
   .fa-times {
     position: absolute;
-    right: 380px;
-    top: 55px;
+    right: 450px;
+    top: 50px;
+    z-index: 1000;
   }
   .fa-times:hover {
     color: $color-secondary;

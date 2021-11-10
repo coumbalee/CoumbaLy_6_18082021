@@ -454,21 +454,21 @@ body {
 }
 
 .lightbox__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  position: absolute;
+  left: 30%;
+  width: 100%;
 }
 
-.lightbox__container img {
-  width: 40%;
+.lightbox__container img,
+.lightbox video {
+  width: 35%;
   height: 80vh;
   border-radius: 5px;
+}
+
+.lightbox__container h2 {
+  color: #901c1c;
+  font-size: 1.5rem;
 }
 
 .lightbox button {
@@ -485,20 +485,23 @@ body {
 
 .lightbox .fa-chevron-left {
   position: absolute;
-  left: 380px;
+  left: 390px;
   top: 320px;
+  z-index: 1000;
 }
 
 .lightbox .fa-chevron-right {
   position: absolute;
-  right: 380px;
+  right: 450px;
   top: 320px;
+  z-index: 1000;
 }
 
 .lightbox .fa-times {
   position: absolute;
-  right: 380px;
-  top: 55px;
+  right: 450px;
+  top: 50px;
+  z-index: 1000;
 }
 
 .lightbox .fa-times:hover {
