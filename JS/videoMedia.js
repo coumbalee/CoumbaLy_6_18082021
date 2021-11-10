@@ -14,8 +14,8 @@ export default class videoMedia {
     return imageExist(baseUrl + "/" + this.video)
       ? `
     <li class="media-section__card">
-    <video controls >
-    <source src="${baseUrl}/ ${this.video}"  class="mediaVideo"
+    <video>
+    <source src="${baseUrl}/${this.video}"class="mediaVideo"
     >
     </video>
     <div class ="media-section__content">
