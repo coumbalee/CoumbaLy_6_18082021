@@ -78,10 +78,11 @@ export function displayLightbox(mediaArray, baseUrl) {
       lightbox.dataset.index = index;
       let imgTitle = mediaArray[index].title;
       mediaBox.append(lightbox);
+      // generateLightboxButtons();
       const btnClose = document.createElement("button");
       btnClose.innerHTML += `<i class="fas fa-times  lightbox__close"></i>`;
 
-      // BOUTON PREV
+      // // BOUTON PREV
       const btnPrev = document.createElement("button");
       btnPrev.innerHTML += `<i class="fas fa-chevron-left  lightbox__prev"></i>`;
 
@@ -103,10 +104,10 @@ export function displayLightbox(mediaArray, baseUrl) {
           checkImageOrVideo(mediaContainer) === "image" &&
           newMedia.media.video
         ) {
-          console.log("ok");
           const video = document.createElement("video");
           video.setAttribute("controls", "controls");
           video.classList.add("lightbox-img");
+          // generateVideo();
           video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
           mediaContainer.firstElementChild.remove();
           mediaContainer.insertBefore(video, mediaContainer.firstChild);
@@ -118,6 +119,7 @@ export function displayLightbox(mediaArray, baseUrl) {
         ) {
           const img = document.createElement("img");
           img.classList.add("lightbox-img");
+          // generateLightboxImage()
           img.src = baseUrl + "/" + newMedia.media.image;
           mediaContainer.firstElementChild.src =
             baseUrl + "/" + newMedia.media.image;
@@ -131,6 +133,7 @@ export function displayLightbox(mediaArray, baseUrl) {
           const video = document.createElement("video");
           video.setAttribute("controls", "controls");
           video.classList.add("lightbox-img");
+          // generateVideo();
           video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
           mediaContainer.firstElementChild.src =
             baseUrl + "/" + newMedia.media.video;
@@ -163,13 +166,13 @@ export function displayLightbox(mediaArray, baseUrl) {
         ) {
           const img = document.createElement("img");
           img.classList.add("lightbox-img");
+          // generateLightboxImage()
           img.src = baseUrl + "/" + newMedia.media.image;
           mediaContainer.firstElementChild.src =
             baseUrl + "/" + newMedia.media.image;
 
           imgTitle = newMedia.media.title;
           mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-
           console.log(imgTitle);
           mediaContainer.firstElementChild.remove();
           mediaContainer.insertBefore(img, mediaContainer.firstChild);
@@ -180,6 +183,7 @@ export function displayLightbox(mediaArray, baseUrl) {
           const video = document.createElement("video");
           video.setAttribute("controls", "controls");
           video.classList.add("lightbox-img");
+          // generateVideo();
           video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
           mediaContainer.firstElementChild.remove();
           mediaContainer.insertBefore(video, mediaContainer.firstChild);
@@ -200,6 +204,7 @@ export function displayLightbox(mediaArray, baseUrl) {
         console.log("image");
         const img = document.createElement("img");
         img.classList.add("lightbox-img");
+        // generateLightboxImage()
         img.src = element.firstElementChild.currentSrc;
         lightboxContainer.prepend(img);
         const title = document.createElement("h2");
@@ -218,6 +223,7 @@ export function displayLightbox(mediaArray, baseUrl) {
         const video = document.createElement("video");
         video.setAttribute("controls", "controls");
         video.classList.add("lightbox-img");
+        // generateVideo();
         video.src = element.firstElementChild.currentSrc;
         lightboxContainer.prepend(video);
         const title = document.createElement("h2");
@@ -234,6 +240,30 @@ export function displayLightbox(mediaArray, baseUrl) {
     });
   });
 }
+// function generateLightboxButtons() {
+//   // BOUTON CLOSE
+//   const btnClose = document.createElement("button");
+//   btnClose.innerHTML += `<i class="fas fa-times  lightbox__close"></i>`;
+//   // BOUTON PREV
+//   const btnPrev = document.createElement("button");
+//   btnPrev.innerHTML += `<i class="fas fa-chevron-left  lightbox__prev"></i>`;
+//   // BOUTON NEXT
+//   const btnNext = document.createElement("button");
+//   btnNext.innerHTML += `<i class="fas fa-chevron-right  lightbox__next"></i>`;
+
+//   const lightbox = document.querySelector(".lightbox");
+//   lightbox.prepend(btnClose, btnPrev, btnNext);
+// }
+// function generateLightboxVideo() {
+//   console.log("video");
+//   const video = document.createElement("video");
+//   video.setAttribute("controls", "controls");
+//   video.classList.add("lightbox-img");
+// }
+// function generateLightboxImage() {
+//   const img = document.createElement("img");
+//   img.classList.add("lightbox-img");
+// }
 
 function navigateInMedias(direction, medias, index) {
   let newIndex = 0;
@@ -257,6 +287,7 @@ function checkImageOrVideo(container) {
   if (container.firstElementChild.nodeName.toLowerCase() === "img") {
     return "image";
   }
+
   return "video";
 }
 // fonction qui crée le formulaire de contact
@@ -442,19 +473,30 @@ export function displayModal() {
 export function generateDropdownMenu() {
   const section = document.querySelector(".media-filter-section");
 
-  // mettre une icone fontawesome dans span et renommer les class
-  section.innerHTML += `<div class="filter__dropdown">
-  <label for="filter" class="filter__label">Trier par</label>
-  <div class="filter__select">
-      
-<input name="mediaFilter" id="filter" class="filter__select" type="button" value="Popularité" role="button">
+  // mettre une icone fontawesome dans span
+  //   section.innerHTML += `<div class="filter__dropdown">
+  //   <label for="filter" class="filter__label">Trier par</label>
+  //   <div class="filter__select">
 
-      <span class="filter__custom-arrow" style="transform: rotate(180deg);"></span>
-      <ul class="filter__custom-menu filter__show" role="listbox" aria-labelledby="OrderBy">
-          <li role="option" class="filter__custom-option filter__selected" data-value="likes" id="likes" tabindex="0" aria-selected="true">Popularité</li>
-          <li role="option" class="filter__custom-option" data-value="date" id="date" tabindex="0" aria-selected="false">Date</li>
-          <li role="option" class="filter__custom-option" data-value="title" id="title" tabindex="0" aria-selected="false">Titre</li>
-      </ul>
-  </div>
-</div>`;
+  // <input name="mediaFilter" id="filter" class="filter__select" type="button" value="Popularité" role="button">
+
+  //       <span class="filter__custom-arrow" style="transform: rotate(180deg);"></span>
+  //       <ul class="filter__custom-menu filter__show" role="listbox" aria-labelledby="OrderBy">
+  //           <li role="option" class="filter__custom-option filter__selected" data-value="likes" id="likes" tabindex="0" aria-selected="true">Popularité</li>
+  //           <li role="option" class="filter__custom-option" data-value="date" id="date" tabindex="0" aria-selected="false">Date</li>
+  //           <li role="option" class="filter__custom-option" data-value="title" id="title" tabindex="0" aria-selected="false">Titre</li>
+  //       </ul>
+  //   </div>
+  // </div>`;
+  section.innerHTML += `
+  <div class="dropdown">
+    <button class="dropbtn">Dropdown</button> 
+    <span class="filter__custom-arrow" style="transform: rotate(180deg);">
+    <i class="fas fa-chevron-down"></i></span>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#about">Popularité</a>
+      <a href="#base">Date</a>
+      <a href="#blog">Titre</a>
+    </div>
+  </div>`;
 }

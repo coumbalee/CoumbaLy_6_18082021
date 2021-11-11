@@ -643,4 +643,8 @@ body {
   left: 1%;
   top: 90%;
 }
+
+.media-filter-section {
+  display: none;
+}
 /*# sourceMappingURL=style.css.map */
