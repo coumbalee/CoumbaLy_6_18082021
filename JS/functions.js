@@ -65,206 +65,190 @@ export function imageExist(url) {
     }
   }
 }
-// affichage de la lightbox au click sur l' image
 export function displayLightbox(mediaArray, baseUrl) {
-  // Images
   const mediaElts = document.querySelectorAll(".media-section__card");
   mediaElts.forEach((element, index) => {
     element.addEventListener("click", (e) => {
-      //  création de la div class lighbox et de tous les éléments qu' elle contient
-      let mediaBox = document.querySelector(".media-section");
-      const lightbox = document.createElement("div");
-      lightbox.classList.add("lightbox");
-      lightbox.dataset.index = index;
       let imgTitle = mediaArray[index].title;
-      mediaBox.append(lightbox);
-      // generateLightboxButtons();
-      const btnClose = document.createElement("button");
-      btnClose.innerHTML += `<i class="fas fa-times  lightbox__close"></i>`;
-
-      // // BOUTON PREV
-      const btnPrev = document.createElement("button");
-      btnPrev.innerHTML += `<i class="fas fa-chevron-left  lightbox__prev"></i>`;
-
-      btnPrev.addEventListener("click", (e) => {
-        let oldIndex = parseInt(lightbox.dataset.index);
-        let newMedia = navigateInMedias("prev", mediaArray, oldIndex);
-        lightbox.dataset.index = newMedia.newIndex;
-        let mediaContainer = lightbox.querySelector(".lightbox__container");
-        if (
-          checkImageOrVideo(mediaContainer) === "image" &&
-          newMedia.media.image
-        ) {
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.image;
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-          console.log(imgTitle);
-        } else if (
-          checkImageOrVideo(mediaContainer) === "image" &&
-          newMedia.media.video
-        ) {
-          const video = document.createElement("video");
-          video.setAttribute("controls", "controls");
-          video.classList.add("lightbox-img");
-          // generateVideo();
-          video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
-          mediaContainer.firstElementChild.remove();
-          mediaContainer.insertBefore(video, mediaContainer.firstChild);
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-        } else if (
-          checkImageOrVideo(mediaContainer) === "video" &&
-          newMedia.media.image
-        ) {
-          const img = document.createElement("img");
-          img.classList.add("lightbox-img");
-          // generateLightboxImage()
-          img.src = baseUrl + "/" + newMedia.media.image;
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.image;
-
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-          console.log(imgTitle);
-          mediaContainer.firstElementChild.remove();
-          mediaContainer.insertBefore(img, mediaContainer.firstChild);
-        } else {
-          const video = document.createElement("video");
-          video.setAttribute("controls", "controls");
-          video.classList.add("lightbox-img");
-          // generateVideo();
-          video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.video;
-        }
-      });
-      // BOUTON NEXT
-      const btnNext = document.createElement("button");
-      btnNext.innerHTML += `<i class="fas fa-chevron-right  lightbox__next"></i>`;
-      btnNext.addEventListener("click", (e) => {
-        let oldIndex = parseInt(lightbox.dataset.index);
-        let newMedia = navigateInMedias("next", mediaArray, oldIndex);
-        lightbox.dataset.index = newMedia.newIndex;
-        let mediaContainer = lightbox.querySelector(".lightbox__container");
-        mediaContainer.querySelector("h2").textcontent = newMedia.media.title;
-
-        if (
-          checkImageOrVideo(mediaContainer) === "image" &&
-          newMedia.media.image
-        ) {
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.image;
-
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-
-          console.log(imgTitle);
-        } else if (
-          checkImageOrVideo(mediaContainer) === "video" &&
-          newMedia.media.image
-        ) {
-          const img = document.createElement("img");
-          img.classList.add("lightbox-img");
-          // generateLightboxImage()
-          img.src = baseUrl + "/" + newMedia.media.image;
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.image;
-
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-          console.log(imgTitle);
-          mediaContainer.firstElementChild.remove();
-          mediaContainer.insertBefore(img, mediaContainer.firstChild);
-        } else if (
-          checkImageOrVideo(mediaContainer) === "image" &&
-          newMedia.media.video
-        ) {
-          const video = document.createElement("video");
-          video.setAttribute("controls", "controls");
-          video.classList.add("lightbox-img");
-          // generateVideo();
-          video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
-          mediaContainer.firstElementChild.remove();
-          mediaContainer.insertBefore(video, mediaContainer.firstChild);
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-        } else {
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.video;
-        }
-      });
-      // CREATION DU LIGHTBOX CONTAINER
-      const lightboxContainer = document.createElement("div");
-      lightboxContainer.classList.add("lightbox__container");
-
-      // Check if image or video
-      console.log("firstChild", element.firstElementChild);
-      if (checkImageOrVideo(element) === "image") {
-        console.log("image");
-        const img = document.createElement("img");
-        img.classList.add("lightbox-img");
-        // generateLightboxImage()
-        img.src = element.firstElementChild.currentSrc;
-        lightboxContainer.prepend(img);
-        const title = document.createElement("h2");
-        lightboxContainer.append(title);
-        title.innerHTML += imgTitle;
-
-        lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
-        // fermeture de la lightbox au clic sur le bouton x
-        document
-          .querySelector(".lightbox__close")
-          .addEventListener("click", function () {
-            removeLightbox();
-          });
-      } else {
-        console.log("video");
-        const video = document.createElement("video");
-        video.setAttribute("controls", "controls");
-        video.classList.add("lightbox-img");
-        // generateVideo();
-        video.src = element.firstElementChild.currentSrc;
-        lightboxContainer.prepend(video);
-        const title = document.createElement("h2");
-        lightboxContainer.append(title);
-        title.innerHTML += imgTitle;
-        lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
-        // fermeture de la lightbox au clic sur le bouton x
-        document
-          .querySelector(".lightbox__close")
-          .addEventListener("click", function () {
-            removeLightbox();
-          });
-      }
+      generateLightbox(index, mediaArray, baseUrl, element);
     });
   });
 }
-// function generateLightboxButtons() {
-//   // BOUTON CLOSE
-//   const btnClose = document.createElement("button");
-//   btnClose.innerHTML += `<i class="fas fa-times  lightbox__close"></i>`;
-//   // BOUTON PREV
-//   const btnPrev = document.createElement("button");
-//   btnPrev.innerHTML += `<i class="fas fa-chevron-left  lightbox__prev"></i>`;
-//   // BOUTON NEXT
-//   const btnNext = document.createElement("button");
-//   btnNext.innerHTML += `<i class="fas fa-chevron-right  lightbox__next"></i>`;
+function addListenersToPrev(mediaArray, baseUrl, imgTitle) {
+  const lightbox = document.querySelector(".lightbox");
 
-//   const lightbox = document.querySelector(".lightbox");
-//   lightbox.prepend(btnClose, btnPrev, btnNext);
-// }
-// function generateLightboxVideo() {
-//   console.log("video");
-//   const video = document.createElement("video");
-//   video.setAttribute("controls", "controls");
-//   video.classList.add("lightbox-img");
-// }
-// function generateLightboxImage() {
-//   const img = document.createElement("img");
-//   img.classList.add("lightbox-img");
-// }
+  const btnPrev = document.querySelector("#btnPrev");
+  btnPrev.addEventListener("click", (e) => {
+    let oldIndex = parseInt(lightbox.dataset.index);
+    let newMedia = navigateInMedias("prev", mediaArray, oldIndex);
+    lightbox.dataset.index = newMedia.newIndex;
+    let mediaContainer = lightbox.querySelector(".lightbox__container");
+    if (checkImageOrVideo(mediaContainer) === "image" && newMedia.media.image) {
+      mediaContainer.firstElementChild.src =
+        baseUrl + "/" + newMedia.media.image;
+      imgTitle = newMedia.media.title;
+      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+      console.log(imgTitle);
+    } else if (
+      checkImageOrVideo(mediaContainer) === "image" &&
+      newMedia.media.video
+    ) {
+      const video = document.createElement("video");
+      video.setAttribute("controls", "controls");
+      video.classList.add("lightbox-img");
+      // generateVideo();
+      video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
+      mediaContainer.firstElementChild.remove();
+      mediaContainer.insertBefore(video, mediaContainer.firstChild);
+      imgTitle = newMedia.media.title;
+      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+    } else if (
+      checkImageOrVideo(mediaContainer) === "video" &&
+      newMedia.media.image
+    ) {
+      const img = document.createElement("img");
+      img.classList.add("lightbox-img");
+      // generateLightboxImage()
+      img.src = baseUrl + "/" + newMedia.media.image;
+      mediaContainer.firstElementChild.src =
+        baseUrl + "/" + newMedia.media.image;
 
+      imgTitle = newMedia.media.title;
+      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+      console.log(imgTitle);
+      mediaContainer.firstElementChild.remove();
+      mediaContainer.insertBefore(img, mediaContainer.firstChild);
+    } else {
+      const video = document.createElement("video");
+      video.setAttribute("controls", "controls");
+      video.classList.add("lightbox-img");
+      // generateVideo();
+      video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
+      mediaContainer.firstElementChild.src =
+        baseUrl + "/" + newMedia.media.video;
+    }
+  });
+}
+function addListenersToNext(mediaArray, baseUrl, imgTitle) {
+  const lightbox = document.querySelector(".lightbox");
+  const btnNext = document.querySelector("#btnNext");
+  btnNext.addEventListener("click", (e) => {
+    let oldIndex = parseInt(lightbox.dataset.index);
+    let newMedia = navigateInMedias("next", mediaArray, oldIndex);
+    lightbox.dataset.index = newMedia.newIndex;
+    let mediaContainer = lightbox.querySelector(".lightbox__container");
+    mediaContainer.querySelector("h2").textcontent = newMedia.media.title;
+
+    if (checkImageOrVideo(mediaContainer) === "image" && newMedia.media.image) {
+      mediaContainer.firstElementChild.src =
+        baseUrl + "/" + newMedia.media.image;
+
+      imgTitle = newMedia.media.title;
+      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+
+      console.log(imgTitle);
+    } else if (
+      checkImageOrVideo(mediaContainer) === "video" &&
+      newMedia.media.image
+    ) {
+      const img = document.createElement("img");
+      img.classList.add("lightbox-img");
+      // generateLightboxImage()
+      img.src = baseUrl + "/" + newMedia.media.image;
+      mediaContainer.firstElementChild.src =
+        baseUrl + "/" + newMedia.media.image;
+
+      imgTitle = newMedia.media.title;
+      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+      console.log(imgTitle);
+      mediaContainer.firstElementChild.remove();
+      mediaContainer.insertBefore(img, mediaContainer.firstChild);
+    } else if (
+      checkImageOrVideo(mediaContainer) === "image" &&
+      newMedia.media.video
+    ) {
+      const video = document.createElement("video");
+      video.setAttribute("controls", "controls");
+      video.classList.add("lightbox-img");
+      // generateVideo();
+      video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
+      mediaContainer.firstElementChild.remove();
+      mediaContainer.insertBefore(video, mediaContainer.firstChild);
+      imgTitle = newMedia.media.title;
+      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+    } else {
+      mediaContainer.firstElementChild.src =
+        baseUrl + "/" + newMedia.media.video;
+    }
+  });
+}
+function addListeners(mediaArray, baseUrl, imgTitle) {
+  const lightbox = document.querySelector(".lightbox");
+  addListenersToPrev(mediaArray, baseUrl, imgTitle);
+  addListenersToNext(mediaArray, baseUrl, imgTitle);
+}
+function generateLightbox(index, mediaArray, baseUrl, element) {
+  let mediaBox = document.querySelector(".media-section");
+  const lightbox = document.createElement("div");
+  lightbox.classList.add("lightbox");
+  lightbox.dataset.index = index;
+  let imgTitle = mediaArray[index].title;
+  mediaBox.append(lightbox);
+  // BOUTON CLOSE
+  const btnClose = document.createElement("button");
+  btnClose.innerHTML += `<i class="fas fa-times  lightbox__close"></i>`;
+  // BOUTON PREV
+  const btnPrev = document.createElement("button");
+  btnPrev.id = "btnPrev";
+  btnPrev.innerHTML += `<i class="fas fa-chevron-left  lightbox__prev"></i>`;
+  // BOUTON NEXT
+  const btnNext = document.createElement("button");
+  btnNext.id = "btnNext";
+  btnNext.innerHTML += `<i class="fas fa-chevron-right  lightbox__next"></i>`;
+  lightbox.prepend(btnClose, btnPrev, btnNext);
+  addListeners(btnClose, btnPrev, btnNext, mediaArray, baseUrl, imgTitle);
+  const lightboxContainer = document.createElement("div");
+  lightboxContainer.classList.add("lightbox__container");
+
+  // Check if image or video
+  console.log("firstChild", element.firstElementChild);
+  if (checkImageOrVideo(element) === "image") {
+    console.log("image");
+    const img = document.createElement("img");
+    img.classList.add("lightbox-img");
+    // generateLightboxImage()
+    img.src = element.firstElementChild.currentSrc;
+    lightboxContainer.prepend(img);
+    const title = document.createElement("h2");
+    lightboxContainer.append(title);
+    title.innerHTML += imgTitle;
+
+    lightbox.prepend(lightboxContainer);
+    // fermeture de la lightbox au clic sur le bouton x
+    document
+      .querySelector(".lightbox__close")
+      .addEventListener("click", function () {
+        removeLightbox();
+      });
+  } else {
+    console.log("video");
+    const video = document.createElement("video");
+    video.setAttribute("controls", "controls");
+    video.classList.add("lightbox-img");
+    video.src = element.firstElementChild.currentSrc;
+    lightboxContainer.prepend(video);
+    const title = document.createElement("h2");
+    lightboxContainer.append(title);
+    title.innerHTML += imgTitle;
+    lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
+    // fermeture de la lightbox au clic sur le bouton x
+    document
+      .querySelector(".lightbox__close")
+      .addEventListener("click", function () {
+        removeLightbox();
+      });
+  }
+}
 function navigateInMedias(direction, medias, index) {
   let newIndex = 0;
   let factor = direction === "next" ? 1 : -1;
