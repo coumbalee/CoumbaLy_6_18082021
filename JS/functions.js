@@ -182,7 +182,14 @@ function addListenersToNext(mediaArray, baseUrl, imgTitle) {
     }
   });
 }
-function addListeners(mediaArray, baseUrl, imgTitle) {
+function addListeners(
+  btnClose,
+  btnPrev,
+  btnNext,
+  mediaArray,
+  baseUrl,
+  imgTitle
+) {
   const lightbox = document.querySelector(".lightbox");
   addListenersToPrev(mediaArray, baseUrl, imgTitle);
   addListenersToNext(mediaArray, baseUrl, imgTitle);
