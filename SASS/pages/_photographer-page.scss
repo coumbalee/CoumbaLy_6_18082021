@@ -224,5 +224,25 @@ body {
   }
 }
 .media-filter-section {
-  display: none;
+  margin: 20px 0;
+  .filter-dropdown {
+    display: flex;
+    &__label {
+      margin-right: 10px;
+    }
+    &__content {
+      @include button;
+      // height: 50px;
+      padding: 0px 10px 10px 10px;
+    }
+    #dropdownBtn:hover {
+      transform: rotate(180deg);
+    }
+    &__option {
+      color: $color-white;
+      font-size: 1rem;
+      // padding: 0 10px 10px 10px;
+      line-height: 23px;
+    }
+  }
 }
