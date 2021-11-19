@@ -480,14 +480,18 @@ export function generateDropdownMenu() {
   //   </div>
   // </div>`;
   section.innerHTML += `
-  <div class="dropdown">
-    <button class="dropbtn">Dropdown</button> 
-    <span class="filter__custom-arrow" style="transform: rotate(180deg);">
-    <i class="fas fa-chevron-down"></i></span>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#about">Popularité</a>
-      <a href="#base">Date</a>
-      <a href="#blog">Titre</a>
-    </div>
+  <div class="filter-dropdown">
+    <p class="filter-dropdown__label">Trier par</p> 
+    <ul id="dropdownContent" class="filter-dropdown__content">
+      <li><a href="#" class="filter-dropdown__option">Popularité </a><span class="filter-dropdown__arrow">
+      <i class="fas fa-chevron-down" id="dropdownBtn"></i></span></li>
+      <li><a href="#" class="filter-dropdown__option">Date</a></li>
+      <li><a href="#" class="filter-dropdown__option">Titre</a></li>
+    </ul>
   </div>`;
+  const dropdownBtn = document.querySelector("#dropdownBtn");
+  dropdownBtn.addEventListener("click", openDropdown);
+}
+function openDropdown() {
+  document.getElementById("dropdownContent").classList.toggle("show");
 }
