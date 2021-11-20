@@ -464,29 +464,14 @@ export function displayModal() {
 export function generateDropdownMenu() {
   const section = document.querySelector(".media-filter-section");
 
-  // mettre une icone fontawesome dans span
-  //   section.innerHTML += `<div class="filter__dropdown">
-  //   <label for="filter" class="filter__label">Trier par</label>
-  //   <div class="filter__select">
-
-  // <input name="mediaFilter" id="filter" class="filter__select" type="button" value="Popularité" role="button">
-
-  //       <span class="filter__custom-arrow" style="transform: rotate(180deg);"></span>
-  //       <ul class="filter__custom-menu filter__show" role="listbox" aria-labelledby="OrderBy">
-  //           <li role="option" class="filter__custom-option filter__selected" data-value="likes" id="likes" tabindex="0" aria-selected="true">Popularité</li>
-  //           <li role="option" class="filter__custom-option" data-value="date" id="date" tabindex="0" aria-selected="false">Date</li>
-  //           <li role="option" class="filter__custom-option" data-value="title" id="title" tabindex="0" aria-selected="false">Titre</li>
-  //       </ul>
-  //   </div>
-  // </div>`;
   section.innerHTML += `
   <div class="filter-dropdown">
     <p class="filter-dropdown__label">Trier par</p> 
     <ul id="dropdownContent" class="filter-dropdown__content">
-      <li><a href="#" class="filter-dropdown__option">Popularité </a><span class="filter-dropdown__arrow">
+      <li><a href="#" class="filter-dropdown__option" data-filter="popularite">Popularité </a><span class="filter-dropdown__arrow">
       <i class="fas fa-chevron-down" id="dropdownBtn"></i></span></li>
-      <li><a href="#" class="filter-dropdown__option">Date</a></li>
-      <li><a href="#" class="filter-dropdown__option">Titre</a></li>
+      <li><a href="#" class="filter-dropdown__option" data-filter="date">Date</a></li>
+      <li><a href="#" class="filter-dropdown__option" data-filter="titre">Titre</a></li>
     </ul>
   </div>`;
   const dropdownBtn = document.querySelector("#dropdownBtn");
@@ -494,4 +479,53 @@ export function generateDropdownMenu() {
 }
 function openDropdown() {
   document.getElementById("dropdownContent").classList.toggle("show");
+}
+export function addListenersToDropDown(medias, baseUrl) {
+  document.querySelectorAll(".filter-dropdown__option").forEach((elt) => {
+    elt.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log(e.target.dataset.filter);
+      const orderedMedias = sortMediasBy(medias, e.target.dataset.filter);
+      displayMediasList(orderedMedias, baseUrl);
+    });
+  });
+}
+
+export function displayMediasList(photographerMedias, baseUrl) {
+  const cardList = document.querySelector(".media-section__cards");
+  cardList.innerHTML = "";
+
+  photographerMedias.forEach((elt) => {
+    let media = factory(elt);
+
+    if (media !== undefined && media.displayInList(baseUrl) !== undefined) {
+      cardList.innerHTML += media.displayInList(baseUrl);
+    }
+  });
+  displayLightbox(photographerMedias, baseUrl);
+}
+
+function sortMediasBy(medias, filter) {
+  //on veut trier les medias
+  switch (filter) {
+    case "titre":
+      medias.sort((a, b) =>
+        a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+      );
+      console.log(medias);
+      break;
+    case "date":
+      // medias.sort((a, b) => b.date - a.date);
+      // console.log(medias);
+      medias.sort(function (a, b) {
+        return new Date(a.date) - new Date(b.date);
+      });
+
+      break;
+    case "popularite":
+
+    default:
+      break;
+  }
+  return medias;
 }
