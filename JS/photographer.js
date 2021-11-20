@@ -4,16 +4,16 @@ import {
   getMediaFromPhotographer,
 } from "./dataFunction.js";
 import {
-  factory,
+  addListenersToDropDown,
+  displayMediasList,
   displayPhotographerInformation,
   generateHeader,
   getPhotographerIdFromUrl,
-  displayLightbox,
   generateDropdownMenu,
-  // removeLightbox,
 } from "./functions.js";
 generateHeader();
 displayPhotographerPage();
+
 // fonction asynchrone qui gere l' affichage de la page
 async function displayPhotographerPage() {
   // PHOTOGRAPHES
@@ -31,17 +31,10 @@ async function displayPhotographerPage() {
   cardList.classList.add("media-section__cards");
   mediaElt.append(cardList);
   let baseUrl = `./IMAGES/${photographerSurname}`;
-  photographerMedias.forEach((elt) => {
-    let media = factory(elt);
-
-    if (media !== undefined && media.displayInList(baseUrl) !== undefined) {
-      cardList.innerHTML += media.displayInList(baseUrl);
-    }
-  });
-  displayLightbox(photographerMedias, baseUrl);
+  displayMediasList(photographerMedias, baseUrl, cardList);
   generateDropdownMenu();
+  addListenersToDropDown(photographerMedias, baseUrl);
 }
-
 function getSurname(name) {
   let cuttedName = "";
   // https://stackoverflow.com/a/26425713
