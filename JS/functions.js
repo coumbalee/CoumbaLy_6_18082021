@@ -515,14 +515,14 @@ function sortMediasBy(medias, filter) {
       console.log(medias);
       break;
     case "date":
-      // medias.sort((a, b) => b.date - a.date);
-      // console.log(medias);
       medias.sort(function (a, b) {
         return new Date(a.date) - new Date(b.date);
       });
-
       break;
     case "popularite":
+      medias.sort(function (a, b) {
+        return b.likes - a.likes;
+      });
 
     default:
       break;
