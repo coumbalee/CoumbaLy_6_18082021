@@ -231,18 +231,42 @@ body {
       margin-right: 10px;
     }
     &__content {
-      @include button;
+      // @include button;
       // height: 50px;
       padding: 0px 10px 10px 10px;
     }
-    #dropdownBtn:hover {
-      transform: rotate(180deg);
+
+    &__select {
+      @include button;
+      border-radius: 5px 5px 0 0;
+      padding: 2px 5px 10px 20px;
+      width: 100%;
     }
     &__option {
       color: $color-white;
-      font-size: 1rem;
-      // padding: 0 10px 10px 10px;
-      line-height: 23px;
+      font-size: 1.5rem;
+      // line-height: 23px;
+
+      // border-top: $color-white solid 1px;
+    }
+    &__list {
+      visibility: hidden;
+      // border-top: $color-white solid 1px;
+    }
+    .show {
+      visibility: visible;
+      // background-color: $color-primary;
+      @include button;
+      border-radius: 0 0 5px 5px;
+      width: 100%;
+      padding: 0 5px 10px 20px;
+      // border-top: $color-white solid 1px;
+    }
+    // .show a {
+    //   padding: 20px;
+    // }
+    &__arrow {
+      margin-left: 10px;
     }
   }
 }

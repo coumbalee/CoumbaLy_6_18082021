@@ -659,23 +659,44 @@ body {
 }
 
 .media-filter-section .filter-dropdown__content {
+  padding: 0px 10px 10px 10px;
+}
+
+.media-filter-section .filter-dropdown__select {
   background-color: #901c1c;
   color: white;
   font-size: 1rem;
   padding: 20px 30px;
   border: none;
   border-radius: 5px;
-  padding: 0px 10px 10px 10px;
-}
-
-.media-filter-section .filter-dropdown #dropdownBtn:hover {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  border-radius: 5px 5px 0 0;
+  padding: 2px 5px 10px 20px;
+  width: 100%;
 }
 
 .media-filter-section .filter-dropdown__option {
   color: #fff;
+  font-size: 1.5rem;
+}
+
+.media-filter-section .filter-dropdown__list {
+  visibility: hidden;
+}
+
+.media-filter-section .filter-dropdown .show {
+  visibility: visible;
+  background-color: #901c1c;
+  color: white;
   font-size: 1rem;
-  line-height: 23px;
+  padding: 20px 30px;
+  border: none;
+  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
+  width: 100%;
+  padding: 0 5px 10px 20px;
+}
+
+.media-filter-section .filter-dropdown__arrow {
+  margin-left: 10px;
 }
 /*# sourceMappingURL=style.css.map */
