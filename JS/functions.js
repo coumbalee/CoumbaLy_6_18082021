@@ -467,18 +467,24 @@ export function generateDropdownMenu() {
   section.innerHTML += `
   <div class="filter-dropdown">
     <p class="filter-dropdown__label">Trier par</p> 
-    <ul id="dropdownContent" class="filter-dropdown__content">
-      <li><a href="#" class="filter-dropdown__option" data-filter="popularite">Popularité </a><span class="filter-dropdown__arrow">
-      <i class="fas fa-chevron-down" id="dropdownBtn"></i></span></li>
-      <li><a href="#" class="filter-dropdown__option" data-filter="date">Date</a></li>
-      <li><a href="#" class="filter-dropdown__option" data-filter="titre">Titre</a></li>
+    <div class="filter-dropdown__content">
+    <div class="filter-dropdown__select">
+    <a href="#" class="filter-dropdown__option " data-filter="popularite">Popularité</a>
+    <i class="fas fa-chevron-down filter-dropdown__arrow"></i>
+    </div>
+    <ul class="filter-dropdown__list">
+      <li><a href="#" class="filter-dropdown__option filter-dropdown__li" data-filter="date">Date</a></li>
+      <li><a href="#" class="filter-dropdown__option  filter-dropdown__li" data-filter="titre">Titre</a></li>
     </ul>
   </div>`;
-  const dropdownBtn = document.querySelector("#dropdownBtn");
-  dropdownBtn.addEventListener("click", openDropdown);
+  const dropdownArrow = document.querySelector(".filter-dropdown__arrow");
+  console.log(dropdownArrow);
+  dropdownArrow.addEventListener("click", toggleDropdown);
 }
-function openDropdown() {
-  document.getElementById("dropdownContent").classList.toggle("show");
+function toggleDropdown() {
+  const dropdownList = document.querySelector(".filter-dropdown__list");
+  console.log(dropdownList);
+  dropdownList.classList.toggle("show");
 }
 export function addListenersToDropDown(medias, baseUrl) {
   document.querySelectorAll(".filter-dropdown__option").forEach((elt) => {
