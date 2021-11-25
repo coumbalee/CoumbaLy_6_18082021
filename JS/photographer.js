@@ -10,6 +10,7 @@ import {
   generateHeader,
   getPhotographerIdFromUrl,
   generateDropdownMenu,
+  incrementLikes,
 } from "./functions.js";
 generateHeader();
 displayPhotographerPage();
@@ -34,6 +35,7 @@ async function displayPhotographerPage() {
   displayMediasList(photographerMedias, baseUrl, cardList);
   generateDropdownMenu();
   addListenersToDropDown(photographerMedias, baseUrl);
+  incrementLikes();
 }
 function getSurname(name) {
   let cuttedName = "";

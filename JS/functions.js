@@ -535,3 +535,14 @@ function sortMediasBy(medias, filter) {
   }
   return medias;
 }
+export function incrementLikes(heart) {
+  const mediaHeart = document.querySelectorAll(".media-section__heart");
+  let mediaNumber = document.querySelectorAll("media-section__number");
+  // console.log(mediaHeart);
+  // mediaHeart.forEach((heart)=> {
+  //   heart.addEventListener("click", function() {
+  //   }
+  mediaHeart.addEventListener("click", function () {
+    return (mediaNumber = +1);
+  });
+}
