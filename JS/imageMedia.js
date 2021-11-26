@@ -13,7 +13,7 @@ export default class imageMedia {
   displayInList(baseUrl) {
     return imageExist(baseUrl + "/" + this.image)
       ? `
-    <li class="media-section__card"  >
+    <li class="media-section__card" data-id="${this.id}" >
     <img src="${baseUrl}/${this.image}"  class="mediaImg" >
     <div class ="media-section__content">
     <h2 class ="media-section__title">${this.title}</h2>
