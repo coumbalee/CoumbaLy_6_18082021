@@ -535,14 +535,25 @@ function sortMediasBy(medias, filter) {
   }
   return medias;
 }
-export function incrementLikes(heart) {
-  const mediaHeart = document.querySelectorAll(".media-section__heart");
+export function incrementLikes() {
+  const mediaHeart = document.querySelectorAll(".media-section__likes");
   let mediaNumber = document.querySelectorAll("media-section__number");
-  // console.log(mediaHeart);
-  // mediaHeart.forEach((heart)=> {
-  //   heart.addEventListener("click", function() {
-  //   }
-  mediaHeart.addEventListener("click", function () {
-    return (mediaNumber = +1);
+
+  mediaHeart.forEach((heart) => {
+    console.log(heart);
+    heart.addEventListener("click", function (e) {
+      e.stopPropagation();
+      console.log(e.target);
+      const elt = e.target.classList.contains("media-section__number")
+        ? e.target
+        : e.target.parentElement.firstElementChild;
+      console.log(elt);
+      if (elt.classList.contains("liked")) {
+        elt.textContent = parseInt(elt.textContent) - 1;
+      } else {
+        elt.textContent = parseInt(elt.textContent) + 1;
+      }
+      elt.classList.toggle("liked");
+    });
   });
 }
