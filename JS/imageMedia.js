@@ -19,7 +19,7 @@ export default class imageMedia {
     <h2 class ="media-section__title">${this.title}</h2>
     <div class ="media-section__likes">
     <p class="media-section__number">${this.likes}</p>
-    <i class="fas fa-heart"></i>
+    <i class="fas fa-heart media-section__heart"></i>
     </div>
     </div>
     </li>
