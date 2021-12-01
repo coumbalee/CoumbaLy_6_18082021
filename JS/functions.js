@@ -538,6 +538,7 @@ function sortMediasBy(medias, filter) {
 export function incrementLikes() {
   const mediaHeart = document.querySelectorAll(".media-section__likes");
   let mediaNumber = document.querySelectorAll("media-section__number");
+  // console.log(mediaNumber);
 
   mediaHeart.forEach((heart) => {
     console.log(heart);
@@ -550,10 +551,44 @@ export function incrementLikes() {
       console.log(elt);
       if (elt.classList.contains("liked")) {
         elt.textContent = parseInt(elt.textContent) - 1;
+        // console.log(number);
       } else {
         elt.textContent = parseInt(elt.textContent) + 1;
+        // console.log(number);
       }
       elt.classList.toggle("liked");
+      // console.log(number);
+      // likes.push(number);
     });
   });
+}
+// export function totalOfLikes() {
+//   const likes = document.querySelectorAll(".media-section__number");
+//   // const number = likes.value;
+//   // console.log(number);
+//   // // recupérer la valeur de l' input
+//   // console.log(likes);
+//   // let array = [];
+//   likes.forEach((like) => {
+//     like.addEventListener("click", function (e) {
+//       console.log(like);
+//       console.log(e.target);
+// like = parseInt(like);
+
+// console.log(like.value);
+// });
+// pour chaque element recuperer la valeur
+// , pousser la valeur dans le tableau sumOfLikes
+// }); // puis utiliser la méthode reduce
+// enfin afficher le résultat dan un <p>
+// }
+export function generateInformations() {
+  const informationElts = document.querySelector(".information-section");
+  console.log(informationElts);
+  const photographerLikes = document.createElement("p");
+  const photographerPrice = document.createElement("p");
+  photographerLikes.classList.add("information-section__likes");
+  photographerPrice.classList.add("information-section__price");
+  informationElts.appendChild(photographerLikes);
+  informationElts.appendChild(photographerPrice);
 }
