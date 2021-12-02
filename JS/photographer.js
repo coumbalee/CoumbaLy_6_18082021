@@ -2,6 +2,7 @@
 import {
   getPhotographersFromJson,
   getMediaFromPhotographer,
+  // getAllLikesFromMedias,
 } from "./dataFunction.js";
 import {
   addListenersToDropDown,
@@ -11,6 +12,7 @@ import {
   getPhotographerIdFromUrl,
   generateDropdownMenu,
   incrementLikes,
+  generateInformations,
 } from "./functions.js";
 generateHeader();
 displayPhotographerPage();
@@ -36,6 +38,9 @@ async function displayPhotographerPage() {
   generateDropdownMenu();
   addListenersToDropDown(photographerMedias, baseUrl);
   incrementLikes();
+  generateInformations();
+  // totalOfLikes();
+  // getAllLikesFromMedias();
 }
 function getSurname(name) {
   let cuttedName = "";
