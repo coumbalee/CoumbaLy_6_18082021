@@ -33,7 +33,7 @@ export function displayPhotographerInformation(photographer) {
     `;
   const contact = document.querySelector("#contact");
   // console.log(contact);
-  contact.addEventListener("click", generateForm);
+  contact.addEventListener("click", () => generateForm(photographer));
 }
 // // Fonction qui génère le logo du header
 export function generateHeader() {
@@ -297,7 +297,7 @@ export function generateForm(photographer) {
     <i class="fas fa-times  form__close"></i></span>
     <div class="form__modal-body">
       <form name="form__contact"  action="photographer.html" method="get">
-     <h1 class="form__head">Contactez-moi </h1>
+     <h1 class="form__head">Contactez-moi ${photographer.name} </h1>
         <div class="form__control ">
           <label class ="form__label"for="first">Prénom</label><br />
           <input
@@ -535,60 +535,33 @@ function sortMediasBy(medias, filter) {
   }
   return medias;
 }
-export function incrementLikes() {
+export function incrementLikes(photographer) {
   const mediaHeart = document.querySelectorAll(".media-section__likes");
-  let mediaNumber = document.querySelectorAll("media-section__number");
-  // console.log(mediaNumber);
 
   mediaHeart.forEach((heart) => {
     console.log(heart);
     heart.addEventListener("click", function (e) {
       e.stopPropagation();
       console.log(e.target);
+      const totalLikeElt = document.querySelector("#totalLikes");
       const elt = e.target.classList.contains("media-section__number")
         ? e.target
         : e.target.parentElement.firstElementChild;
       console.log(elt);
       if (elt.classList.contains("liked")) {
         elt.textContent = parseInt(elt.textContent) - 1;
-        // console.log(number);
+        totalLikeElt.textContent = parseInt(totalLikeElt.textContent) - 1;
       } else {
         elt.textContent = parseInt(elt.textContent) + 1;
-        // console.log(number);
+        totalLikeElt.textContent = parseInt(totalLikeElt.textContent) + 1;
       }
       elt.classList.toggle("liked");
-      // console.log(number);
-      // likes.push(number);
     });
   });
 }
-// export function totalOfLikes() {
-//   const likes = document.querySelectorAll(".media-section__number");
-//   // const number = likes.value;
-//   // console.log(number);
-//   // // recupérer la valeur de l' input
-//   // console.log(likes);
-//   // let array = [];
-//   likes.forEach((like) => {
-//     like.addEventListener("click", function (e) {
-//       console.log(like);
-//       console.log(e.target);
-// like = parseInt(like);
 
-// console.log(like.value);
-// });
-// pour chaque element recuperer la valeur
-// , pousser la valeur dans le tableau sumOfLikes
-// }); // puis utiliser la méthode reduce
-// enfin afficher le résultat dan un <p>
+// export function showPrice(photographer) {
+//   const price = document.querySelector("#price");
+//   console.log(price);
+//   price.innerHTML = `${photographer.price}`;
 // }
-export function generateInformations() {
-  const informationElts = document.querySelector(".information-section");
-  console.log(informationElts);
-  const photographerLikes = document.createElement("p");
-  const photographerPrice = document.createElement("p");
-  photographerLikes.classList.add("information-section__likes");
-  photographerPrice.classList.add("information-section__price");
-  informationElts.appendChild(photographerLikes);
-  informationElts.appendChild(photographerPrice);
-}
