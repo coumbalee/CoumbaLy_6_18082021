@@ -12,8 +12,11 @@ import {
   getPhotographerIdFromUrl,
   generateDropdownMenu,
   incrementLikes,
-  generateInformations,
+  // showPrice,
 } from "./functions.js";
+
+const likeReducer = (previous, current) => previous + current;
+
 generateHeader();
 displayPhotographerPage();
 
@@ -28,6 +31,9 @@ async function displayPhotographerPage() {
   // MEDIAS
   const photographerMedias = await getMediaFromPhotographer(id);
 
+  document.querySelector(".information-section__likes").textContent =
+    photographerMedias.map((elt) => elt.likes).reduce(likeReducer, 0);
+
   // créer ici une ul
   let mediaElt = document.querySelector(".media-section");
   const cardList = document.createElement("ul");
@@ -38,14 +44,12 @@ async function displayPhotographerPage() {
   generateDropdownMenu();
   addListenersToDropDown(photographerMedias, baseUrl);
   incrementLikes();
-  generateInformations();
-  // totalOfLikes();
-  // getAllLikesFromMedias();
+  // showPrice();
 }
 function getSurname(name) {
   let cuttedName = "";
   // https://stackoverflow.com/a/26425713
-  var stringArray = name.split(/(\s+)/);
+  const stringArray = name.split(/(\s+)/);
   const surname = stringArray[0];
   // https://stackoverflow.com/q/14262770
   cuttedName = surname.replace("-", " ");
