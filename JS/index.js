@@ -19,7 +19,7 @@ function showPhotographers(photographers) {
       photographer.id
     } "><img src ="./IMAGES/Photographers%20ID%20Photos/${
       photographer.portrait
-    }" class ="photographer__img"></a>
+    }" class ="photographer__img" alt="image of the photographer"></a>
     <div class= "photographer__content">
       <h2 class="photographer__name">${photographer.name}</h2>
       <p class="photographer__localisation">${photographer.city}, ${
@@ -46,6 +46,7 @@ function displayTagsMenu(tags) {
 function generateIndexHeader() {
   // création du lien  du header
   const header = document.querySelector("header");
+  // header.setAttribute("role", "banner");
   const headerLink = document.createElement("a");
   headerLink.href = "#main";
   headerLink.classList.add("header__link");
@@ -55,6 +56,7 @@ function generateIndexHeader() {
   // insertion du logo
   const img = document.createElement("img");
   img.src = "/IMAGES/logo.png";
+  img.setAttribute("alt", "Fisheye logo");
   document.querySelector(".header__logo").appendChild(img);
 }
 
