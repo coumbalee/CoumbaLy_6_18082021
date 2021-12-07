@@ -12,7 +12,7 @@ import {
   getPhotographerIdFromUrl,
   generateDropdownMenu,
   incrementLikes,
-  // showPrice,
+  showPrice,
 } from "./functions.js";
 
 const likeReducer = (previous, current) => previous + current;
@@ -44,7 +44,7 @@ async function displayPhotographerPage() {
   generateDropdownMenu();
   addListenersToDropDown(photographerMedias, baseUrl);
   incrementLikes();
-  // showPrice();
+  showPrice(photographer);
 }
 function getSurname(name) {
   let cuttedName = "";

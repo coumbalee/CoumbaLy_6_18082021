@@ -551,17 +551,19 @@ export function incrementLikes(photographer) {
       if (elt.classList.contains("liked")) {
         elt.textContent = parseInt(elt.textContent) - 1;
         totalLikeElt.textContent = parseInt(totalLikeElt.textContent) - 1;
+        // showPrice(photographer);
       } else {
         elt.textContent = parseInt(elt.textContent) + 1;
         totalLikeElt.textContent = parseInt(totalLikeElt.textContent) + 1;
+        // showPrice(photographer);
       }
       elt.classList.toggle("liked");
     });
   });
 }
 
-// export function showPrice(photographer) {
-//   const price = document.querySelector("#price");
-//   console.log(price);
-//   price.innerHTML = `${photographer.price}`;
-// }
+export function showPrice(photographer) {
+  const price = document.querySelector("#price");
+  console.log(price);
+  price.innerHTML = `${photographer.price} / jour`;
+}
