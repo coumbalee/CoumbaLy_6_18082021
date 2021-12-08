@@ -701,16 +701,25 @@ body {
 }
 
 .information-section {
+  position: fixed;
+  bottom: -15px;
+  right: 20px;
   background-color: #db8876;
-  width: 25%;
+  width: 18%;
   border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   padding: 20px 10px;
   font-size: 1.7rem;
+}
+
+.information-section__heart {
+  margin-right: 30px;
+  font-size: 1.5rem;
+}
+
+.information-section__likes {
+  margin-left: 10px;
 }
 /*# sourceMappingURL=style.css.map */
