@@ -16,7 +16,9 @@ export function displayPhotographerInformation(photographer) {
   console.log(photographerElt);
   photographerElt.innerHTML += `
     <div class="photographer-section__content">
-       <h2 class="photographer-section__name">${photographer.name}</h2>
+       <h2 class="photographer-section__name" tabindex="0">${
+         photographer.name
+       }</h2>
        <p class="photographer-section__localisation">
          ${photographer.city}, ${photographer.country}
       </p>
@@ -29,7 +31,9 @@ export function displayPhotographerInformation(photographer) {
     
     <img src ="./IMAGES/Photographers%20ID%20Photos/${
       photographer.portrait
-    }" class ="photographer-section__img">
+    }" class ="photographer-section__img" alt="image du photographe ${
+    photographer.name
+  }">
     `;
   const contact = document.querySelector("#contact");
   // console.log(contact);
@@ -44,6 +48,7 @@ export function generateHeader() {
   header.appendChild(headerLink);
   const img = document.createElement("img");
   img.src = "/IMAGES/logo.png";
+  img.alt = "Fisheye logo";
   headerLink.appendChild(img);
 }
 // fonction qui récupère l' id d'un photographe à partir de  l' url
@@ -95,7 +100,7 @@ function addListenersToPrev(mediaArray, baseUrl, imgTitle) {
     ) {
       const video = document.createElement("video");
       video.setAttribute("controls", "controls");
-      video.classList.add("lightbox-img");
+      video.classList.add("lightbox__img");
       // generateVideo();
       video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
       mediaContainer.firstElementChild.remove();
@@ -107,7 +112,7 @@ function addListenersToPrev(mediaArray, baseUrl, imgTitle) {
       newMedia.media.image
     ) {
       const img = document.createElement("img");
-      img.classList.add("lightbox-img");
+      img.classList.add("lightbox__img");
       // generateLightboxImage()
       img.src = baseUrl + "/" + newMedia.media.image;
       mediaContainer.firstElementChild.src =
@@ -121,7 +126,7 @@ function addListenersToPrev(mediaArray, baseUrl, imgTitle) {
     } else {
       const video = document.createElement("video");
       video.setAttribute("controls", "controls");
-      video.classList.add("lightbox-img");
+      video.classList.add("lightbox__img");
       // generateVideo();
       video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
       mediaContainer.firstElementChild.src =
@@ -133,10 +138,13 @@ function addListenersToNext(mediaArray, baseUrl, imgTitle) {
   const lightbox = document.querySelector(".lightbox");
   const btnNext = document.querySelector("#btnNext");
   btnNext.addEventListener("click", (e) => {
+    let mediaContainer = lightbox.querySelector(".lightbox__container");
+
     let oldIndex = parseInt(lightbox.dataset.index);
     let newMedia = navigateInMedias("next", mediaArray, oldIndex);
     lightbox.dataset.index = newMedia.newIndex;
-    let mediaContainer = lightbox.querySelector(".lightbox__container");
+    // let mediaContainer = lightbox.querySelector(".lightbox__container");
+
     mediaContainer.querySelector("h2").textcontent = newMedia.media.title;
 
     if (checkImageOrVideo(mediaContainer) === "image" && newMedia.media.image) {
@@ -152,7 +160,7 @@ function addListenersToNext(mediaArray, baseUrl, imgTitle) {
       newMedia.media.image
     ) {
       const img = document.createElement("img");
-      img.classList.add("lightbox-img");
+      img.classList.add("lightbox__img");
       // generateLightboxImage()
       img.src = baseUrl + "/" + newMedia.media.image;
       mediaContainer.firstElementChild.src =
@@ -163,13 +171,14 @@ function addListenersToNext(mediaArray, baseUrl, imgTitle) {
       console.log(imgTitle);
       mediaContainer.firstElementChild.remove();
       mediaContainer.insertBefore(img, mediaContainer.firstChild);
+      // console.log(mediaContainer.firstChild);
     } else if (
       checkImageOrVideo(mediaContainer) === "image" &&
       newMedia.media.video
     ) {
       const video = document.createElement("video");
       video.setAttribute("controls", "controls");
-      video.classList.add("lightbox-img");
+      video.classList.add("lightbox__img");
       // generateVideo();
       video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
       mediaContainer.firstElementChild.remove();
@@ -194,42 +203,61 @@ function addListeners(
   addListenersToPrev(mediaArray, baseUrl, imgTitle);
   addListenersToNext(mediaArray, baseUrl, imgTitle);
 }
+
+// Je dois créer la div imgContainer (entre btn prev et btn next)
+// et le modifier dans le else if image ou video
 function generateLightbox(index, mediaArray, baseUrl, element) {
   let mediaBox = document.querySelector(".media-section");
   const lightbox = document.createElement("div");
   lightbox.classList.add("lightbox");
-  lightbox.dataset.index = index;
+  const lightboxContainer = document.createElement("div");
+  lightboxContainer.classList.add("lightbox__container");
+  // lightboxContainer.insertBefore(imgContainer, btnNext);
+
+  // lightbox.dataset.index = index;
+  // let imgTitle = mediaArray[index].title;
+  lightboxContainer.dataset.index = index;
   let imgTitle = mediaArray[index].title;
   mediaBox.append(lightbox);
   // BOUTON CLOSE
   const btnClose = document.createElement("button");
-  btnClose.innerHTML += `<i class="fas fa-times  lightbox__close"></i>`;
+  btnClose.innerHTML += `<i class="fas fa-times "></i>`;
+  btnClose.classList.add("lightbox__close");
   // BOUTON PREV
   const btnPrev = document.createElement("button");
   btnPrev.id = "btnPrev";
-  btnPrev.innerHTML += `<i class="fas fa-chevron-left  lightbox__prev"></i>`;
+  btnPrev.classList.add("lightbox__prev");
+  btnPrev.innerHTML += `<i class="fas fa-chevron-left"></i>`;
+  // imgContainer
+  const imgContainer = document.createElement("div");
+  imgContainer.classList.add("lightbox__img--container");
+
   // BOUTON NEXT
   const btnNext = document.createElement("button");
   btnNext.id = "btnNext";
-  btnNext.innerHTML += `<i class="fas fa-chevron-right  lightbox__next"></i>`;
-  lightbox.prepend(btnClose, btnPrev, btnNext);
+  btnNext.classList.add("lightbox__next");
+  btnNext.innerHTML += `<i class="fas fa-chevron-right"></i>`;
+  lightboxContainer.prepend(btnClose, btnPrev, imgContainer, btnNext);
+  console.log(lightboxContainer);
+  lightbox.append(lightboxContainer);
+
   addListeners(btnClose, btnPrev, btnNext, mediaArray, baseUrl, imgTitle);
-  const lightboxContainer = document.createElement("div");
-  lightboxContainer.classList.add("lightbox__container");
+  // const lightboxContainer = document.createElement("div");
+  // lightboxContainer.classList.add("lightbox__container");
 
   // Check if image or video
   console.log("firstChild", element.firstElementChild);
   if (checkImageOrVideo(element) === "image") {
     console.log("image");
+    // const imgContainer = document.createElement("div");
+    // imgContainer.classList.add("lightbox__img--container");
     const img = document.createElement("img");
-    img.classList.add("lightbox-img");
-    // generateLightboxImage()
+    img.classList.add("lightbox__img");
     img.src = element.firstElementChild.currentSrc;
-    lightboxContainer.prepend(img);
     const title = document.createElement("h2");
-    lightboxContainer.append(title);
     title.innerHTML += imgTitle;
-
+    imgContainer.prepend(img, title);
+    lightboxContainer.append(imgContainer);
     lightbox.prepend(lightboxContainer);
     // fermeture de la lightbox au clic sur le bouton x
     document
@@ -241,13 +269,14 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
     console.log("video");
     const video = document.createElement("video");
     video.setAttribute("controls", "controls");
-    video.classList.add("lightbox-img");
+    video.classList.add("lightbox__img");
     video.src = element.firstElementChild.currentSrc;
-    lightboxContainer.prepend(video);
     const title = document.createElement("h2");
-    lightboxContainer.append(title);
     title.innerHTML += imgTitle;
-    lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
+    imgContainer.prepend(video, title);
+
+    lightboxContainer.append(imgContainer);
+    lightbox.prepend(lightboxContainer);
     // fermeture de la lightbox au clic sur le bouton x
     document
       .querySelector(".lightbox__close")
@@ -469,12 +498,12 @@ export function generateDropdownMenu() {
     <p class="filter-dropdown__label">Trier par</p> 
     <div class="filter-dropdown__content">
     <div class="filter-dropdown__select">
-    <a href="#" class="filter-dropdown__option " data-filter="popularite">Popularité</a>
+    <a href="#" role="button"class="filter-dropdown__option " data-filter="popularite" aria-haspopup="listbox">Popularité</a>
     <i class="fas fa-chevron-down filter-dropdown__arrow"></i>
     </div>
     <ul class="filter-dropdown__list">
-      <li><a href="#" class="filter-dropdown__option filter-dropdown__li" data-filter="date">Date</a></li>
-      <li><a href="#" class="filter-dropdown__option  filter-dropdown__li" data-filter="titre">Titre</a></li>
+      <li><a href="#" role="option"class="filter-dropdown__option filter-dropdown__li" data-filter="date" aria-selected="true">Date</a></li>
+      <li><a href="#" role="option"class="filter-dropdown__option  filter-dropdown__li" data-filter="titre" aria-selected="true">Titre</a></li>
     </ul>
   </div>`;
   const dropdownArrow = document.querySelector(".filter-dropdown__arrow");
