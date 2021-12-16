@@ -55,3 +55,11 @@ function getSurname(name) {
   cuttedName = surname.replace("-", " ");
   return cuttedName;
 }
+
+document.addEventListener("keyup", (e) => {
+  console.log(e);
+  if (e.key === "Entrer") {
+    console.log("Entrer");
+    e.target.click();
+  }
+});
