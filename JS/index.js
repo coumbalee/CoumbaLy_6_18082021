@@ -19,7 +19,9 @@ function showPhotographers(photographers) {
       photographer.id
     } "><img src ="./IMAGES/Photographers%20ID%20Photos/${
       photographer.portrait
-    }" class ="photographer__img" alt="image of the photographer"></a>
+    }" class ="photographer__img" alt="image du photographe ${
+      photographer.name
+    }"></a>
     <div class= "photographer__content">
       <h2 class="photographer__name">${photographer.name}</h2>
       <p class="photographer__localisation">${photographer.city}, ${
@@ -57,6 +59,8 @@ function generateIndexHeader() {
   const img = document.createElement("img");
   img.src = "/IMAGES/logo.png";
   img.setAttribute("alt", "Fisheye logo");
+  img.setAttribute("aria-label", "Fisheye");
+
   document.querySelector(".header__logo").appendChild(img);
 }
 
