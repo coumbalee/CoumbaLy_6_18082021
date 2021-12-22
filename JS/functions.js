@@ -80,114 +80,126 @@ export function displayLightbox(mediaArray, baseUrl) {
   });
 }
 function addListenersToPrev(mediaArray, baseUrl, imgTitle) {
-  const lightbox = document.querySelector(".lightbox");
-
+  const lightbox = document.querySelector(".lightbox__container");
+  const lightboxImgContainer = lightbox.querySelector(
+    ".lightbox__img--container"
+  );
   const btnPrev = document.querySelector("#btnPrev");
   btnPrev.addEventListener("click", (e) => {
     let oldIndex = parseInt(lightbox.dataset.index);
     let newMedia = navigateInMedias("prev", mediaArray, oldIndex);
     lightbox.dataset.index = newMedia.newIndex;
-    let mediaContainer = lightbox.querySelector(".lightbox__container");
-    if (checkImageOrVideo(mediaContainer) === "image" && newMedia.media.image) {
-      mediaContainer.firstElementChild.src =
+    if (checkImageOrVideo(lightbox) === "image" && newMedia.media.image) {
+      lightboxImgContainer.firstElementChild.src =
         baseUrl + "/" + newMedia.media.image;
       imgTitle = newMedia.media.title;
-      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
       console.log(imgTitle);
     } else if (
-      checkImageOrVideo(mediaContainer) === "image" &&
+      checkImageOrVideo(lightbox) === "image" &&
       newMedia.media.video
     ) {
+      //
+      // generateLightboxVideo(baseUrl);
       const video = document.createElement("video");
       video.setAttribute("controls", "controls");
       video.classList.add("lightbox__img");
-      // generateVideo();
       video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
-      mediaContainer.firstElementChild.remove();
-      mediaContainer.insertBefore(video, mediaContainer.firstChild);
+
+      lightboxImgContainer.firstElementChild.remove();
+      lightboxImgContainer.insertBefore(video, lightboxImgContainer.firstChild);
       imgTitle = newMedia.media.title;
-      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
     } else if (
-      checkImageOrVideo(mediaContainer) === "video" &&
+      checkImageOrVideo(lightbox) === "video" &&
       newMedia.media.image
     ) {
       const img = document.createElement("img");
       img.classList.add("lightbox__img");
-      // generateLightboxImage()
       img.src = baseUrl + "/" + newMedia.media.image;
-      mediaContainer.firstElementChild.src =
+
+      lightboxImgContainer.firstElementChild.src =
         baseUrl + "/" + newMedia.media.image;
 
       imgTitle = newMedia.media.title;
-      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
       console.log(imgTitle);
-      mediaContainer.firstElementChild.remove();
-      mediaContainer.insertBefore(img, mediaContainer.firstChild);
+      lightboxImgContainer.firstChild.remove();
+      lightboxImgContainer.insertBefore(img, lightboxImgContainer.firstChild);
     } else {
+      // generateLightboxVideo(baseUrl);
       const video = document.createElement("video");
       video.setAttribute("controls", "controls");
       video.classList.add("lightbox__img");
-      // generateVideo();
       video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
-      mediaContainer.firstElementChild.src =
-        baseUrl + "/" + newMedia.media.video;
+
+      lightboxImgContainer.firstChild.remove();
+      lightboxImgContainer.insertBefore(video, lightboxImgContainer.firstChild);
+      imgTitle = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
     }
   });
 }
 function addListenersToNext(mediaArray, baseUrl, imgTitle) {
-  const lightbox = document.querySelector(".lightbox");
+  const lightbox = document.querySelector(".lightbox__container");
+  const lightboxImgContainer = lightbox.querySelector(
+    ".lightbox__img--container"
+  );
+
   const btnNext = document.querySelector("#btnNext");
   btnNext.addEventListener("click", (e) => {
-    let mediaContainer = lightbox.querySelector(".lightbox__container");
-
     let oldIndex = parseInt(lightbox.dataset.index);
     let newMedia = navigateInMedias("next", mediaArray, oldIndex);
     lightbox.dataset.index = newMedia.newIndex;
-    // let mediaContainer = lightbox.querySelector(".lightbox__container");
-
-    mediaContainer.querySelector("h2").textcontent = newMedia.media.title;
-
-    if (checkImageOrVideo(mediaContainer) === "image" && newMedia.media.image) {
-      mediaContainer.firstElementChild.src =
+    lightbox.querySelector("h2").textcontent = newMedia.media.title;
+    if (checkImageOrVideo(lightbox) === "image" && newMedia.media.image) {
+      lightboxImgContainer.firstElementChild.src =
         baseUrl + "/" + newMedia.media.image;
 
       imgTitle = newMedia.media.title;
-      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
 
       console.log(imgTitle);
     } else if (
-      checkImageOrVideo(mediaContainer) === "video" &&
+      checkImageOrVideo(lightbox) === "video" &&
       newMedia.media.image
     ) {
       const img = document.createElement("img");
       img.classList.add("lightbox__img");
-      // generateLightboxImage()
       img.src = baseUrl + "/" + newMedia.media.image;
-      mediaContainer.firstElementChild.src =
+
+      lightboxImgContainer.firstElementChild.src =
         baseUrl + "/" + newMedia.media.image;
 
       imgTitle = newMedia.media.title;
-      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
       console.log(imgTitle);
-      mediaContainer.firstElementChild.remove();
-      mediaContainer.insertBefore(img, mediaContainer.firstChild);
+      lightboxImgContainer.firstChild.remove();
+      lightboxImgContainer.insertBefore(img, lightboxImgContainer.firstChild);
       // console.log(mediaContainer.firstChild);
     } else if (
-      checkImageOrVideo(mediaContainer) === "image" &&
+      checkImageOrVideo(lightbox) === "image" &&
       newMedia.media.video
     ) {
       const video = document.createElement("video");
       video.setAttribute("controls", "controls");
       video.classList.add("lightbox__img");
-      // generateVideo();
       video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
-      mediaContainer.firstElementChild.remove();
-      mediaContainer.insertBefore(video, mediaContainer.firstChild);
+      lightboxImgContainer.firstChild.remove();
+      lightboxImgContainer.insertBefore(video, lightboxImgContainer.firstChild);
       imgTitle = newMedia.media.title;
-      mediaContainer.querySelector("h2").textContent = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
     } else {
-      mediaContainer.firstElementChild.src =
-        baseUrl + "/" + newMedia.media.video;
+      // lightbox.querySelector(".lightbox__img--container").firstChild.src =
+      //   baseUrl + "/" + newMedia.media.video;
+      const video = document.createElement("video");
+      video.setAttribute("controls", "controls");
+      video.classList.add("lightbox__img");
+      video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
+      lightboxImgContainer.firstChild.remove();
+      lightboxImgContainer.insertBefore(video, lightboxImgContainer.firstChild);
+      imgTitle = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
     }
   });
 }
@@ -203,9 +215,12 @@ function addListeners(
   addListenersToPrev(mediaArray, baseUrl, imgTitle);
   addListenersToNext(mediaArray, baseUrl, imgTitle);
 }
+// function generateLightboxVideo(baseUrl) {
+//   const video = document.createElement("video");
+//   video.setAttribute("controls", "controls");
+//   video.classList.add("lightbox__img");
+// }
 
-// Je dois créer la div imgContainer (entre btn prev et btn next)
-// et le modifier dans le else if image ou video
 function generateLightbox(index, mediaArray, baseUrl, element) {
   let mediaBox = document.querySelector(".media-section");
   const lightbox = document.createElement("div");
@@ -257,8 +272,6 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
     const title = document.createElement("h2");
     title.innerHTML += imgTitle;
     imgContainer.prepend(img, title);
-    lightboxContainer.append(imgContainer);
-    lightbox.prepend(lightboxContainer);
     // fermeture de la lightbox au clic sur le bouton x
     document
       .querySelector(".lightbox__close")
@@ -275,8 +288,8 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
     title.innerHTML += imgTitle;
     imgContainer.prepend(video, title);
 
-    lightboxContainer.append(imgContainer);
-    lightbox.prepend(lightboxContainer);
+    // lightboxContainer.append(imgContainer);
+    // lightbox.prepend(lightboxContainer);
     // fermeture de la lightbox au clic sur le bouton x
     document
       .querySelector(".lightbox__close")
