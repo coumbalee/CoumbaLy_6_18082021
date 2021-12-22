@@ -48,9 +48,11 @@ function displayTagsMenu(tags) {
 function generateIndexHeader() {
   // création du lien  du header
   const header = document.querySelector("header");
-  // header.setAttribute("role", "banner");
+  // const headerLogo = document.querySelector(".header__logo");
+
+  // headerLogo.href = "./index.html";
   const headerLink = document.createElement("a");
-  headerLink.href = "#main";
+  headerLink.href = "#photographers-section";
   headerLink.classList.add("header__link");
   headerLink.innerHTML = "Passer au contenu";
   header.prepend(headerLink);
@@ -67,13 +69,13 @@ function generateIndexHeader() {
 function generateIndexMain() {
   // création du titre Nos photographes
   const main = document.querySelector("main");
-  const mainLink = document.createElement("a");
-  mainLink.href = "#main";
+  // const mainLink = document.createElement("a");
+  // mainLink.href = "#main";
   const mainTitle = document.createElement("h1");
   mainTitle.innerHTML = "Nos photographes";
   mainTitle.classList.add("h1");
-  main.prepend(mainLink);
-  mainLink.prepend(mainTitle);
+  main.prepend(mainTitle);
+  // mainLink.prepend(mainTitle);
 }
 
 // Fonction qui ajoute un eventlistener au clic
@@ -95,6 +97,7 @@ function manageListeners(tags, photographers) {
       // La fonction s' appelle elle même
       manageListeners(tagsElts, photographers);
       console.log(filteredPhotographers);
+      photographersElt.classList.add("filtered-photographers");
     });
   });
 }
