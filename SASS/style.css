@@ -453,7 +453,7 @@ body {
 }
 
 .media-section__card img,
-.media-section video {
+.media-section__card video {
   width: 360px;
   height: 350px;
   -o-object-fit: cover;
@@ -527,8 +527,10 @@ body {
 }
 
 .lightbox__img {
-  height: 80vh;
+  max-height: 80vh;
   border-radius: 5px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .lightbox__container h2 {
@@ -797,7 +799,7 @@ body {
   border: none;
   border-radius: 5px;
   border-radius: 5px;
-  padding: 5px 5px 10px 20px;
+  padding: 10px;
   width: 100%;
 }
 
@@ -805,6 +807,11 @@ body {
   .media-filter-section .filter-dropdown__select {
     width: 90%;
   }
+}
+
+.media-filter-section .filter-dropdown__select.show {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 .media-filter-section .filter-dropdown__option {
@@ -816,7 +823,7 @@ body {
   visibility: hidden;
 }
 
-.media-filter-section .filter-dropdown .show {
+.media-filter-section .filter-dropdown__list.show {
   visibility: visible;
   background-color: #901c1c;
   color: white;
@@ -826,13 +833,19 @@ body {
   border-radius: 5px;
   border-radius: 0 0 5px 5px;
   width: 100%;
-  padding: 0 5px 10px 20px;
+  padding: 10px;
 }
 
 @media (max-width: 768px) {
-  .media-filter-section .filter-dropdown .show {
+  .media-filter-section .filter-dropdown__list.show {
     width: 90%;
   }
+}
+
+.media-filter-section .filter-dropdown__list.show li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: solid 1px #fff;
 }
 
 .media-filter-section .filter-dropdown__arrow {
