@@ -1,5 +1,6 @@
 import Image from "./imageMedia.js";
 import Video from "./videoMedia.js";
+// import { manageListeners } from "./index.js";
 
 export function factory(media) {
   if (media.image) {
@@ -38,6 +39,7 @@ export function displayPhotographerInformation(photographer) {
   const contact = document.querySelector("#contact");
   // console.log(contact);
   contact.addEventListener("click", () => generateForm(photographer));
+  // manageListeners(tags, photographers);
 }
 // // Fonction qui génère le logo du header
 export function generateHeader() {
@@ -336,7 +338,7 @@ export function generateForm(photographer) {
   form.innerHTML += ` 
   <div class="form__content">
     <span >
-    <i class="fas fa-times  form__close"></i></span>
+    <i class="fas fa-times  form__close" role="button" tabindex="0"></i></span>
     <div class="form__modal-body">
       <form name="form__contact"  action="photographer.html" method="get">
      <h1 class="form__head">Contactez-moi ${photographer.name} </h1>
@@ -381,7 +383,7 @@ export function generateForm(photographer) {
       <div class="form__control">
       <label class ="form__label" for="text-area">Votre Message</label><br />
       <textarea  name="text-area" id="textArea" class="form__text-area" cols="20" 
-      rows="10" required="" aria-required="true" placeholder="Bonjour..."></textarea><br/>
+      rows="8" required="" aria-required="true" placeholder="Bonjour..."></textarea><br/>
       <small> Message d'erreur</small>
       </div> 
     </div>
@@ -389,18 +391,19 @@ export function generateForm(photographer) {
   <button class="form__button" type="submit">Envoyer</button>
         `;
   console.log(photographer.name);
+  focusOnModal();
 
-  document.querySelector(".form").addEventListener(
+  document.querySelector(".form button").addEventListener(
     "click",
     function (event) {
       checkInputs();
-      focusOnModal();
+
       event.preventDefault();
     },
     false
   );
   document.querySelector(".form__close").addEventListener("click", function () {
-    displayModal();
+    removeModal();
   });
 }
 
@@ -500,8 +503,8 @@ export function setSuccessForArea(textarea) {
   areaControl.className = "form__control success";
   console.log(textarea.getAttribute("name"), " : ", textarea.value);
 }
-export function displayModal() {
-  const modal = document.querySelector(".form");
+export function removeModal() {
+  const modal = document.querySelector(".form-section");
   modal.remove();
 }
 export function generateDropdownMenu() {
@@ -526,8 +529,10 @@ export function generateDropdownMenu() {
 }
 function toggleDropdown() {
   const dropdownList = document.querySelector(".filter-dropdown__list");
+  const dropdownSelect = document.querySelector(".filter-dropdown__select");
   console.log(dropdownList);
   dropdownList.classList.toggle("show");
+  dropdownSelect.classList.toggle("show");
 }
 export function addListenersToDropDown(medias, baseUrl) {
   document.querySelectorAll(".filter-dropdown__option").forEach((elt) => {
@@ -612,7 +617,7 @@ export function showPrice(photographer) {
 }
 function focusOnModal() {
   const focusableElements =
-    'span, h1, input, textarea, button,[tabindex]:not([tabindex="-1"])';
+    'h1, input, textarea, button,[tabindex]:not([tabindex="-1"])';
   const modal = document.querySelector(".form");
   console.log(modal);
 
