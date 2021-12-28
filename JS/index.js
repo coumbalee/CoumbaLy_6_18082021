@@ -79,7 +79,7 @@ function generateIndexMain() {
 }
 
 // Fonction qui ajoute un eventlistener au clic
-function manageListeners(tags, photographers) {
+export function manageListeners(tags, photographers) {
   tags.forEach((tag) => {
     tag.addEventListener("click", (e) => {
       //quand je clique sur le tag, je récupère la valeur du tag
@@ -97,7 +97,7 @@ function manageListeners(tags, photographers) {
       // La fonction s' appelle elle même
       manageListeners(tagsElts, photographers);
       console.log(filteredPhotographers);
-      photographersElt.classList.add("filtered-photographers");
+      // photographersElt.classList.add("filtered-photographers");
     });
   });
 }

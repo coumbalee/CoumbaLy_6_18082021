@@ -14,6 +14,7 @@ import {
   incrementLikes,
   showPrice,
 } from "./functions.js";
+// import { manageListeners } from "./index.js";
 
 const likeReducer = (previous, current) => previous + current;
 

@@ -150,9 +150,12 @@ body {
     }
   }
   &__img {
-    max-height: 80vh;
+    height: 90vh;
     border-radius: 5px;
     object-fit: cover;
+    @media (max-width: 768px) {
+      height: 100vh;
+    }
   }
   // &__img video {
   //   height: 80vh;

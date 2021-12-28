@@ -527,10 +527,16 @@ body {
 }
 
 .lightbox__img {
-  max-height: 80vh;
+  height: 90vh;
   border-radius: 5px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .lightbox__img {
+    height: 100vh;
+  }
 }
 
 .lightbox__container h2 {
