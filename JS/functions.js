@@ -238,13 +238,13 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
   mediaBox.append(lightbox);
   // BOUTON CLOSE
   const btnClose = document.createElement("button");
-  btnClose.innerHTML += `<i class="fas fa-times "></i>`;
+  btnClose.innerHTML += `<i class="fas fa-times " role="button" tabindex="0"></i>`;
   btnClose.classList.add("lightbox__close");
   // BOUTON PREV
   const btnPrev = document.createElement("button");
   btnPrev.id = "btnPrev";
   btnPrev.classList.add("lightbox__prev");
-  btnPrev.innerHTML += `<i class="fas fa-chevron-left"></i>`;
+  btnPrev.innerHTML += `<i class="fas fa-chevron-left" role="button" tabindex="0"></i>`;
   // imgContainer
   const imgContainer = document.createElement("div");
   imgContainer.classList.add("lightbox__img--container");
@@ -253,7 +253,7 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
   const btnNext = document.createElement("button");
   btnNext.id = "btnNext";
   btnNext.classList.add("lightbox__next");
-  btnNext.innerHTML += `<i class="fas fa-chevron-right"></i>`;
+  btnNext.innerHTML += `<i class="fas fa-chevron-right" role="button" tabindex="0"></i>`;
   lightboxContainer.prepend(btnClose, btnPrev, imgContainer, btnNext);
   console.log(lightboxContainer);
   lightbox.append(lightboxContainer);
@@ -293,12 +293,14 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
     // lightboxContainer.append(imgContainer);
     // lightbox.prepend(lightboxContainer);
     // fermeture de la lightbox au clic sur le bouton x
+
     document
       .querySelector(".lightbox__close")
       .addEventListener("click", function () {
         removeLightbox();
       });
   }
+  focusOnlightbox();
 }
 function navigateInMedias(direction, medias, index) {
   let newIndex = 0;
@@ -391,7 +393,7 @@ export function generateForm(photographer) {
   <button class="form__button" type="submit">Envoyer</button>
         `;
   console.log(photographer.name);
-  focusOnModal();
+  focusOnForm();
 
   document.querySelector(".form button").addEventListener(
     "click",
@@ -615,11 +617,45 @@ export function showPrice(photographer) {
   console.log(price);
   price.innerHTML = `${photographer.price} / jour`;
 }
-function focusOnModal() {
+function focusOnForm() {
   const focusableElements =
-    'h1, input, textarea, button,[tabindex]:not([tabindex="-1"])';
+    ' input, textarea, button,[tabindex]:not([tabindex="-1"])';
   const modal = document.querySelector(".form");
   console.log(modal);
+
+  const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+  console.log(firstFocusableElement);
+  const focusableContent = modal.querySelectorAll(focusableElements);
+  const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+
+  document.addEventListener("keydown", function (e) {
+    let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    if (e.shiftKey) {
+      // if shift key pressed for shift + tab combination
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus(); // add focus for the last focusable element
+        e.preventDefault();
+      }
+    } else {
+      // if tab key is pressed
+      if (document.activeElement === lastFocusableElement) {
+        // if focused has reached to last focusable element then focus first focusable element after pressing tab
+        firstFocusableElement.focus(); // add focus for the first focusable element
+        e.preventDefault();
+      }
+    }
+  });
+
+  firstFocusableElement.focus();
+}
+function focusOnlightbox() {
+  const focusableElements = 'button,[tabindex]:not([tabindex="-1"])';
+  const modal = document.querySelector(".lightbox__container");
 
   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
   console.log(firstFocusableElement);
