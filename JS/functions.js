@@ -39,7 +39,7 @@ export function displayPhotographerInformation(photographer) {
   const contact = document.querySelector("#contact");
   // console.log(contact);
   contact.addEventListener("click", () => generateForm(photographer));
-  // manageListeners(tags, photographers);
+  // manageListeners();
 }
 // // Fonction qui génère le logo du header
 export function generateHeader() {
@@ -532,9 +532,11 @@ export function generateDropdownMenu() {
 function toggleDropdown() {
   const dropdownList = document.querySelector(".filter-dropdown__list");
   const dropdownSelect = document.querySelector(".filter-dropdown__select");
+  const dropdownArrow = document.querySelector(".filter-dropdown__arrow");
   console.log(dropdownList);
   dropdownList.classList.toggle("show");
   dropdownSelect.classList.toggle("show");
+  dropdownArrow.classList.toggle("pressed");
 }
 export function addListenersToDropDown(medias, baseUrl) {
   document.querySelectorAll(".filter-dropdown__option").forEach((elt) => {
