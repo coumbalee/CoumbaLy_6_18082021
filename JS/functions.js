@@ -514,30 +514,27 @@ export function generateDropdownMenu() {
 
   section.innerHTML += `
   <div class="filter-dropdown">
-    <p class="filter-dropdown__label">Trier par</p> 
-    <div class="filter-dropdown__content">
-    <div class="filter-dropdown__select">
-    <a href="#" role="button"class="filter-dropdown__option " data-filter="popularite" aria-haspopup="listbox">Popularité</a>
-    <i class="fas fa-chevron-down filter-dropdown__arrow"></i>
-    </div>
-    <ul class="filter-dropdown__list">
-      <li><a href="#" role="option"class="filter-dropdown__option filter-dropdown__li" data-filter="date" aria-selected="true">Date</a></li>
-      <li><a href="#" role="option"class="filter-dropdown__option  filter-dropdown__li" data-filter="titre" aria-selected="true">Titre</a></li>
-    </ul>
+  <div class="filter-dropdown__content">
+    <label for="sort"class="filter-dropdown__label">Trier par</label> 
+    <select name="sort"class="filter-dropdown__select">
+      <option  role="option"class="filter-dropdown__option " data-filter="popularite" aria-haspopup="listbox" tabindex="0">Popularité</option>
+      <option role="option"class="filter-dropdown__option filter-dropdown__list" data-filter="date" aria-selected="true" tabindex="0">Date</option>
+      <option role="option"class="filter-dropdown__option  filter-dropdown__list" data-filter="titre" aria-selected="true" tabindex="0">Titre</option>
+    </select>
+  </div>
   </div>`;
-  const dropdownArrow = document.querySelector(".filter-dropdown__arrow");
-  console.log(dropdownArrow);
-  dropdownArrow.addEventListener("click", toggleDropdown);
+  // const dropdownSelect = document.querySelector(".filter-dropdown__select");
+  // dropdownSelect.addEventListener("click", toggleDropdown);
 }
-function toggleDropdown() {
-  const dropdownList = document.querySelector(".filter-dropdown__list");
-  const dropdownSelect = document.querySelector(".filter-dropdown__select");
-  const dropdownArrow = document.querySelector(".filter-dropdown__arrow");
-  console.log(dropdownList);
-  dropdownList.classList.toggle("show");
-  dropdownSelect.classList.toggle("show");
-  dropdownArrow.classList.toggle("pressed");
-}
+// function toggleDropdown() {
+//   const dropdownList = document.querySelector(".filter-dropdown__list");
+//   const dropdownSelect = document.querySelector(".filter-dropdown__select");
+//   // const dropdownArrow = document.querySelector(".filter-dropdown__arrow");
+//   console.log(dropdownList);
+//   dropdownList.classList.toggle("show");
+//   dropdownSelect.classList.toggle("show");
+//   // dropdownArrow.classList.toggle("pressed");
+// }
 export function addListenersToDropDown(medias, baseUrl) {
   document.querySelectorAll(".filter-dropdown__option").forEach((elt) => {
     elt.addEventListener("click", (e) => {
