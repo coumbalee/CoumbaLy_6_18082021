@@ -523,7 +523,7 @@ export function generateDropdownMenu() {
     </select>
   </div>
   </div>`;
-  focusOnDropdown();
+  // focusOnDropdown();
   // const dropdownSelect = document.querySelector(".filter-dropdown__select");
   // dropdownSelect.addEventListener("click", toggleDropdown);
 }
@@ -537,13 +537,12 @@ export function generateDropdownMenu() {
 //   // dropdownArrow.classList.toggle("pressed");
 // }
 export function addListenersToDropDown(medias, baseUrl) {
-  document.querySelectorAll(".filter-dropdown__option").forEach((elt) => {
-    elt.addEventListener("click", (e) => {
-      e.preventDefault();
-      console.log(e.target.dataset.filter);
-      const orderedMedias = sortMediasBy(medias, e.target.dataset.filter);
-      displayMediasList(orderedMedias, baseUrl);
-    });
+  let elt = document.querySelector(".filter-dropdown__select");
+  elt.addEventListener("change", (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    const orderedMedias = sortMediasBy(medias, e.target.value);
+    displayMediasList(orderedMedias, baseUrl);
   });
 }
 
@@ -564,18 +563,18 @@ export function displayMediasList(photographerMedias, baseUrl) {
 function sortMediasBy(medias, filter) {
   //on veut trier les medias
   switch (filter) {
-    case "titre":
+    case "Titre":
       medias.sort((a, b) =>
         a.title > b.title ? 1 : b.title > a.title ? -1 : 0
       );
       console.log(medias);
       break;
-    case "date":
+    case "Date":
       medias.sort(function (a, b) {
         return new Date(a.date) - new Date(b.date);
       });
       break;
-    case "popularite":
+    case "Popularité":
       medias.sort(function (a, b) {
         return b.likes - a.likes;
       });
@@ -688,37 +687,37 @@ function focusOnlightbox() {
   firstFocusableElement.focus();
 }
 
-function focusOnDropdown() {
-  const focusableElements = 'select,option,[tabindex]:not([tabindex="-1"])';
-  const modal = document.querySelector(".fiter-dropdown__select");
+// function focusOnDropdown() {
+//   const focusableElements = 'select,option,[tabindex]:not([tabindex="-1"])';
+//   const modal = document.querySelector(".fiter-dropdown__select");
 
-  const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
-  console.log(firstFocusableElement);
-  const focusableContent = modal.querySelectorAll(focusableElements);
-  const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+//   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+//   console.log(firstFocusableElement);
+//   const focusableContent = modal.querySelectorAll(focusableElements);
+//   const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
 
-  document.addEventListener("keydown", function (e) {
-    let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+//   document.addEventListener("keydown", function (e) {
+//     let isTabPressed = e.key === "Tab" || e.keyCode === 9;
 
-    if (!isTabPressed) {
-      return;
-    }
+//     if (!isTabPressed) {
+//       return;
+//     }
 
-    if (e.shiftKey) {
-      // if shift key pressed for shift + tab combination
-      if (document.activeElement === firstFocusableElement) {
-        lastFocusableElement.focus(); // add focus for the last focusable element
-        e.preventDefault();
-      }
-    } else {
-      // if tab key is pressed
-      if (document.activeElement === lastFocusableElement) {
-        // if focused has reached to last focusable element then focus first focusable element after pressing tab
-        firstFocusableElement.focus(); // add focus for the first focusable element
-        e.preventDefault();
-      }
-    }
-  });
+//     if (e.shiftKey) {
+//       // if shift key pressed for shift + tab combination
+//       if (document.activeElement === firstFocusableElement) {
+//         lastFocusableElement.focus(); // add focus for the last focusable element
+//         e.preventDefault();
+//       }
+//     } else {
+//       // if tab key is pressed
+//       if (document.activeElement === lastFocusableElement) {
+//         // if focused has reached to last focusable element then focus first focusable element after pressing tab
+//         firstFocusableElement.focus(); // add focus for the first focusable element
+//         e.preventDefault();
+//       }
+//     }
+//   });
 
-  firstFocusableElement.focus();
-}
+//   firstFocusableElement.focus();
+// }
