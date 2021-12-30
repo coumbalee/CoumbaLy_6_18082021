@@ -523,6 +523,7 @@ export function generateDropdownMenu() {
     </select>
   </div>
   </div>`;
+  focusOnDropdown();
   // const dropdownSelect = document.querySelector(".filter-dropdown__select");
   // dropdownSelect.addEventListener("click", toggleDropdown);
 }
