@@ -689,7 +689,7 @@ function focusOnlightbox() {
 }
 
 function focusOnDropdown() {
-  const focusableElements = 'button,option,[tabindex]:not([tabindex="-1"])';
+  const focusableElements = 'select,option,[tabindex]:not([tabindex="-1"])';
   const modal = document.querySelector(".fiter-dropdown__select");
 
   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
