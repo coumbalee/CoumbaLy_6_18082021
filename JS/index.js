@@ -97,7 +97,6 @@ export function manageListeners(tags, photographers) {
       // La fonction s' appelle elle même
       manageListeners(tagsElts, photographers);
       console.log(filteredPhotographers);
-      // photographersElt.classList.add("filtered-photographers");
     });
   });
 }

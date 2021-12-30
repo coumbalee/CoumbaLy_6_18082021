@@ -16,7 +16,9 @@ import {
 } from "./functions.js";
 // import { manageListeners } from "./index.js";
 
-const likeReducer = (previous, current) => previous + current;
+function likeReducer(previous, current) {
+  return previous + current;
+}
 
 generateHeader();
 displayPhotographerPage();
@@ -29,6 +31,7 @@ async function displayPhotographerPage() {
   const photographer = photographers.find((elt) => elt.id === parseInt(id, 10));
   const photographerSurname = getSurname(photographer.name);
   displayPhotographerInformation(photographer);
+  // manageListeners(photographer,tags);
   // MEDIAS
   const photographerMedias = await getMediaFromPhotographer(id);
 
