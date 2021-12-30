@@ -1,5 +1,6 @@
 import Image from "./imageMedia.js";
 import Video from "./videoMedia.js";
+// import { manageListeners } from "./index.js";
 
 export function factory(media) {
   if (media.image) {
@@ -16,7 +17,9 @@ export function displayPhotographerInformation(photographer) {
   console.log(photographerElt);
   photographerElt.innerHTML += `
     <div class="photographer-section__content">
-       <h2 class="photographer-section__name">${photographer.name}</h2>
+       <h2 class="photographer-section__name" tabindex="0">${
+         photographer.name
+       }</h2>
        <p class="photographer-section__localisation">
          ${photographer.city}, ${photographer.country}
       </p>
@@ -29,11 +32,14 @@ export function displayPhotographerInformation(photographer) {
     
     <img src ="./IMAGES/Photographers%20ID%20Photos/${
       photographer.portrait
-    }" class ="photographer-section__img">
+    }" class ="photographer-section__img" alt="image du photographe ${
+    photographer.name
+  }">
     `;
   const contact = document.querySelector("#contact");
   // console.log(contact);
-  contact.addEventListener("click", generateForm);
+  contact.addEventListener("click", () => generateForm(photographer));
+  // manageListeners();
 }
 // // Fonction qui génère le logo du header
 export function generateHeader() {
@@ -44,6 +50,7 @@ export function generateHeader() {
   header.appendChild(headerLink);
   const img = document.createElement("img");
   img.src = "/IMAGES/logo.png";
+  img.alt = "Fisheye logo";
   headerLink.appendChild(img);
 }
 // fonction qui récupère l' id d'un photographe à partir de  l' url
@@ -65,176 +72,236 @@ export function imageExist(url) {
     }
   }
 }
-// affichage de la lightbox au click sur l' image
 export function displayLightbox(mediaArray, baseUrl) {
-  // Images
   const mediaElts = document.querySelectorAll(".media-section__card");
   mediaElts.forEach((element, index) => {
     element.addEventListener("click", (e) => {
-      //  création de la div class lighbox et de tous les éléments qu' elle contient
-      let mediaBox = document.querySelector(".media-section");
-      const lightbox = document.createElement("div");
-      lightbox.classList.add("lightbox");
-      lightbox.dataset.index = index;
       let imgTitle = mediaArray[index].title;
-      mediaBox.append(lightbox);
-      const btnClose = document.createElement("button");
-      btnClose.innerHTML += `<i class="fas fa-times  lightbox__close"></i>`;
-
-      // BOUTON PREV
-      const btnPrev = document.createElement("button");
-      btnPrev.innerHTML += `<i class="fas fa-chevron-left  lightbox__prev"></i>`;
-
-      btnPrev.addEventListener("click", (e) => {
-        let oldIndex = parseInt(lightbox.dataset.index);
-        let newMedia = navigateInMedias("prev", mediaArray, oldIndex);
-        lightbox.dataset.index = newMedia.newIndex;
-        let mediaContainer = lightbox.querySelector(".lightbox__container");
-        if (
-          checkImageOrVideo(mediaContainer) === "image" &&
-          newMedia.media.image
-        ) {
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.image;
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-          console.log(imgTitle);
-        } else if (
-          checkImageOrVideo(mediaContainer) === "image" &&
-          newMedia.media.video
-        ) {
-          console.log("ok");
-          const video = document.createElement("video");
-          video.setAttribute("controls", "controls");
-          video.classList.add("lightbox-img");
-          video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
-          mediaContainer.firstElementChild.remove();
-          mediaContainer.insertBefore(video, mediaContainer.firstChild);
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-        } else if (
-          checkImageOrVideo(mediaContainer) === "video" &&
-          newMedia.media.image
-        ) {
-          const img = document.createElement("img");
-          img.classList.add("lightbox-img");
-          img.src = baseUrl + "/" + newMedia.media.image;
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.image;
-
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-          console.log(imgTitle);
-          mediaContainer.firstElementChild.remove();
-          mediaContainer.insertBefore(img, mediaContainer.firstChild);
-        } else {
-          const video = document.createElement("video");
-          video.setAttribute("controls", "controls");
-          video.classList.add("lightbox-img");
-          video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.video;
-        }
-      });
-      // BOUTON NEXT
-      const btnNext = document.createElement("button");
-      btnNext.innerHTML += `<i class="fas fa-chevron-right  lightbox__next"></i>`;
-      btnNext.addEventListener("click", (e) => {
-        let oldIndex = parseInt(lightbox.dataset.index);
-        let newMedia = navigateInMedias("next", mediaArray, oldIndex);
-        lightbox.dataset.index = newMedia.newIndex;
-        let mediaContainer = lightbox.querySelector(".lightbox__container");
-        mediaContainer.querySelector("h2").textcontent = newMedia.media.title;
-
-        if (
-          checkImageOrVideo(mediaContainer) === "image" &&
-          newMedia.media.image
-        ) {
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.image;
-
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-
-          console.log(imgTitle);
-        } else if (
-          checkImageOrVideo(mediaContainer) === "video" &&
-          newMedia.media.image
-        ) {
-          const img = document.createElement("img");
-          img.classList.add("lightbox-img");
-          img.src = baseUrl + "/" + newMedia.media.image;
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.image;
-
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-
-          console.log(imgTitle);
-          mediaContainer.firstElementChild.remove();
-          mediaContainer.insertBefore(img, mediaContainer.firstChild);
-        } else if (
-          checkImageOrVideo(mediaContainer) === "image" &&
-          newMedia.media.video
-        ) {
-          const video = document.createElement("video");
-          video.setAttribute("controls", "controls");
-          video.classList.add("lightbox-img");
-          video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
-          mediaContainer.firstElementChild.remove();
-          mediaContainer.insertBefore(video, mediaContainer.firstChild);
-          imgTitle = newMedia.media.title;
-          mediaContainer.querySelector("h2").textContent = newMedia.media.title;
-        } else {
-          mediaContainer.firstElementChild.src =
-            baseUrl + "/" + newMedia.media.video;
-        }
-      });
-      // CREATION DU LIGHTBOX CONTAINER
-      const lightboxContainer = document.createElement("div");
-      lightboxContainer.classList.add("lightbox__container");
-
-      // Check if image or video
-      console.log("firstChild", element.firstElementChild);
-      if (checkImageOrVideo(element) === "image") {
-        console.log("image");
-        const img = document.createElement("img");
-        img.classList.add("lightbox-img");
-        img.src = element.firstElementChild.currentSrc;
-        lightboxContainer.prepend(img);
-        const title = document.createElement("h2");
-        lightboxContainer.append(title);
-        title.innerHTML += imgTitle;
-
-        lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
-        // fermeture de la lightbox au clic sur le bouton x
-        document
-          .querySelector(".lightbox__close")
-          .addEventListener("click", function () {
-            removeLightbox();
-          });
-      } else {
-        console.log("video");
-        const video = document.createElement("video");
-        video.setAttribute("controls", "controls");
-        video.classList.add("lightbox-img");
-        video.src = element.firstElementChild.currentSrc;
-        lightboxContainer.prepend(video);
-        const title = document.createElement("h2");
-        lightboxContainer.append(title);
-        title.innerHTML += imgTitle;
-        lightbox.prepend(btnClose, btnPrev, btnNext, lightboxContainer);
-        // fermeture de la lightbox au clic sur le bouton x
-        document
-          .querySelector(".lightbox__close")
-          .addEventListener("click", function () {
-            removeLightbox();
-          });
-      }
+      generateLightbox(index, mediaArray, baseUrl, element);
     });
   });
 }
+function addListenersToPrev(mediaArray, baseUrl, imgTitle) {
+  const lightbox = document.querySelector(".lightbox__container");
+  const lightboxImgContainer = lightbox.querySelector(
+    ".lightbox__img--container"
+  );
+  const btnPrev = document.querySelector("#btnPrev");
+  btnPrev.addEventListener("click", (e) => {
+    let oldIndex = parseInt(lightbox.dataset.index);
+    let newMedia = navigateInMedias("prev", mediaArray, oldIndex);
+    lightbox.dataset.index = newMedia.newIndex;
+    if (checkImageOrVideo(lightbox) === "image" && newMedia.media.image) {
+      lightboxImgContainer.firstElementChild.src =
+        baseUrl + "/" + newMedia.media.image;
+      imgTitle = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
+      console.log(imgTitle);
+    } else if (
+      checkImageOrVideo(lightbox) === "image" &&
+      newMedia.media.video
+    ) {
+      //
+      // generateLightboxVideo(baseUrl);
+      const video = document.createElement("video");
+      video.setAttribute("controls", "controls");
+      video.classList.add("lightbox__img");
+      video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
 
+      lightboxImgContainer.firstElementChild.remove();
+      lightboxImgContainer.insertBefore(video, lightboxImgContainer.firstChild);
+      imgTitle = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
+    } else if (
+      checkImageOrVideo(lightbox) === "video" &&
+      newMedia.media.image
+    ) {
+      const img = document.createElement("img");
+      img.classList.add("lightbox__img");
+      img.src = baseUrl + "/" + newMedia.media.image;
+
+      lightboxImgContainer.firstElementChild.src =
+        baseUrl + "/" + newMedia.media.image;
+
+      imgTitle = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
+      console.log(imgTitle);
+      lightboxImgContainer.firstChild.remove();
+      lightboxImgContainer.insertBefore(img, lightboxImgContainer.firstChild);
+    } else {
+      // generateLightboxVideo(baseUrl);
+      const video = document.createElement("video");
+      video.setAttribute("controls", "controls");
+      video.classList.add("lightbox__img");
+      video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
+
+      lightboxImgContainer.firstChild.remove();
+      lightboxImgContainer.insertBefore(video, lightboxImgContainer.firstChild);
+      imgTitle = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
+    }
+  });
+}
+function addListenersToNext(mediaArray, baseUrl, imgTitle) {
+  const lightbox = document.querySelector(".lightbox__container");
+  const lightboxImgContainer = lightbox.querySelector(
+    ".lightbox__img--container"
+  );
+
+  const btnNext = document.querySelector("#btnNext");
+  btnNext.addEventListener("click", (e) => {
+    let oldIndex = parseInt(lightbox.dataset.index);
+    let newMedia = navigateInMedias("next", mediaArray, oldIndex);
+    lightbox.dataset.index = newMedia.newIndex;
+    lightbox.querySelector("h2").textcontent = newMedia.media.title;
+    if (checkImageOrVideo(lightbox) === "image" && newMedia.media.image) {
+      lightboxImgContainer.firstElementChild.src =
+        baseUrl + "/" + newMedia.media.image;
+
+      imgTitle = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
+
+      console.log(imgTitle);
+    } else if (
+      checkImageOrVideo(lightbox) === "video" &&
+      newMedia.media.image
+    ) {
+      const img = document.createElement("img");
+      img.classList.add("lightbox__img");
+      img.src = baseUrl + "/" + newMedia.media.image;
+
+      lightboxImgContainer.firstElementChild.src =
+        baseUrl + "/" + newMedia.media.image;
+
+      imgTitle = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
+      console.log(imgTitle);
+      lightboxImgContainer.firstChild.remove();
+      lightboxImgContainer.insertBefore(img, lightboxImgContainer.firstChild);
+      // console.log(mediaContainer.firstChild);
+    } else if (
+      checkImageOrVideo(lightbox) === "image" &&
+      newMedia.media.video
+    ) {
+      const video = document.createElement("video");
+      video.setAttribute("controls", "controls");
+      video.classList.add("lightbox__img");
+      video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
+      lightboxImgContainer.firstChild.remove();
+      lightboxImgContainer.insertBefore(video, lightboxImgContainer.firstChild);
+      imgTitle = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
+    } else {
+      // lightbox.querySelector(".lightbox__img--container").firstChild.src =
+      //   baseUrl + "/" + newMedia.media.video;
+      const video = document.createElement("video");
+      video.setAttribute("controls", "controls");
+      video.classList.add("lightbox__img");
+      video.innerHTML += ` <source src="${baseUrl}/${newMedia.media.video}"></source>`;
+      lightboxImgContainer.firstChild.remove();
+      lightboxImgContainer.insertBefore(video, lightboxImgContainer.firstChild);
+      imgTitle = newMedia.media.title;
+      lightbox.querySelector("h2").textContent = newMedia.media.title;
+    }
+  });
+}
+function addListeners(
+  btnClose,
+  btnPrev,
+  btnNext,
+  mediaArray,
+  baseUrl,
+  imgTitle
+) {
+  const lightbox = document.querySelector(".lightbox");
+  addListenersToPrev(mediaArray, baseUrl, imgTitle);
+  addListenersToNext(mediaArray, baseUrl, imgTitle);
+}
+// function generateLightboxVideo(baseUrl) {
+//   const video = document.createElement("video");
+//   video.setAttribute("controls", "controls");
+//   video.classList.add("lightbox__img");
+// }
+
+function generateLightbox(index, mediaArray, baseUrl, element) {
+  let mediaBox = document.querySelector(".media-section");
+  const lightbox = document.createElement("div");
+  lightbox.classList.add("lightbox");
+  const lightboxContainer = document.createElement("div");
+  lightboxContainer.classList.add("lightbox__container");
+  // lightboxContainer.insertBefore(imgContainer, btnNext);
+
+  // lightbox.dataset.index = index;
+  // let imgTitle = mediaArray[index].title;
+  lightboxContainer.dataset.index = index;
+  let imgTitle = mediaArray[index].title;
+  mediaBox.append(lightbox);
+  // BOUTON CLOSE
+  const btnClose = document.createElement("button");
+  btnClose.innerHTML += `<i class="fas fa-times " role="button" tabindex="0"></i>`;
+  btnClose.classList.add("lightbox__close");
+  // BOUTON PREV
+  const btnPrev = document.createElement("button");
+  btnPrev.id = "btnPrev";
+  btnPrev.classList.add("lightbox__prev");
+  btnPrev.innerHTML += `<i class="fas fa-chevron-left" role="button" tabindex="0"></i>`;
+  // imgContainer
+  const imgContainer = document.createElement("div");
+  imgContainer.classList.add("lightbox__img--container");
+
+  // BOUTON NEXT
+  const btnNext = document.createElement("button");
+  btnNext.id = "btnNext";
+  btnNext.classList.add("lightbox__next");
+  btnNext.innerHTML += `<i class="fas fa-chevron-right" role="button" tabindex="0"></i>`;
+  lightboxContainer.prepend(btnClose, btnPrev, imgContainer, btnNext);
+  console.log(lightboxContainer);
+  lightbox.append(lightboxContainer);
+
+  addListeners(btnClose, btnPrev, btnNext, mediaArray, baseUrl, imgTitle);
+  // const lightboxContainer = document.createElement("div");
+  // lightboxContainer.classList.add("lightbox__container");
+
+  // Check if image or video
+  console.log("firstChild", element.firstElementChild);
+  if (checkImageOrVideo(element) === "image") {
+    console.log("image");
+    // const imgContainer = document.createElement("div");
+    // imgContainer.classList.add("lightbox__img--container");
+    const img = document.createElement("img");
+    img.classList.add("lightbox__img");
+    img.src = element.firstElementChild.currentSrc;
+    const title = document.createElement("h2");
+    title.innerHTML += imgTitle;
+    imgContainer.prepend(img, title);
+    // fermeture de la lightbox au clic sur le bouton x
+    document
+      .querySelector(".lightbox__close")
+      .addEventListener("click", function () {
+        removeLightbox();
+      });
+  } else {
+    console.log("video");
+    const video = document.createElement("video");
+    video.setAttribute("controls", "controls");
+    video.classList.add("lightbox__img");
+    video.src = element.firstElementChild.currentSrc;
+    const title = document.createElement("h2");
+    title.innerHTML += imgTitle;
+    imgContainer.prepend(video, title);
+
+    // lightboxContainer.append(imgContainer);
+    // lightbox.prepend(lightboxContainer);
+    // fermeture de la lightbox au clic sur le bouton x
+
+    document
+      .querySelector(".lightbox__close")
+      .addEventListener("click", function () {
+        removeLightbox();
+      });
+  }
+  focusOnlightbox();
+}
 function navigateInMedias(direction, medias, index) {
   let newIndex = 0;
   let factor = direction === "next" ? 1 : -1;
@@ -257,6 +324,7 @@ function checkImageOrVideo(container) {
   if (container.firstElementChild.nodeName.toLowerCase() === "img") {
     return "image";
   }
+
   return "video";
 }
 // fonction qui crée le formulaire de contact
@@ -272,10 +340,10 @@ export function generateForm(photographer) {
   form.innerHTML += ` 
   <div class="form__content">
     <span >
-    <i class="fas fa-times  form__close"></i></span>
+    <i class="fas fa-times  form__close" role="button" tabindex="0"></i></span>
     <div class="form__modal-body">
       <form name="form__contact"  action="photographer.html" method="get">
-     <h1 class="form__head">Contactez-moi </h1>
+     <h1 class="form__head">Contactez-moi ${photographer.name} </h1>
         <div class="form__control ">
           <label class ="form__label"for="first">Prénom</label><br />
           <input
@@ -317,7 +385,7 @@ export function generateForm(photographer) {
       <div class="form__control">
       <label class ="form__label" for="text-area">Votre Message</label><br />
       <textarea  name="text-area" id="textArea" class="form__text-area" cols="20" 
-      rows="10" required="" aria-required="true" placeholder="Bonjour..."></textarea><br/>
+      rows="8" required="" aria-required="true" placeholder="Bonjour..."></textarea><br/>
       <small> Message d'erreur</small>
       </div> 
     </div>
@@ -325,17 +393,19 @@ export function generateForm(photographer) {
   <button class="form__button" type="submit">Envoyer</button>
         `;
   console.log(photographer.name);
+  focusOnForm();
 
-  document.querySelector(".form").addEventListener(
+  document.querySelector(".form button").addEventListener(
     "click",
     function (event) {
       checkInputs();
+
       event.preventDefault();
     },
     false
   );
   document.querySelector(".form__close").addEventListener("click", function () {
-    displayModal();
+    removeModal();
   });
 }
 
@@ -435,26 +505,219 @@ export function setSuccessForArea(textarea) {
   areaControl.className = "form__control success";
   console.log(textarea.getAttribute("name"), " : ", textarea.value);
 }
-export function displayModal() {
-  const modal = document.querySelector(".form");
+export function removeModal() {
+  const modal = document.querySelector(".form-section");
   modal.remove();
 }
 export function generateDropdownMenu() {
   const section = document.querySelector(".media-filter-section");
 
-  // mettre une icone fontawesome dans span et renommer les class
-  section.innerHTML += `<div class="filter__dropdown">
-  <label for="filter" class="filter__label">Trier par</label>
-  <div class="filter__select">
-      
-<input name="mediaFilter" id="filter" class="filter__select" type="button" value="Popularité" role="button">
-
-      <span class="filter__custom-arrow" style="transform: rotate(180deg);"></span>
-      <ul class="filter__custom-menu filter__show" role="listbox" aria-labelledby="OrderBy">
-          <li role="option" class="filter__custom-option filter__selected" data-value="likes" id="likes" tabindex="0" aria-selected="true">Popularité</li>
-          <li role="option" class="filter__custom-option" data-value="date" id="date" tabindex="0" aria-selected="false">Date</li>
-          <li role="option" class="filter__custom-option" data-value="title" id="title" tabindex="0" aria-selected="false">Titre</li>
-      </ul>
+  section.innerHTML += `
+  <div class="filter-dropdown">
+  <div class="filter-dropdown__content">
+    <label for="sort"class="filter-dropdown__label">Trier par</label> 
+    <select name="sort"class="filter-dropdown__select" role="button" tabindex="0">
+      <option  role="option"class="filter-dropdown__option " data-filter="popularite" aria-haspopup="listbox" tabindex="0">Popularité</option>
+      <option role="option"class="filter-dropdown__option filter-dropdown__list" data-filter="date" aria-selected="true" tabindex="0">Date</option>
+      <option role="option"class="filter-dropdown__option  filter-dropdown__list" data-filter="titre" aria-selected="true" tabindex="0">Titre</option>
+    </select>
   </div>
-</div>`;
+  </div>`;
+  // focusOnDropdown();
+  // const dropdownSelect = document.querySelector(".filter-dropdown__select");
+  // dropdownSelect.addEventListener("click", toggleDropdown);
 }
+// function toggleDropdown() {
+//   const dropdownList = document.querySelector(".filter-dropdown__list");
+//   const dropdownSelect = document.querySelector(".filter-dropdown__select");
+//   // const dropdownArrow = document.querySelector(".filter-dropdown__arrow");
+//   console.log(dropdownList);
+//   dropdownList.classList.toggle("show");
+//   dropdownSelect.classList.toggle("show");
+//   // dropdownArrow.classList.toggle("pressed");
+// }
+export function addListenersToDropDown(medias, baseUrl) {
+  let elt = document.querySelector(".filter-dropdown__select");
+  elt.addEventListener("change", (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    const orderedMedias = sortMediasBy(medias, e.target.value);
+    displayMediasList(orderedMedias, baseUrl);
+  });
+}
+
+export function displayMediasList(photographerMedias, baseUrl) {
+  const cardList = document.querySelector(".media-section__cards");
+  cardList.innerHTML = "";
+
+  photographerMedias.forEach((elt) => {
+    let media = factory(elt);
+
+    if (media !== undefined && media.displayInList(baseUrl) !== undefined) {
+      cardList.innerHTML += media.displayInList(baseUrl);
+    }
+  });
+  displayLightbox(photographerMedias, baseUrl);
+}
+
+function sortMediasBy(medias, filter) {
+  //on veut trier les medias
+  switch (filter) {
+    case "Titre":
+      medias.sort((a, b) =>
+        a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+      );
+      console.log(medias);
+      break;
+    case "Date":
+      medias.sort(function (a, b) {
+        return new Date(a.date) - new Date(b.date);
+      });
+      break;
+    case "Popularité":
+      medias.sort(function (a, b) {
+        return b.likes - a.likes;
+      });
+
+    default:
+      break;
+  }
+  return medias;
+}
+export function incrementLikes(photographer) {
+  const mediaHeart = document.querySelectorAll(".media-section__likes");
+
+  mediaHeart.forEach((heart) => {
+    console.log(heart);
+    heart.addEventListener("click", function (e) {
+      e.stopPropagation();
+      console.log(e.target);
+      const totalLikeElt = document.querySelector("#totalLikes");
+      const elt = e.target.classList.contains("media-section__number")
+        ? e.target
+        : e.target.parentElement.firstElementChild;
+      console.log(elt);
+      if (elt.classList.contains("liked")) {
+        elt.textContent = parseInt(elt.textContent) - 1;
+        totalLikeElt.textContent = parseInt(totalLikeElt.textContent) - 1;
+        // showPrice(photographer);
+      } else {
+        elt.textContent = parseInt(elt.textContent) + 1;
+        totalLikeElt.textContent = parseInt(totalLikeElt.textContent) + 1;
+        // showPrice(photographer);
+      }
+      elt.classList.toggle("liked");
+    });
+  });
+}
+
+export function showPrice(photographer) {
+  const price = document.querySelector("#price");
+  console.log(price);
+  price.innerHTML = `${photographer.price} / jour`;
+}
+function focusOnForm() {
+  const focusableElements =
+    ' input, textarea, button,[tabindex]:not([tabindex="-1"])';
+  const modal = document.querySelector(".form");
+  console.log(modal);
+
+  const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+  console.log(firstFocusableElement);
+  const focusableContent = modal.querySelectorAll(focusableElements);
+  const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+
+  document.addEventListener("keydown", function (e) {
+    let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    if (e.shiftKey) {
+      // if shift key pressed for shift + tab combination
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus(); // add focus for the last focusable element
+        e.preventDefault();
+      }
+    } else {
+      // if tab key is pressed
+      if (document.activeElement === lastFocusableElement) {
+        // if focused has reached to last focusable element then focus first focusable element after pressing tab
+        firstFocusableElement.focus(); // add focus for the first focusable element
+        e.preventDefault();
+      }
+    }
+  });
+
+  firstFocusableElement.focus();
+}
+function focusOnlightbox() {
+  const focusableElements = 'button,[tabindex]:not([tabindex="-1"])';
+  const modal = document.querySelector(".lightbox__container");
+
+  const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+  console.log(firstFocusableElement);
+  const focusableContent = modal.querySelectorAll(focusableElements);
+  const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+
+  document.addEventListener("keydown", function (e) {
+    let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    if (e.shiftKey) {
+      // if shift key pressed for shift + tab combination
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus(); // add focus for the last focusable element
+        e.preventDefault();
+      }
+    } else {
+      // if tab key is pressed
+      if (document.activeElement === lastFocusableElement) {
+        // if focused has reached to last focusable element then focus first focusable element after pressing tab
+        firstFocusableElement.focus(); // add focus for the first focusable element
+        e.preventDefault();
+      }
+    }
+  });
+
+  firstFocusableElement.focus();
+}
+
+// function focusOnDropdown() {
+//   const focusableElements = 'select,option,[tabindex]:not([tabindex="-1"])';
+//   const modal = document.querySelector(".fiter-dropdown__select");
+
+//   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+//   console.log(firstFocusableElement);
+//   const focusableContent = modal.querySelectorAll(focusableElements);
+//   const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+
+//   document.addEventListener("keydown", function (e) {
+//     let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+//     if (!isTabPressed) {
+//       return;
+//     }
+
+//     if (e.shiftKey) {
+//       // if shift key pressed for shift + tab combination
+//       if (document.activeElement === firstFocusableElement) {
+//         lastFocusableElement.focus(); // add focus for the last focusable element
+//         e.preventDefault();
+//       }
+//     } else {
+//       // if tab key is pressed
+//       if (document.activeElement === lastFocusableElement) {
+//         // if focused has reached to last focusable element then focus first focusable element after pressing tab
+//         firstFocusableElement.focus(); // add focus for the first focusable element
+//         e.preventDefault();
+//       }
+//     }
+//   });
+
+//   firstFocusableElement.focus();
+// }

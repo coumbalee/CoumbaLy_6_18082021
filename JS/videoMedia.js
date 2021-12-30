@@ -13,16 +13,16 @@ export default class videoMedia {
   displayInList(baseUrl) {
     return imageExist(baseUrl + "/" + this.video)
       ? `
-    <li class="media-section__card">
+    <li class="media-section__card" data-id="${this.id}">
     <video>
-    <source src="${baseUrl}/${this.video}"class="mediaVideo"
+    <source src="${baseUrl}/${this.video}"class="mediaVideo" tabindex="0" alt="vidéo ${this.title}"
     >
     </video>
     <div class ="media-section__content">
-    <h2 class ="media-section__title">${this.title}</h2>
-    <div class ="media-section__likes">
+    <h2 class ="media-section__title" tabindex="0">${this.title}</h2>
+    <div class ="media-section__likes" tabindex="0">
     <p class="media-section__number">${this.likes}</p>
-    <i class="fas fa-heart"></i>
+    <i class="fas fa-heart"></i aria-label="button like" role="button" >
     </div>
     </div>
     </li>

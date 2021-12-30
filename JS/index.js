@@ -19,7 +19,9 @@ function showPhotographers(photographers) {
       photographer.id
     } "><img src ="./IMAGES/Photographers%20ID%20Photos/${
       photographer.portrait
-    }" class ="photographer__img"></a>
+    }" class ="photographer__img" alt="image du photographe ${
+      photographer.name
+    }"></a>
     <div class= "photographer__content">
       <h2 class="photographer__name">${photographer.name}</h2>
       <p class="photographer__localisation">${photographer.city}, ${
@@ -46,8 +48,11 @@ function displayTagsMenu(tags) {
 function generateIndexHeader() {
   // création du lien  du header
   const header = document.querySelector("header");
+  // const headerLogo = document.querySelector(".header__logo");
+
+  // headerLogo.href = "./index.html";
   const headerLink = document.createElement("a");
-  headerLink.href = "#main";
+  headerLink.href = "#photographers-section";
   headerLink.classList.add("header__link");
   headerLink.innerHTML = "Passer au contenu";
   header.prepend(headerLink);
@@ -55,23 +60,26 @@ function generateIndexHeader() {
   // insertion du logo
   const img = document.createElement("img");
   img.src = "/IMAGES/logo.png";
+  img.setAttribute("alt", "Fisheye logo");
+  img.setAttribute("aria-label", "Fisheye");
+
   document.querySelector(".header__logo").appendChild(img);
 }
 
 function generateIndexMain() {
   // création du titre Nos photographes
   const main = document.querySelector("main");
-  const mainLink = document.createElement("a");
-  mainLink.href = "#main";
+  // const mainLink = document.createElement("a");
+  // mainLink.href = "#main";
   const mainTitle = document.createElement("h1");
   mainTitle.innerHTML = "Nos photographes";
   mainTitle.classList.add("h1");
-  main.prepend(mainLink);
-  mainLink.prepend(mainTitle);
+  main.prepend(mainTitle);
+  // mainLink.prepend(mainTitle);
 }
 
 // Fonction qui ajoute un eventlistener au clic
-function manageListeners(tags, photographers) {
+export function manageListeners(tags, photographers) {
   tags.forEach((tag) => {
     tag.addEventListener("click", (e) => {
       //quand je clique sur le tag, je récupère la valeur du tag

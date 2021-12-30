@@ -31,9 +31,25 @@ export function getAllTagsFromPhotographers(photographers) {
   const tags = [...tagsSet];
   return tags;
 }
-
+// fonction qui récupère les médias de chaque photographe grace à son id
 export async function getMediaFromPhotographer(id) {
   const media = await getMediaFromJson();
   const photographerMedias = media.filter((elt) => elt.photographerId === id);
+  console.log(photographerMedias);
   return photographerMedias;
 }
+
+// 1 Pour chaque photographe, je dois récupérer les likes de toutes ses photos
+// en utilisant son id
+// 2 j'utilise la méthode reduce pour avoir le total de likes de ses photos
+// 3 j'incrémente ou je décrémente le tableau des likes dans la fonction incrementLikes
+// 4 j' affiche le résultat avec la fonction generateInformations)
+
+export async function getAllLikesFromPhotographer() {
+  const media = await getMediaFromPhotographer();
+  // à ce stade, j'ai récupérer les médias et je veux récupérer seulement les likes
+  // let allLikes = [];
+  // for (const like of likes) {
+  //   allLikes = allLikes.push(media.likes);
+}
+// logique pour récupérer le prix de chaque photographe

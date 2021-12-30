@@ -1,10 +1,16 @@
 body {
   margin: 2% 10%;
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 }
 .header-photographer {
   img {
     @include logo;
     margin-bottom: 30px;
+    @media (max-width: 768px) {
+      @include mobile-section-margin;
+    }
   }
 }
 .photographer-section {
@@ -13,6 +19,12 @@ body {
   justify-content: space-between;
   height: 30vh;
   border-radius: 5px;
+  @media (max-width: 768px) {
+    @include mobile-section-margin;
+    // background-color: blue;
+    height: 45vh;
+  }
+
   &__content {
     padding: 25px 20px 0 20px;
   }
@@ -37,35 +49,69 @@ body {
   }
   &__button {
     @include button;
-    position: absolute;
-    left: 600px;
+    position: fixed;
+    left: 45%;
     top: 130px;
     cursor: pointer;
+    @media (max-width: 768px) {
+      position: fixed;
+      left: 28%;
+      top: 85%;
+      padding: 15px 30px;
+      // bottom: 30%;
+    }
+  }
+  &__button:hover {
+    background-color: $color-secondary;
   }
   &__img {
-    width: 170px;
-    height: 170px;
+    width: 190px;
+    // height: 190px;
     border-radius: 50%;
-    margin: 20px 100px;
+    margin: 10px 30px 10px 100px;
     object-fit: cover;
+    @media (max-width: 768px) {
+      margin: 40px 10px 40px 0;
+      width: 180px;
+    }
   }
 }
 .media-section {
   margin-top: 2rem;
+  @media (max-width: 768px) {
+    @include mobile-section-margin;
+    margin-top: 0;
+  }
   &__cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
   }
   &__card img,
-  video {
+  &__card video {
     width: 360px;
     height: 350px;
     object-fit: cover;
     object-position: 50% 30%;
-    padding-top: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
     cursor: pointer;
+    @media (max-width: 768px) {
+      // height: 280px;
+    }
   }
+  // &__card video {
+  //   // width: 360px;
+  //   // height: 350px;
+  //   object-fit: cover;
+  //   object-position: 50% 30%;
+  //   margin-top: 15px;
+  //   border-radius: 5px;
+  //   cursor: pointer;
+  //   @media (max-width: 768px) {
+  //     // height: 280px;
+  //   }
+
   &__content {
     display: flex;
     justify-content: space-between;
@@ -83,19 +129,38 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(254, 254, 254, 0.9);
+  background-color: rgba(244, 244, 244, 0.9);
   z-index: 30;
   &__container {
-    position: absolute;
-    left: 30%;
+    position: relative;
+    height: 100vh;
+    // left: 30%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // flex-direction: column;
   }
-  &__container img,
-  video {
+  &__img--container {
+    display: flex;
+    flex-direction: column;
     width: 35%;
-    height: 80vh;
-    border-radius: 5px;
+    @media (max-width: 768px) {
+      width: 70%;
+    }
   }
+  &__img {
+    height: 90vh;
+    border-radius: 5px;
+    object-fit: cover;
+    @media (max-width: 768px) {
+      height: 100vh;
+    }
+  }
+  // &__img video {
+  //   height: 80vh;
+  //   border-radius: 5px;
+  // }
   &__container h2 {
     color: $color-primary;
     font-size: 1.5rem;
@@ -105,50 +170,69 @@ body {
     border: none;
     background-color: rgba(254, 254, 254, 0.9);
     color: $color-primary;
-    width: 100%;
     cursor: pointer;
+    // width: 100%;
   }
   .fas {
     font-size: 40px;
   }
-  .fa-chevron-left {
-    position: absolute;
-    left: 390px;
-    top: 320px;
-    z-index: 1000;
+  &__prev {
+    // position: absolute;
+    padding-right: 30px;
+    z-index: 100;
   }
-  .fa-chevron-right {
-    position: absolute;
-    right: 450px;
-    top: 320px;
-    z-index: 1000;
+  &__next {
+    // position: absolute;
+    padding-left: 30px;
+    z-index: 100;
   }
-  .fa-times {
+  &__close {
     position: absolute;
-    right: 450px;
+    right: 350px;
     top: 50px;
-    z-index: 1000;
+    z-index: 100;
+    @media (max-width: 768px) {
+      position: absolute;
+      right: 10px;
+      top: 50px;
+    }
   }
-  .fa-times:hover {
+  &__close:hover {
     color: $color-secondary;
     transform: scale(1.1);
   }
 }
+
 .form-section {
   z-index: 1000;
-  position: absolute;
+  position: fixed;
   top: 1%;
   left: 30%;
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 1%;
+    left: 4%;
+    bottom: 1%;
+  }
 
   .form {
     background-color: $color-tertiary;
-    width: 110%;
+    // width: 100%;
+    @media (max-width: 768px) {
+      height: 100vh;
+      width: 95%;
+    }
 
     &__content {
       margin-left: 20px;
-      height: 110vh;
+      margin-right: 20px;
+      height: 100vh;
       width: 100%;
       position: relative;
+      @media (max-width: 768px) {
+        width: 80%;
+        height: 80vh;
+      }
     }
 
     &__head {
@@ -159,14 +243,19 @@ body {
       color: $color-white;
       font-size: 1.5rem;
       position: absolute;
-      right: 30px;
+      right: 40px;
       top: 15px;
+      @media (max-width: 768px) {
+        position: absolute;
+        right: -20px;
+        top: 15px;
+      }
     }
     &__close:hover {
       transform: rotate(45deg);
     }
     &__control {
-      margin: 20px 0px;
+      margin: 10px 0px;
     }
 
     &__label {
@@ -194,9 +283,12 @@ body {
     &__input {
       background-color: $color-white;
       @include input;
-      padding: 20px 350px 15px 5px;
+      padding: 20px 300px 15px 5px;
       margin-top: 10px;
       font-family: inherit;
+      @media (max-width: 768px) {
+        padding: 20px 150px 15px 5px;
+      }
     }
     &__input::placeholder {
       @include placeholder;
@@ -206,6 +298,9 @@ body {
       @include input;
       padding-right: 275px;
       margin-top: 10px;
+      @media (max-width: 768px) {
+        padding-right: 120px;
+      }
     }
     &__text-area::placeholder {
       @include placeholder;
@@ -215,11 +310,111 @@ body {
       @include button;
       display: block;
       margin-left: 20px;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
 
       position: absolute;
       left: 1%;
-      top: 90%;
+      top: 85%;
+      @media (max-width: 768px) {
+        position: absolute;
+        left: 25%;
+        top: 90%;
+        margin-top: 15px;
+        padding: 10px 20px;
+      }
     }
+  }
+}
+.media-filter-section {
+  margin: 20px 0;
+  @media (max-width: 768px) {
+    margin: 5% 2% 0 2%;
+  }
+  .filter-dropdown {
+    display: flex;
+    &__label {
+      margin-right: 10px;
+    }
+    &__content {
+      // padding: 0px 10px 10px 10px;
+      display: flex;
+    }
+
+    &__select {
+      @include button;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      padding: 15px 25px;
+      @media (max-width: 768px) {
+        width: 90%;
+      }
+    }
+    &__select.show {
+      // border-radius: none;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+
+      // background-color: black;
+    }
+
+    &__option {
+      color: $color-white;
+      font-size: 1.5rem;
+      padding: 0px 10px 10px 10px;
+      border-top: solid 1px $color-white;
+    }
+    &__list {
+      visibility: hidden;
+      // border-top: $color-white solid 1px;
+    }
+    &__list.show {
+      visibility: visible;
+      // background-color: $color-primary;
+      @include button;
+      border-radius: 0 0 5px 5px;
+      width: 100%;
+      padding: 10px;
+
+      // border-top: $color-white solid 1px;
+      @media (max-width: 768px) {
+        width: 90%;
+      }
+    }
+    &__list.show li {
+      // border-top: $color-white solid 1px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-top: solid 1px $color-white;
+    }
+    // .show a {
+    //   padding: 20px;
+    // }
+    &__arrow {
+      margin-left: 10px;
+    }
+    &__arrow.pressed {
+      transform: rotate(180deg);
+    }
+  }
+}
+.information-section {
+  position: fixed;
+  bottom: -15px;
+  right: 20px;
+  background-color: $color-tertiary;
+  width: 18%;
+  border-radius: 5px;
+  display: flex;
+  padding: 20px 10px;
+  font-size: 1.7rem;
+  @media (max-width: 768px) {
+    display: none;
+  }
+  &__heart {
+    margin-right: 30px;
+    font-size: 1.5rem;
+  }
+  &__likes {
+    margin-left: 10px;
   }
 }
