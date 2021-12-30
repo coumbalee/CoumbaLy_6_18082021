@@ -516,7 +516,7 @@ export function generateDropdownMenu() {
   <div class="filter-dropdown">
   <div class="filter-dropdown__content">
     <label for="sort"class="filter-dropdown__label">Trier par</label> 
-    <select name="sort"class="filter-dropdown__select">
+    <select name="sort"class="filter-dropdown__select" role="button" tabindex="0">
       <option  role="option"class="filter-dropdown__option " data-filter="popularite" aria-haspopup="listbox" tabindex="0">Popularité</option>
       <option role="option"class="filter-dropdown__option filter-dropdown__list" data-filter="date" aria-selected="true" tabindex="0">Date</option>
       <option role="option"class="filter-dropdown__option  filter-dropdown__list" data-filter="titre" aria-selected="true" tabindex="0">Titre</option>
@@ -655,6 +655,41 @@ function focusOnForm() {
 function focusOnlightbox() {
   const focusableElements = 'button,[tabindex]:not([tabindex="-1"])';
   const modal = document.querySelector(".lightbox__container");
+
+  const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+  console.log(firstFocusableElement);
+  const focusableContent = modal.querySelectorAll(focusableElements);
+  const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+
+  document.addEventListener("keydown", function (e) {
+    let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    if (e.shiftKey) {
+      // if shift key pressed for shift + tab combination
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus(); // add focus for the last focusable element
+        e.preventDefault();
+      }
+    } else {
+      // if tab key is pressed
+      if (document.activeElement === lastFocusableElement) {
+        // if focused has reached to last focusable element then focus first focusable element after pressing tab
+        firstFocusableElement.focus(); // add focus for the first focusable element
+        e.preventDefault();
+      }
+    }
+  });
+
+  firstFocusableElement.focus();
+}
+
+function focusOnDropdown() {
+  const focusableElements = 'button,option,[tabindex]:not([tabindex="-1"])';
+  const modal = document.querySelector(".fiter-dropdown__select");
 
   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
   console.log(firstFocusableElement);
