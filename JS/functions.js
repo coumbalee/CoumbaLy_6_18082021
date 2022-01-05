@@ -192,8 +192,6 @@ function addListenersToNext(mediaArray, baseUrl, imgTitle) {
       imgTitle = newMedia.media.title;
       lightbox.querySelector("h2").textContent = newMedia.media.title;
     } else {
-      // lightbox.querySelector(".lightbox__img--container").firstChild.src =
-      //   baseUrl + "/" + newMedia.media.video;
       const video = document.createElement("video");
       video.setAttribute("controls", "controls");
       video.classList.add("lightbox__img");
@@ -217,11 +215,6 @@ function addListeners(
   addListenersToPrev(mediaArray, baseUrl, imgTitle);
   addListenersToNext(mediaArray, baseUrl, imgTitle);
 }
-// function generateLightboxVideo(baseUrl) {
-//   const video = document.createElement("video");
-//   video.setAttribute("controls", "controls");
-//   video.classList.add("lightbox__img");
-// }
 
 function generateLightbox(index, mediaArray, baseUrl, element) {
   let mediaBox = document.querySelector(".media-section");
@@ -229,10 +222,7 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
   lightbox.classList.add("lightbox");
   const lightboxContainer = document.createElement("div");
   lightboxContainer.classList.add("lightbox__container");
-  // lightboxContainer.insertBefore(imgContainer, btnNext);
 
-  // lightbox.dataset.index = index;
-  // let imgTitle = mediaArray[index].title;
   lightboxContainer.dataset.index = index;
   let imgTitle = mediaArray[index].title;
   mediaBox.append(lightbox);
@@ -259,15 +249,12 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
   lightbox.append(lightboxContainer);
 
   addListeners(btnClose, btnPrev, btnNext, mediaArray, baseUrl, imgTitle);
-  // const lightboxContainer = document.createElement("div");
-  // lightboxContainer.classList.add("lightbox__container");
 
   // Check if image or video
   console.log("firstChild", element.firstElementChild);
   if (checkImageOrVideo(element) === "image") {
     console.log("image");
-    // const imgContainer = document.createElement("div");
-    // imgContainer.classList.add("lightbox__img--container");
+
     const img = document.createElement("img");
     img.classList.add("lightbox__img");
     img.src = element.firstElementChild.currentSrc;
@@ -289,10 +276,6 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
     const title = document.createElement("h2");
     title.innerHTML += imgTitle;
     imgContainer.prepend(video, title);
-
-    // lightboxContainer.append(imgContainer);
-    // lightbox.prepend(lightboxContainer);
-    // fermeture de la lightbox au clic sur le bouton x
 
     document
       .querySelector(".lightbox__close")
@@ -411,7 +394,6 @@ export function generateForm(photographer) {
 
 // Vérification des champs du formulaire
 export function checkInputs() {
-  // console.log(checkInputs());
   const form = document.querySelector(".form");
   console.log(form);
   const firstName = document.querySelector("#first");
@@ -430,7 +412,6 @@ export function checkInputs() {
   if (!firstNameValue) {
     setErrorFor(firstName, "Veuillez saisir votre prénom ");
     isValid = false;
-    // console.log(isValid);
   } else if (firstNameValue.length < 2) {
     setErrorFor(
       firstName,
@@ -461,11 +442,9 @@ export function checkInputs() {
     setSuccessFor(email);
     console.log(isValid);
   }
-  // adapter ou créer une fonction en plus pour area
   if (!areaValue) {
     setErrorForArea(area, "Veuillez saisir votre message");
     isValid = false;
-    // console.log(isValid);
   } else {
     setSuccessForArea(area);
     console.log(isValid);
@@ -513,35 +492,83 @@ export function generateDropdownMenu() {
   const section = document.querySelector(".media-filter-section");
 
   section.innerHTML += `
-  <div class="filter-dropdown">
-  <div class="filter-dropdown__content">
-    <label for="sort"class="filter-dropdown__label">Trier par</label> 
-    <select name="sort"class="filter-dropdown__select" role="button" tabindex="0">
-      <option  role="option"class="filter-dropdown__option " data-filter="popularite" aria-haspopup="listbox" tabindex="0">Popularité</option>
-      <option role="option"class="filter-dropdown__option filter-dropdown__list" data-filter="date" aria-selected="true" tabindex="0">Date</option>
-      <option role="option"class="filter-dropdown__option  filter-dropdown__list" data-filter="titre" aria-selected="true" tabindex="0">Titre</option>
+  <div class="custom-select">
+  <label class="filter-dropdown__label">Trier par : </label> 
+    <select class="filter-dropdown__select" role="button" tabindex="0">
+      <option  class="filter-dropdown__option"value="1" role="option" data-filter="popularite" aria-haspopup="listbox" tabindex="0">Popularité</option>
+      <option class="filter-dropdown__option"value="2" role="option" data-filter="date" aria-selected="true" tabindex="0">Date</option>
+      <option class="filter-dropdown__option"value="3" role="option" data-filter="titre" aria-selected="true" tabindex="0">Titre</option>
     </select>
-  </div>
   </div>`;
-  // focusOnDropdown();
-  // const dropdownSelect = document.querySelector(".filter-dropdown__select");
-  // dropdownSelect.addEventListener("click", toggleDropdown);
+  let x, i, j, l, ll, selElmnt, a, b, c;
+  /* Look for any elements with the class "custom-select": */
+  x = document.getElementsByClassName("custom-select");
+  l = x.length;
+  for (i = 0; i < l; i++) {
+    selElmnt = x[i].getElementsByTagName("select")[0];
+    ll = selElmnt.length;
+    /* For each element, create a new DIV that will act as the selected item: */
+    a = document.createElement("DIV");
+    a.setAttribute("class", "select-selected");
+    a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+    x[i].appendChild(a);
+    /* For each element, create a new DIV that will contain the option list: */
+    b = document.createElement("DIV");
+    b.setAttribute("class", "select-items select-hide");
+    // dans l' exemple, c'était  for (j = 1; j < ll; j++)
+    for (j = 0; j < ll; j++) {
+      /* For each option in the original select element,
+    create a new DIV that will act as an option item: */
+      c = document.createElement("DIV");
+      // adding data-filter to options
+      c.setAttribute("data-filter", selElmnt.options[j].innerHTML);
+      c.setAttribute("class", "filter-dropdown__option");
+
+      c.innerHTML = selElmnt.options[j].innerHTML;
+      c.addEventListener("click", function (e) {
+        /* When an item is clicked, update the original select box,
+        and the selected item: */
+        let y, i, k, s, h, sl, yl;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        sl = s.length;
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < sl; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            y = this.parentNode.getElementsByClassName("same-as-selected");
+            yl = y.length;
+            for (k = 0; k < yl; k++) {
+              y[k].removeAttribute("class");
+            }
+            this.setAttribute("class", "same-as-selected");
+            break;
+          }
+        }
+        h.click();
+      });
+      b.appendChild(c);
+    }
+    x[i].appendChild(b);
+    a.addEventListener("click", function (e) {
+      /* When the select box is clicked, close any other select boxes,
+    and open/close the current select box: */
+      e.stopPropagation();
+      closeAllSelect(this);
+      this.nextSibling.classList.toggle("select-hide");
+      this.classList.toggle("select-arrow-active");
+    });
+  }
 }
-// function toggleDropdown() {
-//   const dropdownList = document.querySelector(".filter-dropdown__list");
-//   const dropdownSelect = document.querySelector(".filter-dropdown__select");
-//   // const dropdownArrow = document.querySelector(".filter-dropdown__arrow");
-//   console.log(dropdownList);
-//   dropdownList.classList.toggle("show");
-//   dropdownSelect.classList.toggle("show");
-//   // dropdownArrow.classList.toggle("pressed");
-// }
+
 export function addListenersToDropDown(medias, baseUrl) {
-  let elt = document.querySelector(".filter-dropdown__select");
-  elt.addEventListener("change", (e) => {
+  let elt = document.querySelector(".select-items");
+  console.log(elt);
+  elt.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-    const orderedMedias = sortMediasBy(medias, e.target.value);
+    const orderedMedias = sortMediasBy(medias, e.target.dataset.filter);
+    console.log(e.target.dataset.filter);
+
     displayMediasList(orderedMedias, baseUrl);
   });
 }
@@ -584,6 +611,7 @@ function sortMediasBy(medias, filter) {
   }
   return medias;
 }
+
 export function incrementLikes(photographer) {
   const mediaHeart = document.querySelectorAll(".media-section__likes");
 
@@ -600,11 +628,9 @@ export function incrementLikes(photographer) {
       if (elt.classList.contains("liked")) {
         elt.textContent = parseInt(elt.textContent) - 1;
         totalLikeElt.textContent = parseInt(totalLikeElt.textContent) - 1;
-        // showPrice(photographer);
       } else {
         elt.textContent = parseInt(elt.textContent) + 1;
         totalLikeElt.textContent = parseInt(totalLikeElt.textContent) + 1;
-        // showPrice(photographer);
       }
       elt.classList.toggle("liked");
     });
@@ -687,37 +713,33 @@ function focusOnlightbox() {
   firstFocusableElement.focus();
 }
 
-// function focusOnDropdown() {
-//   const focusableElements = 'select,option,[tabindex]:not([tabindex="-1"])';
-//   const modal = document.querySelector(".fiter-dropdown__select");
+function closeAllSelect(elmnt) {
+  /* A function that will close all select boxes in the document,
+  except the current select box: */
+  var x,
+    y,
+    i,
+    xl,
+    yl,
+    arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  xl = x.length;
+  yl = y.length;
+  for (i = 0; i < yl; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i);
+    } else {
+      y[i].classList.remove("select-arrow-active");
+    }
+  }
+  for (i = 0; i < xl; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
 
-//   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
-//   console.log(firstFocusableElement);
-//   const focusableContent = modal.querySelectorAll(focusableElements);
-//   const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
-
-//   document.addEventListener("keydown", function (e) {
-//     let isTabPressed = e.key === "Tab" || e.keyCode === 9;
-
-//     if (!isTabPressed) {
-//       return;
-//     }
-
-//     if (e.shiftKey) {
-//       // if shift key pressed for shift + tab combination
-//       if (document.activeElement === firstFocusableElement) {
-//         lastFocusableElement.focus(); // add focus for the last focusable element
-//         e.preventDefault();
-//       }
-//     } else {
-//       // if tab key is pressed
-//       if (document.activeElement === lastFocusableElement) {
-//         // if focused has reached to last focusable element then focus first focusable element after pressing tab
-//         firstFocusableElement.focus(); // add focus for the first focusable element
-//         e.preventDefault();
-//       }
-//     }
-//   });
-
-//   firstFocusableElement.focus();
-// }
+/* If the user clicks anywhere outside the select box,
+then close all select boxes: */
+document.addEventListener("click", closeAllSelect);
