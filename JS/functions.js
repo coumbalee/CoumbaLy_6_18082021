@@ -758,7 +758,7 @@ document.addEventListener("click", closeAllSelect);
 // FOCUS DROPDOWN
 function focusOnDropdown() {
   const focusableElements = 'div,option,div[tabindex]:not([tabindex="-1"])';
-  const modal = document.querySelector(".select-selected");
+  const modal = document.querySelector("select");
 
   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
   console.log(firstFocusableElement);
