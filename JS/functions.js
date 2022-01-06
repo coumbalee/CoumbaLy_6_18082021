@@ -503,6 +503,7 @@ export function generateDropdownMenu() {
   let x, i, j, l, ll, selElmnt, a, b, c;
   /* Look for any elements with the class "custom-select": */
   x = document.getElementsByClassName("custom-select");
+  x.tabIndex = 0;
   l = x.length;
   for (i = 0; i < l; i++) {
     selElmnt = x[i].getElementsByTagName("select")[0];
@@ -510,7 +511,9 @@ export function generateDropdownMenu() {
     /* For each element, create a new DIV that will act as the selected item: */
     a = document.createElement("DIV");
     a.setAttribute("class", "select-selected");
+
     a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+    a.tabIndex = 0;
     x[i].appendChild(a);
     /* For each element, create a new DIV that will contain the option list: */
     b = document.createElement("DIV");
@@ -523,6 +526,7 @@ export function generateDropdownMenu() {
       // adding data-filter to options
       c.setAttribute("data-filter", selElmnt.options[j].innerHTML);
       c.setAttribute("class", "filter-dropdown__option");
+      c.tabIndex = 0;
 
       c.innerHTML = selElmnt.options[j].innerHTML;
       c.addEventListener("click", function (e) {
