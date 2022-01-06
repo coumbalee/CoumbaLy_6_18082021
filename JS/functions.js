@@ -495,7 +495,7 @@ export function generateDropdownMenu() {
   <div class="custom-select">
   <label class="filter-dropdown__label">Trier par : </label> 
     <select class="filter-dropdown__select" role="button" tabindex="0">
-      <option  class="filter-dropdown__option"value="1" role="option" data-filter="popularite" aria-haspopup="listbox" tabindex="0">Popularité</option>
+      <option  class="filter-dropdown__option"value="1" role="option" data-filter="popularite"  aria-selected="true"tabindex="0">Popularité</option>
       <option class="filter-dropdown__option"value="2" role="option" data-filter="date" aria-selected="true" tabindex="0">Date</option>
       <option class="filter-dropdown__option"value="3" role="option" data-filter="titre" aria-selected="true" tabindex="0">Titre</option>
     </select>
@@ -527,6 +527,8 @@ export function generateDropdownMenu() {
       c.setAttribute("data-filter", selElmnt.options[j].innerHTML);
       c.setAttribute("class", "filter-dropdown__option");
       c.tabIndex = 0;
+      c.setAttribute("aria-selected", "true");
+      c.setAttribute("role", "option");
 
       c.innerHTML = selElmnt.options[j].innerHTML;
       c.addEventListener("click", function (e) {
@@ -563,6 +565,7 @@ export function generateDropdownMenu() {
       this.classList.toggle("select-arrow-active");
     });
   }
+  focusOnDropdown();
 }
 
 export function addListenersToDropDown(medias, baseUrl) {
@@ -747,3 +750,38 @@ function closeAllSelect(elmnt) {
 /* If the user clicks anywhere outside the select box,
 then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
+// FOCUS DROPDOWN
+function focusOnDropdown() {
+  const focusableElements = 'div,option,div[tabindex]:not([tabindex="-1"])';
+  const modal = document.querySelector(".custom-select");
+
+  const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+  console.log(firstFocusableElement);
+  const focusableContent = modal.querySelectorAll(focusableElements);
+  const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+
+  document.addEventListener("keydown", function (e) {
+    let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    if (e.shiftKey) {
+      // if shift key pressed for shift + tab combination
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus(); // add focus for the last focusable element
+        e.preventDefault();
+      }
+    } else {
+      // if tab key is pressed
+      if (document.activeElement === lastFocusableElement) {
+        // if focused has reached to last focusable element then focus first focusable element after pressing tab
+        firstFocusableElement.focus(); // add focus for the first focusable element
+        e.preventDefault();
+      }
+    }
+  });
+
+  firstFocusableElement.focus();
+}
