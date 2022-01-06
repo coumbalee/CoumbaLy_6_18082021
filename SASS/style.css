@@ -853,8 +853,11 @@ body {
   display: none;
 }
 
-.media-filter-section .select-items div:hover,
 .media-filter-section .same-as-selected {
+  display: none;
+}
+
+.media-filter-section .select-items div:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 

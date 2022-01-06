@@ -375,9 +375,10 @@ body {
   .select-hide {
     display: none;
   }
-
-  .select-items div:hover,
   .same-as-selected {
+    display: none;
+  }
+  .select-items div:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
 }
