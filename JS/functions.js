@@ -494,7 +494,7 @@ export function generateDropdownMenu() {
   section.innerHTML += `
   <div class="custom-select">
   <label class="filter-dropdown__label">Trier par : </label> 
-    <select class="filter-dropdown__select" role="button" tabindex="0">
+   <select class="filter-dropdown__select" role="button" tabindex="0">
       <option  class="filter-dropdown__option"value="1" role="option" data-filter="popularite"  aria-selected="true"tabindex="0">Popularité</option>
       <option class="filter-dropdown__option"value="2" role="option" data-filter="date" aria-selected="true" tabindex="0">Date</option>
       <option class="filter-dropdown__option"value="3" role="option" data-filter="titre" aria-selected="true" tabindex="0">Titre</option>
@@ -522,18 +522,23 @@ export function generateDropdownMenu() {
     for (j = 0; j < ll; j++) {
       /* For each option in the original select element,
     create a new DIV that will act as an option item: */
+      console.log(selElmnt.options[j].innerHTML, a.textContent);
       c = document.createElement("DIV");
       // adding data-filter to options
       c.setAttribute("data-filter", selElmnt.options[j].innerHTML);
       c.setAttribute("class", "filter-dropdown__option");
+      if (j == 0) {
+        c.classList.add("same-as-selected");
+      }
       c.tabIndex = 0;
       c.setAttribute("aria-selected", "true");
       c.setAttribute("role", "option");
 
       c.innerHTML = selElmnt.options[j].innerHTML;
       c.addEventListener("click", function (e) {
+        console.log(this);
         /* When an item is clicked, update the original select box,
-        and the selected item: */
+          and the selected item: */
         let y, i, k, s, h, sl, yl;
         s = this.parentNode.parentNode.getElementsByTagName("select")[0];
         sl = s.length;
@@ -753,7 +758,7 @@ document.addEventListener("click", closeAllSelect);
 // FOCUS DROPDOWN
 function focusOnDropdown() {
   const focusableElements = 'div,option,div[tabindex]:not([tabindex="-1"])';
-  const modal = document.querySelector(".custom-select");
+  const modal = document.querySelector(".select-selected");
 
   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
   console.log(firstFocusableElement);
