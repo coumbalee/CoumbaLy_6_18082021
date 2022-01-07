@@ -636,8 +636,8 @@ body {
   color: #fff;
   font-size: 1.5rem;
   position: absolute;
-  right: 40px;
-  top: 15px;
+  right: 25px;
+  top: 2px;
 }
 
 @media (max-width: 768px) {
