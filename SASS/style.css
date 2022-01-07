@@ -313,7 +313,7 @@ a {
 }
 
 body {
-  margin: 2% 10%;
+  margin: 2% 7%;
 }
 
 @media (max-width: 768px) {
@@ -329,7 +329,7 @@ body {
 
 @media (max-width: 768px) {
   .header-photographer img {
-    margin: 1% 2%;
+    margin: 1% 0 1% 4%;
   }
 }
 
@@ -347,7 +347,7 @@ body {
 
 @media (max-width: 768px) {
   .photographer-section {
-    margin: 1% 2%;
+    margin: 1% 0 1% 4%;
     height: 45vh;
   }
 }
@@ -435,7 +435,7 @@ body {
 
 @media (max-width: 768px) {
   .media-section {
-    margin: 1% 2%;
+    margin: 1% 0 1% 4%;
     margin-top: 0;
   }
 }
@@ -453,13 +453,13 @@ body {
 
 .media-section__card img,
 .media-section__card video {
-  width: 360px;
+  width: 380px;
   height: 350px;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: 50% 30%;
      object-position: 50% 30%;
-  margin-top: 15px;
+  margin-top: 23px;
   border-radius: 5px;
   cursor: pointer;
 }
