@@ -601,10 +601,11 @@ body {
 }
 
 .form-section {
-  z-index: 1000;
+  z-index: 100;
   position: fixed;
   top: 1%;
   left: 30%;
+  bottom: 2%;
 }
 
 @media (max-width: 768px) {
@@ -612,7 +613,6 @@ body {
     position: fixed;
     top: 1%;
     left: 4%;
-    bottom: 1%;
   }
 }
 
@@ -622,7 +622,6 @@ body {
 
 @media (max-width: 768px) {
   .form-section .form {
-    height: 100vh;
     width: 95%;
   }
 }
@@ -774,14 +773,14 @@ body {
   margin-bottom: 5px;
   position: absolute;
   left: 1%;
-  top: 85%;
+  top: 90%;
 }
 
 @media (max-width: 768px) {
   .form-section .form__button {
     position: absolute;
     left: 25%;
-    top: 90%;
+    top: 70%;
     margin-top: 15px;
     padding: 10px 20px;
   }

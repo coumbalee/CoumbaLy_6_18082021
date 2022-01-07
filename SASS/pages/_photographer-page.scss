@@ -191,21 +191,21 @@ body {
 }
 
 .form-section {
-  z-index: 1000;
+  z-index: 100;
   position: fixed;
   top: 1%;
   left: 30%;
+  bottom: 2%;
   @media (max-width: 768px) {
     position: fixed;
     top: 1%;
     left: 4%;
-    bottom: 1%;
   }
 
   .form {
     background-color: $color-tertiary;
     @media (max-width: 768px) {
-      height: 100vh;
+      // height: 100vh;
       width: 95%;
     }
 
@@ -300,11 +300,11 @@ body {
 
       position: absolute;
       left: 1%;
-      top: 85%;
+      top: 90%;
       @media (max-width: 768px) {
         position: absolute;
         left: 25%;
-        top: 90%;
+        top: 70%;
         margin-top: 15px;
         padding: 10px 20px;
       }
@@ -333,7 +333,6 @@ body {
     position: absolute;
     left: 90px;
     width: 166px;
-    // margin-left: 20px;
     border-radius: 5px;
   }
 
