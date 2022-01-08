@@ -15,14 +15,14 @@ export default class videoMedia {
       ? `
     <li class="media-section__card" data-id="${this.id}">
     <video>
-    <source src="${baseUrl}/${this.video}"class="mediaVideo" tabindex="0" alt="vidéo ${this.title}"
+    <source src="${baseUrl}/${this.video}" class="mediaVideo" tabindex="0" alt="vidéo ${this.title}"
     >
     </video>
     <div class ="media-section__content">
     <h2 class ="media-section__title" tabindex="0">${this.title}</h2>
     <div class ="media-section__likes" tabindex="0">
     <p class="media-section__number">${this.likes}</p>
-    <i class="fas fa-heart"></i aria-label="button like" role="button" >
+    <i class="fas fa-heart" role="button" aria-label="button like"></i>
     </div>
     </div>
     </li>
