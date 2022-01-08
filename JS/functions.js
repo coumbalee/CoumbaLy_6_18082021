@@ -328,7 +328,7 @@ export function generateForm(photographer) {
       <form name="form__contact"  action="photographer.html" method="get">
      <h1 class="form__head">Contactez-moi ${photographer.name} </h1>
         <div class="form__control ">
-          <label class ="form__label"for="first">Prénom</label><br />
+          <label class="form__label" for="first">Prénom</label><br />
           <input
             class="form__input"
             type="text"
@@ -349,10 +349,8 @@ export function generateForm(photographer) {
             placeholder="Doe"
           />
           <br />
-          <small> Message d'erreur</small
+          <small> Message d'erreur</small>
         </div>
-        </div>
-
         <div class="form__control">
         <label class ="form__label" for="email">E-mail</label><br />
         <input
@@ -362,15 +360,16 @@ export function generateForm(photographer) {
           name="email"
           placeholder="johndoe@gmail.com"
         /><br />
-        <small> Message d'erreur</small
-      </div>
+        <small> Message d'erreur</small>
+        
       </div>
       <div class="form__control">
-      <label class ="form__label" for="text-area">Votre Message</label><br />
+      <label class ="form__label" for="textArea">Votre Message</label><br />
       <textarea  name="text-area" id="textArea" class="form__text-area" cols="20" 
       rows="8" required="" aria-required="true" placeholder="Bonjour..."></textarea><br/>
       <small> Message d'erreur</small>
       </div> 
+    </form>
     </div>
   </div>
   <button class="form__button" type="submit">Envoyer</button>
@@ -494,10 +493,10 @@ export function generateDropdownMenu() {
   section.innerHTML += `
   <div class="custom-select">
   <label class="filter-dropdown__label">Trier par : </label> 
-   <select class="filter-dropdown__select" role="button" tabindex="0">
-      <option  class="filter-dropdown__option"value="1" role="option" data-filter="popularite"  aria-selected="true"tabindex="0">Popularité</option>
-      <option class="filter-dropdown__option"value="2" role="option" data-filter="date" aria-selected="true" tabindex="0">Date</option>
-      <option class="filter-dropdown__option"value="3" role="option" data-filter="titre" aria-selected="true" tabindex="0">Titre</option>
+   <select class="filter-dropdown__select" >
+      <option  class="filter-dropdown__option"value="1"  data-filter="popularite">Popularité</option>
+      <option class="filter-dropdown__option"value="2" data-filter="date">Date</option>
+      <option class="filter-dropdown__option"value="3"  data-filter="titre" >Titre</option>
     </select>
   </div>`;
   let x, i, j, l, ll, selElmnt, a, b, c;
@@ -531,8 +530,8 @@ export function generateDropdownMenu() {
         c.classList.add("same-as-selected");
       }
       c.tabIndex = 0;
-      c.setAttribute("aria-selected", "true");
-      c.setAttribute("role", "option");
+      // c.setAttribute("aria-selected", "true");
+      // c.setAttribute("role", "option");
 
       c.innerHTML = selElmnt.options[j].innerHTML;
       c.addEventListener("click", function (e) {
