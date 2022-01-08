@@ -58,12 +58,14 @@ function generateIndexHeader() {
   header.prepend(headerLink);
 
   // insertion du logo
+  const logoLink = document.createElement("a");
   const img = document.createElement("img");
   img.src = "/IMAGES/logo.png";
   img.setAttribute("alt", "Fisheye logo");
   img.setAttribute("aria-label", "Fisheye");
-
-  document.querySelector(".header__logo").appendChild(img);
+  logoLink.href = "./index.html";
+  logoLink.appendChild(img);
+  document.querySelector(".header__logo").appendChild(logoLink);
 }
 
 function generateIndexMain() {
