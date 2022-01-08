@@ -494,9 +494,9 @@ export function generateDropdownMenu() {
   <div class="custom-select">
   <label class="filter-dropdown__label">Trier par : </label> 
    <select class="filter-dropdown__select" >
-      <option  class="filter-dropdown__option"value="1"  data-filter="popularite">Popularité</option>
-      <option class="filter-dropdown__option"value="2" data-filter="date">Date</option>
-      <option class="filter-dropdown__option"value="3"  data-filter="titre" >Titre</option>
+      <option >Popularité</option>
+      <option >Date</option>
+      <option>Titre</option>
     </select>
   </div>`;
   let x, i, j, l, ll, selElmnt, a, b, c;
