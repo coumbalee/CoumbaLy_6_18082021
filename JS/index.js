@@ -3,6 +3,7 @@ import {
   getPhotographersFromJson,
   getAllTagsFromPhotographers,
 } from "./dataFunction.js";
+import { removeLightbox } from "./functions.js";
 
 generateIndexHeader();
 generateIndexMain();
@@ -21,9 +22,11 @@ function showPhotographers(photographers) {
       photographer.portrait
     }" class ="photographer__img" alt="image du photographe ${
       photographer.name
-    }"></a>
+    }">
+    <h2 class="photographer__name">${photographer.name}</h2>
+    </a>
     <div class= "photographer__content">
-      <h2 class="photographer__name">${photographer.name}</h2>
+    
       <p class="photographer__localisation">${photographer.city}, ${
       photographer.country
     }</p>
@@ -58,7 +61,6 @@ function generateIndexHeader() {
   const img = document.createElement("img");
   img.src = "/IMAGES/logo.png";
   img.setAttribute("alt", "Fisheye home page");
-  img.setAttribute("aria-label", "Fisheye");
   logoLink.href = "./index.html";
   logoLink.appendChild(img);
   document.querySelector(".header__logo").appendChild(logoLink);
