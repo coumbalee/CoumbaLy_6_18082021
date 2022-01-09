@@ -38,9 +38,13 @@ a {
     padding: 4px 7px;
     margin-top: 1px;
     border-radius: 3px;
+    display: none;
     @media (max-width: 599px) {
       display: none;
     }
+  }
+  .visible {
+    display: block;
   }
   .tags {
     width: 75%;
