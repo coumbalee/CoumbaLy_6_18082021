@@ -424,7 +424,7 @@ body {
   }
 }
 
-.photographer-section__button:hover {
+.photographer-section__button:hover, .photographer-section__button:focus {
   background-color: #d3573c;
 }
 

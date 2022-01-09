@@ -16,18 +16,14 @@ body {
 }
 .photographer-section {
   background-color: #fafafa;
-  // background-color: pink;
-
   display: flex;
   justify-content: space-between;
   height: 30vh;
   border-radius: 5px;
   @media (max-width: 768px) {
-    // @include mobile-section-margin;
     height: 35vh;
     width: 100%;
     margin-left: 4%;
-    // margin-right: 2%;
   }
 
   &__content {
@@ -68,7 +64,8 @@ body {
       padding: 15px 30px;
     }
   }
-  &__button:hover {
+  &__button:hover,
+  &__button:focus {
     background-color: $color-secondary;
   }
   &__img {
