@@ -46,11 +46,7 @@ function displayTagsMenu(tags) {
   });
 }
 function generateIndexHeader() {
-  // création du lien  du header
   const header = document.querySelector("header");
-  // const headerLogo = document.querySelector(".header__logo");
-
-  // headerLogo.href = "./index.html";
   const headerLink = document.createElement("a");
   headerLink.href = "#photographers-section";
   headerLink.classList.add("header__link");
@@ -69,15 +65,11 @@ function generateIndexHeader() {
 }
 
 function generateIndexMain() {
-  // création du titre Nos photographes
   const main = document.querySelector("main");
-  // const mainLink = document.createElement("a");
-  // mainLink.href = "#main";
   const mainTitle = document.createElement("h1");
   mainTitle.innerHTML = "Nos photographes";
   mainTitle.classList.add("h1");
   main.prepend(mainTitle);
-  // mainLink.prepend(mainTitle);
 }
 
 // Fonction qui ajoute un eventlistener au clic
