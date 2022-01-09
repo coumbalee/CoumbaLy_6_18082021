@@ -133,7 +133,6 @@ table {
 body {
   font-family: DM Sans, sans sérif;
   font-size: 1.125rem;
-  margin: 2% 5%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -169,6 +168,7 @@ a {
 
 .header__logo img {
   height: 3rem;
+  margin-left: 85px;
 }
 
 @media (max-width: 599px) {
@@ -198,7 +198,7 @@ a {
 }
 
 .header .tags {
-  width: 72%;
+  width: 75%;
 }
 
 @media (max-width: 599px) {
@@ -230,7 +230,7 @@ a {
   font-size: 1.875rem;
   position: absolute;
   top: 5%;
-  right: 6%;
+  right: 15%;
 }
 
 @media (max-width: 599px) {
@@ -247,6 +247,7 @@ a {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  width: 100%;
   margin-top: 8%;
 }
 

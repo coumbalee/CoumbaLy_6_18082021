@@ -1,7 +1,6 @@
 body {
   font-family: DM Sans, sans sérif;
   font-size: 1.125rem;
-  margin: 2% 5%;
   box-sizing: border-box;
 }
 a {
@@ -22,6 +21,7 @@ a {
   }
   &__logo img {
     @include logo;
+    margin-left: 85px;
     @media (max-width: 599px) {
       height: 2rem;
       position: absolute;
@@ -43,7 +43,7 @@ a {
     }
   }
   .tags {
-    width: 72%;
+    width: 75%;
     @media (max-width: 599px) {
       flex-wrap: wrap;
       margin-top: 50px;
@@ -62,7 +62,7 @@ a {
   @include titles;
   position: absolute;
   top: 5%;
-  right: 6%;
+  right: 15%;
   @media (max-width: 599px) {
     font-size: 1rem;
     top: 2%;
@@ -72,16 +72,13 @@ a {
 .photographers {
   display: flex;
   flex-wrap: wrap;
-  // justify-content: space-between;
-  // margin-left: -6%;
-  // margin-right: -6%;
+  width: 100%;
   margin-top: 8%;
   @media (max-width: 599px) {
     flex-direction: column;
   }
   .photographer {
     width: 33%;
-    // margin-top: -30px;
     text-align: center;
     @media (max-width: 700px) {
       width: 100%;
