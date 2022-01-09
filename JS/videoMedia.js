@@ -14,8 +14,8 @@ export default class videoMedia {
     return imageExist(baseUrl + "/" + this.video)
       ? `
     <li class="media-section__card" data-id="${this.id}">
-    <video>
-    <source src="${baseUrl}/${this.video}" class="mediaVideo" tabindex="0" alt="vidéo ${this.title}"
+    <video tabindex="0">
+    <source src="${baseUrl}/${this.video}" class="mediaVideo" alt="vidéo ${this.title}"
     >
     </video>
     <div class ="media-section__content">
