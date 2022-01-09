@@ -57,7 +57,7 @@ function generateIndexHeader() {
   const logoLink = document.createElement("a");
   const img = document.createElement("img");
   img.src = "/IMAGES/logo.png";
-  img.setAttribute("alt", "Fisheye logo");
+  img.setAttribute("alt", "Fisheye home page");
   img.setAttribute("aria-label", "Fisheye");
   logoLink.href = "./index.html";
   logoLink.appendChild(img);
@@ -115,3 +115,8 @@ async function displayPage() {
   // Ajouter un eventListener sur chacun des tags
   manageListeners(tagsElts, photographers);
 }
+// Affichage du lien du header lorsque l'utilisateur commence à scroller
+document.addEventListener("scroll", function (e) {
+  const headerLink = document.querySelector(".header__link");
+  headerLink.classList.add("visible");
+});
