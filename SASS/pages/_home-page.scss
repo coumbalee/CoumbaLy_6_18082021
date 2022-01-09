@@ -88,17 +88,17 @@ a {
       width: 100%;
     }
     &__img {
-      width: 200px;
-      height: 200px;
+      width: 190px;
+      height: 190px;
       border-radius: 50%;
       object-fit: cover;
       object-position: 40% 60%;
       box-shadow: 0px 4px 12px 0px #00000040;
+      margin-bottom: 5px;
     }
     &__content {
       height: 200px;
       line-height: 1.5rem;
-      padding-top: 20px;
     }
     &__name {
       @include name;

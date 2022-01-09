@@ -277,8 +277,8 @@ a {
 }
 
 .photographers .photographer__img {
-  width: 200px;
-  height: 200px;
+  width: 190px;
+  height: 190px;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
@@ -286,12 +286,12 @@ a {
      object-position: 40% 60%;
   -webkit-box-shadow: 0px 4px 12px 0px #00000040;
           box-shadow: 0px 4px 12px 0px #00000040;
+  margin-bottom: 5px;
 }
 
 .photographers .photographer__content {
   height: 200px;
   line-height: 1.5rem;
-  padding-top: 20px;
 }
 
 .photographers .photographer__name {
