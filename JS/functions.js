@@ -1,6 +1,5 @@
 import Image from "./imageMedia.js";
 import Video from "./videoMedia.js";
-// import { manageListeners } from "./index.js";
 
 export function factory(media) {
   if (media.image) {
@@ -37,11 +36,9 @@ export function displayPhotographerInformation(photographer) {
   }">
     `;
   const contact = document.querySelector("#contact");
-  // console.log(contact);
   contact.addEventListener("click", () => generateForm(photographer));
-  // manageListeners();
 }
-// // Fonction qui génère le logo du header
+// Fonction qui génère le logo du header
 export function generateHeader() {
   const header = document.querySelector(".header-photographer");
   const headerLink = document.createElement("a");
@@ -76,7 +73,7 @@ export function displayLightbox(mediaArray, baseUrl) {
   const mediaElts = document.querySelectorAll(".media-section__card");
   mediaElts.forEach((element, index) => {
     element.addEventListener("click", (e) => {
-      let imgTitle = mediaArray[index].title;
+      // let imgTitle = mediaArray[index].title;
       generateLightbox(index, mediaArray, baseUrl, element);
     });
   });
@@ -101,8 +98,6 @@ function addListenersToPrev(mediaArray, baseUrl, imgTitle) {
       checkImageOrVideo(lightbox) === "image" &&
       newMedia.media.video
     ) {
-      //
-      // generateLightboxVideo(baseUrl);
       const video = document.createElement("video");
       video.setAttribute("controls", "controls");
       video.classList.add("lightbox__img");
@@ -129,7 +124,6 @@ function addListenersToPrev(mediaArray, baseUrl, imgTitle) {
       lightboxImgContainer.firstChild.remove();
       lightboxImgContainer.insertBefore(img, lightboxImgContainer.firstChild);
     } else {
-      // generateLightboxVideo(baseUrl);
       const video = document.createElement("video");
       video.setAttribute("controls", "controls");
       video.classList.add("lightbox__img");
@@ -599,7 +593,7 @@ export function displayMediasList(photographerMedias, baseUrl) {
 }
 
 function sortMediasBy(medias, filter) {
-  //on veut trier les medias
+  //je  trie les medias
   switch (filter) {
     case "Titre":
       medias.sort((a, b) =>
