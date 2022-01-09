@@ -511,22 +511,18 @@ export function generateDropdownMenu() {
     /* For each element, create a new DIV that will contain the option list: */
     b = document.createElement("DIV");
     b.setAttribute("class", "select-items select-hide");
-    // dans l' exemple, c'était  for (j = 1; j < ll; j++)
     for (j = 0; j < ll; j++) {
       /* For each option in the original select element,
     create a new DIV that will act as an option item: */
       console.log(selElmnt.options[j].innerHTML, a.textContent);
       c = document.createElement("DIV");
-      // adding data-filter to options
+      // adding attributes to options
       c.setAttribute("data-filter", selElmnt.options[j].innerHTML);
       c.setAttribute("class", "filter-dropdown__option");
       if (j == 0) {
         c.classList.add("same-as-selected");
       }
       c.tabIndex = 0;
-      // c.setAttribute("aria-selected", "true");
-      // c.setAttribute("role", "option");
-
       c.innerHTML = selElmnt.options[j].innerHTML;
       c.addEventListener("click", function (e) {
         console.log(this);
