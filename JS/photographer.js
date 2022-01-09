@@ -2,7 +2,6 @@
 import {
   getPhotographersFromJson,
   getMediaFromPhotographer,
-  // getAllLikesFromMedias,
 } from "./dataFunction.js";
 import {
   addListenersToDropDown,
@@ -36,15 +35,17 @@ async function displayPhotographerPage() {
   document.querySelector(".information-section__likes").textContent =
     photographerMedias.map((elt) => elt.likes).reduce(likeReducer, 0);
 
-  // créer ici une ul
+  // créer ici une ul pour les medias
   let mediaElt = document.querySelector(".media-section");
   const cardList = document.createElement("ul");
   cardList.classList.add("media-section__cards");
   mediaElt.append(cardList);
   let baseUrl = `./IMAGES/${photographerSurname}`;
   displayMediasList(photographerMedias, baseUrl, cardList);
+  // DROPDOWN
   generateDropdownMenu();
   addListenersToDropDown(photographerMedias, baseUrl);
+  // LIKES et PRIX
   incrementLikes();
   showPrice(photographer);
 }
