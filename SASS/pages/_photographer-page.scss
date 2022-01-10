@@ -22,8 +22,7 @@ body {
   border-radius: 5px;
   @media (max-width: 768px) {
     height: 35vh;
-    width: 100%;
-    margin-left: 4%;
+    margin-left: 3%;
   }
 
   &__content {
@@ -173,12 +172,11 @@ body {
   &__close {
     position: absolute;
     right: 350px;
-    top: 50px;
+    top: 25px;
     z-index: 100;
     @media (max-width: 768px) {
       position: absolute;
       right: 10px;
-      top: 50px;
     }
   }
   &__close:hover {
