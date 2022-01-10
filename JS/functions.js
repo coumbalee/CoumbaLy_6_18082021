@@ -486,8 +486,8 @@ export function generateDropdownMenu() {
 
   section.innerHTML += `
   <div class="custom-select">
-  <label class="filter-dropdown__label">Trier par : </label> 
-   <select class="filter-dropdown__select" >
+  <label for="select" class="filter-dropdown__label">Trier par : </label> 
+   <select id="select" class="filter-dropdown__select" >
       <option >Popularité</option>
       <option >Date</option>
       <option>Titre</option>
