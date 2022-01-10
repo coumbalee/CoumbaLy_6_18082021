@@ -720,23 +720,19 @@ body {
 }
 
 .form-section .form__input::-webkit-input-placeholder {
-  font-size: 1.2rem;
-  margin-right: -50px;
+  font-size: 0.95rem;
 }
 
 .form-section .form__input:-ms-input-placeholder {
-  font-size: 1.2rem;
-  margin-right: -50px;
+  font-size: 0.95rem;
 }
 
 .form-section .form__input::-ms-input-placeholder {
-  font-size: 1.2rem;
-  margin-right: -50px;
+  font-size: 0.95rem;
 }
 
 .form-section .form__input::placeholder {
-  font-size: 1.2rem;
-  margin-right: -50px;
+  font-size: 0.95rem;
 }
 
 .form-section .form__text-area {
@@ -752,19 +748,19 @@ body {
 }
 
 .form-section .form__text-area::-webkit-input-placeholder {
-  font-size: 1.2rem;
+  font-size: 0.95rem;
 }
 
 .form-section .form__text-area:-ms-input-placeholder {
-  font-size: 1.2rem;
+  font-size: 0.95rem;
 }
 
 .form-section .form__text-area::-ms-input-placeholder {
-  font-size: 1.2rem;
+  font-size: 0.95rem;
 }
 
 .form-section .form__text-area::placeholder {
-  font-size: 1.2rem;
+  font-size: 0.95rem;
 }
 
 .form-section .form__button {
