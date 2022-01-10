@@ -317,7 +317,11 @@ body {
     // width: 200px;
     display: flex;
   }
-
+  .custom-select label {
+    @media (max-width: 768px) {
+      margin-left: 2%;
+    }
+  }
   .custom-select select {
     display: none; /*hide original SELECT element: */
   }
