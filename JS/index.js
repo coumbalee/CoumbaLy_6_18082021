@@ -3,7 +3,7 @@ import {
   getPhotographersFromJson,
   getAllTagsFromPhotographers,
 } from "./dataFunction.js";
-import { removeLightbox } from "./functions.js";
+// import { removeLightbox } from "./functions.js";
 
 generateIndexHeader();
 generateIndexMain();
