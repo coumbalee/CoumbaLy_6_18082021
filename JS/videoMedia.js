@@ -22,7 +22,7 @@ export default class videoMedia {
     <h2 class ="media-section__title" tabindex="0">${this.title}</h2>
     <div class ="media-section__likes" tabindex="0">
     <p class="media-section__number">${this.likes}</p>
-    <i class="fas fa-heart" role="button" aria-label="button like"></i>
+    <span class="fas fa-heart" role="button" aria-label="button like"></span>
     </div>
     </div>
     </li>
