@@ -527,7 +527,9 @@
         "tags": ["travel"],
         "likes": 25,
         "date": "2019-04-03",
-        "price": 60
+        "price": 60,
+        "altText":"Une rue du Japon avec deux formes portant une tenue traditionnelle"
+
       },
       {
         "id": 2523434,
@@ -537,7 +539,9 @@
         "tags": ["travel"],
         "likes": 53,
         "date": "2019-05-06",
-        "price": 60
+        "price": 60,
+        "altText":"Coucher de soleil sur le canal de Venise"
+
       },
       {
         "id": 95293534,
@@ -547,7 +551,9 @@
         "tags": ["travel"],
         "likes": 33,
         "date": "2019-05-12",
-        "price": 60
+        "price": 60,
+        "altText":"Lac bordé de montagnes"
+
       },
       {
         "id": 356234343,
@@ -557,7 +563,9 @@
         "tags": ["travel"],
         "likes": 53,
         "date": "2019-06-20",
-        "price": 60
+        "price": 60,
+        "altText":"Vélo garé contre un escalier dans une rue de Paris"
+
       },
       {
         "id": 235234343,
@@ -567,7 +575,9 @@
         "tags": ["travel"],
         "likes": 63,
         "date": "2019-06-26",
-        "price": 60
+        "price": 60,
+        "altText":"Porte ouverte laissant une vue apparaitre au loin dans batiment à l'architecture indienne "
+
       },
       {
         "id": 6234234343,
@@ -577,7 +587,9 @@
         "tags": ["architecture"],
         "likes": 52,
         "date": "2019-06-30",
-        "price": 60
+        "price": 60,
+        "altText":"Batiment à St PetersBourg"
+
       },
       {
         "id": 6525666253,
@@ -587,7 +599,9 @@
         "tags": ["architecture"],
         "likes": 63,
         "date": "2019-07-20",
-        "price": 60
+        "price": 60,
+        "altText":"Village du Tibet entouré de collines"
+
       },
       {
         "id": 98252523433,
@@ -597,7 +611,9 @@
         "tags": ["architecture"],
         "likes": 88,
         "date": "2020-01-05",
-        "price": 60
+        "price": 60,
+        "altText":" Tour de Pise vue d'en bas"
+
       },
       {
         "id": 9259398453,
@@ -607,7 +623,9 @@
         "tags": ["architecture"],
         "likes": 57,
         "date": "2020-01-20",
-        "price": 65
+        "price": 65,
+        "altText":"Autoroute formant des cercles vue de haut"
+
       },
       {
         "id": 3523523534,
@@ -617,7 +635,9 @@
         "tags": ["architecture"],
         "likes": 54,
         "date": "2020-05-05",
-        "price": 60
+        "price": 60,
+        "altText":"Batiment avec un coin pointu"
+
       },
   
       {
