@@ -282,7 +282,9 @@
         "tags": ["travel"],
         "likes": 23,
         "date": "2017-03-18",
-        "price": 45
+        "price": 45,
+        "altText":"Montagne vue de haut"
+
       },
       {
         "id": 343423425,
@@ -292,7 +294,9 @@
         "tags": ["travel"],
         "likes": 101,
         "date": "2017-04-03",
-        "price": 45
+        "price": 45,
+        "altText":"Plusieurs personnes se baignant dans une source d' eau chaude"
+
       },
       {
         "id": 73434243,
@@ -302,7 +306,9 @@
         "tags": ["travel"],
         "likes": 99,
         "date": "2018-04-30",
-        "price": 45
+        "price": 45,
+        "altText":"Route vide bordée de paysages des deux cotés"
+
       },
       {
         "id": 23425523,
@@ -312,7 +318,9 @@
         "tags": ["travel"],
         "likes": 34,
         "date": "2016-04-05",
-        "price": 45
+        "price": 45,
+        "altText":"Pont menant à la forêt"
+
       },
       {
         "id": 23134513,
@@ -322,7 +330,9 @@
         "tags": ["travel"],
         "likes": 23,
         "date": "2017-03-18",
-        "price": 45
+        "price": 45,
+        "altText":"Barque en bois dans un lac entouré de montagnes"
+
       },
       {
         "id": 92352352,
@@ -332,7 +342,9 @@
         "tags": ["portrait"],
         "likes": 66,
         "date": "2018-05-24",
-        "price": 45
+        "price": 45,
+        "altText":"Portrait d' une femme rousse qui sourit de face avec un rouge à lèvres rouge"
+
       },
       {
         "id": 34513453,
@@ -342,7 +354,9 @@
         "tags": ["portait"],
         "likes": 52,
         "date": "2017-04-21",
-        "price": 45
+        "price": 45,
+        "altText":"Portrait en noir et blanc d' un homme fixant quelque chose au loin"
+
       },
       {
         "id": 23523533,
@@ -352,7 +366,9 @@
         "tags": ["portait"],
         "likes": 95,
         "date": "2018-11-02",
-        "price": 45
+        "price": 45,
+        "altText":"Portrait d' une femme aux cheveux et aux sourcils blancs"
+
       },
       {
         "id": 525834234,
@@ -362,7 +378,9 @@
         "tags": ["portait"],
         "likes": 25,
         "date": "2019-01-02",
-        "price": 45
+        "price": 45,
+        "altText":"Portrait d' un homme agé se tenant le menton avec la main"
+      
       },
   
       {
