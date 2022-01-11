@@ -13,7 +13,6 @@ export function factory(media) {
 // Fonction qui affiche les informations d'un photographe
 export function displayPhotographerInformation(photographer) {
   let photographerElt = document.querySelector(".photographer-section");
-  console.log(photographerElt);
   photographerElt.innerHTML += `
     <div class="photographer-section__content">
        <h2 class="photographer-section__name" tabindex="0">${
@@ -92,7 +91,6 @@ function addListenersToPrev(mediaArray, baseUrl, imgTitle) {
         baseUrl + "/" + newMedia.media.image;
       imgTitle = newMedia.media.title;
       lightbox.querySelector("h2").textContent = newMedia.media.title;
-      console.log(imgTitle);
     } else if (
       checkImageOrVideo(lightbox) === "image" &&
       newMedia.media.video
@@ -119,7 +117,6 @@ function addListenersToPrev(mediaArray, baseUrl, imgTitle) {
 
       imgTitle = newMedia.media.title;
       lightbox.querySelector("h2").textContent = newMedia.media.title;
-      console.log(imgTitle);
       lightboxImgContainer.firstChild.remove();
       lightboxImgContainer.insertBefore(img, lightboxImgContainer.firstChild);
     } else {
@@ -153,8 +150,6 @@ function addListenersToNext(mediaArray, baseUrl, imgTitle) {
 
       imgTitle = newMedia.media.title;
       lightbox.querySelector("h2").textContent = newMedia.media.title;
-
-      console.log(imgTitle);
     } else if (
       checkImageOrVideo(lightbox) === "video" &&
       newMedia.media.image
@@ -168,7 +163,6 @@ function addListenersToNext(mediaArray, baseUrl, imgTitle) {
 
       imgTitle = newMedia.media.title;
       lightbox.querySelector("h2").textContent = newMedia.media.title;
-      console.log(imgTitle);
       lightboxImgContainer.firstChild.remove();
       lightboxImgContainer.insertBefore(img, lightboxImgContainer.firstChild);
       // console.log(mediaContainer.firstChild);
@@ -242,16 +236,12 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
   btnNext.innerHTML += `<i class="fas fa-chevron-right" role="button" ></i>`;
   btnNext.tabIndex = "0";
   lightboxContainer.prepend(btnClose, btnPrev, imgContainer, btnNext);
-  console.log(lightboxContainer);
   lightbox.append(lightboxContainer);
 
   addListeners(btnClose, btnPrev, btnNext, mediaArray, baseUrl, imgTitle);
 
   // Check if image or video
-  console.log("firstChild", element.firstElementChild);
   if (checkImageOrVideo(element) === "image") {
-    console.log("image");
-
     const img = document.createElement("img");
     img.classList.add("lightbox__img");
     img.src = element.firstElementChild.currentSrc;
@@ -265,7 +255,6 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
         removeLightbox();
       });
   } else {
-    console.log("video");
     const video = document.createElement("video");
     video.setAttribute("controls", "controls");
     video.classList.add("lightbox__img");
@@ -273,7 +262,6 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
     const title = document.createElement("h2");
     title.innerHTML += imgTitle;
     imgContainer.prepend(video, title);
-
     document
       .querySelector(".lightbox__close")
       .addEventListener("click", function () {
@@ -311,7 +299,6 @@ function checkImageOrVideo(container) {
 export function generateForm(photographer) {
   const formSection = document.createElement("section");
   const main = document.querySelector("main");
-  console.log(main);
   formSection.classList.add("form-section");
   const form = document.createElement("form");
   form.classList.add("form");
@@ -371,7 +358,6 @@ export function generateForm(photographer) {
   </div>
   <button class="form__button" type="submit">Envoyer</button>
         `;
-  console.log(photographer.name);
   focusOnForm();
 
   document.querySelector(".form button").addEventListener(
@@ -391,14 +377,12 @@ export function generateForm(photographer) {
 // Vérification des champs du formulaire
 export function checkInputs() {
   const form = document.querySelector(".form");
-  console.log(form);
   const firstName = document.querySelector("#first");
   console.log(firstName);
   const lastName = document.querySelector("#last");
   const email = document.querySelector("#email");
   const area = document.querySelector("#textArea");
   let isValid = true;
-
   const firstNameValue = firstName.value.trim();
   const lastNameValue = lastName.value.trim();
   const emailValue = email.value.trim();
@@ -416,7 +400,6 @@ export function checkInputs() {
     isValid = false;
   } else {
     setSuccessFor(firstName);
-    console.log(isValid);
   }
   if (!lastNameValue) {
     setErrorFor(lastName, "Veuillez saisir votre nom");
@@ -426,7 +409,6 @@ export function checkInputs() {
     isValid = false;
   } else {
     setSuccessFor(lastName);
-    console.log(isValid);
   }
   if (!emailValue) {
     setErrorFor(email, "Veuillez saisir votre email");
@@ -436,14 +418,12 @@ export function checkInputs() {
     isValid = false;
   } else {
     setSuccessFor(email);
-    console.log(isValid);
   }
   if (!areaValue) {
     setErrorForArea(area, "Veuillez saisir votre message");
     isValid = false;
   } else {
     setSuccessForArea(area);
-    console.log(isValid);
   }
   if (isValid) {
     const removeForm = document.querySelector(".form");
@@ -460,14 +440,12 @@ export function isEmail(email) {
 export function setSuccessFor(input) {
   const formControl = input.parentElement;
   formControl.className = "form__control success";
-  console.log(input.getAttribute("name"), " : ", input.value);
 }
 export function setErrorFor(input, message) {
   const formControl = input.parentElement;
   const small = formControl.querySelector("small");
   formControl.className = "form__control error";
   small.innerText = message;
-  console.log(input.getAttribute("name"), " : ", input.value);
 }
 export function setErrorForArea(textarea, message) {
   const areaControl = textarea.parentElement;
@@ -478,7 +456,6 @@ export function setErrorForArea(textarea, message) {
 export function setSuccessForArea(textarea) {
   const areaControl = textarea.parentElement;
   areaControl.className = "form__control success";
-  console.log(textarea.getAttribute("name"), " : ", textarea.value);
 }
 export function removeModal() {
   const modal = document.querySelector(".form-section");
@@ -508,7 +485,6 @@ export function generateDropdownMenu() {
     a = document.createElement("DIV");
     a.setAttribute("class", "select-selected");
     a.setAttribute("aria-haspopup", "listbox");
-
     a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
     a.tabIndex = 0;
     x[i].appendChild(a);
@@ -518,7 +494,6 @@ export function generateDropdownMenu() {
     for (j = 0; j < ll; j++) {
       /* For each option in the original select element,
     create a new DIV that will act as an option item: */
-      console.log(selElmnt.options[j].innerHTML, a.textContent);
       c = document.createElement("DIV");
       // adding attributes to options
       c.setAttribute("data-filter", selElmnt.options[j].innerHTML);
@@ -568,12 +543,9 @@ export function generateDropdownMenu() {
 
 export function addListenersToDropDown(medias, baseUrl) {
   let elt = document.querySelector(".select-items");
-  console.log(elt);
   elt.addEventListener("click", (e) => {
     e.preventDefault();
     const orderedMedias = sortMediasBy(medias, e.target.dataset.filter);
-    console.log(e.target.dataset.filter);
-
     displayMediasList(orderedMedias, baseUrl);
   });
 }
@@ -581,7 +553,6 @@ export function addListenersToDropDown(medias, baseUrl) {
 export function displayMediasList(photographerMedias, baseUrl) {
   const cardList = document.querySelector(".media-section__cards");
   cardList.innerHTML = "";
-
   photographerMedias.forEach((elt) => {
     let media = factory(elt);
 
@@ -599,7 +570,6 @@ function sortMediasBy(medias, filter) {
       medias.sort((a, b) =>
         a.title > b.title ? 1 : b.title > a.title ? -1 : 0
       );
-      console.log(medias);
       break;
     case "Date":
       medias.sort(function (a, b) {
@@ -619,17 +589,13 @@ function sortMediasBy(medias, filter) {
 
 export function incrementLikes(photographer) {
   const mediaHeart = document.querySelectorAll(".media-section__likes");
-
   mediaHeart.forEach((heart) => {
-    console.log(heart);
     heart.addEventListener("click", function (e) {
       e.stopPropagation();
-      console.log(e.target);
       const totalLikeElt = document.querySelector("#totalLikes");
       const elt = e.target.classList.contains("media-section__number")
         ? e.target
         : e.target.parentElement.firstElementChild;
-      console.log(elt);
       if (elt.classList.contains("liked")) {
         elt.textContent = parseInt(elt.textContent) - 1;
         totalLikeElt.textContent = parseInt(totalLikeElt.textContent) - 1;
@@ -644,17 +610,13 @@ export function incrementLikes(photographer) {
 
 export function showPrice(photographer) {
   const price = document.querySelector("#price");
-  console.log(price);
   price.innerHTML = `${photographer.price} / jour`;
 }
 function focusOnForm() {
   const focusableElements =
     ' input, textarea, button,[tabindex]:not([tabindex="-1"])';
   const modal = document.querySelector(".form");
-  console.log(modal);
-
   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
-  console.log(firstFocusableElement);
   const focusableContent = modal.querySelectorAll(focusableElements);
   const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
 
@@ -664,7 +626,6 @@ function focusOnForm() {
     if (!isTabPressed) {
       return;
     }
-
     if (e.shiftKey) {
       // if shift key pressed for shift + tab combination
       if (document.activeElement === firstFocusableElement) {
@@ -686,15 +647,12 @@ function focusOnForm() {
 function focusOnlightbox() {
   const focusableElements = 'button,[tabindex]:not([tabindex="-1"])';
   const modal = document.querySelector(".lightbox__container");
-
   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
   console.log(firstFocusableElement);
   const focusableContent = modal.querySelectorAll(focusableElements);
   const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
-
   document.addEventListener("keydown", function (e) {
     let isTabPressed = e.key === "Tab" || e.keyCode === 9;
-
     if (!isTabPressed) {
       return;
     }
@@ -752,19 +710,14 @@ document.addEventListener("click", closeAllSelect);
 function focusOnDropdown() {
   const focusableElements = 'div,option,div[tabindex]:not([tabindex="-1"])';
   const modal = document.querySelector("select");
-
   const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
-  console.log(firstFocusableElement);
   const focusableContent = modal.querySelectorAll(focusableElements);
   const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
-
   document.addEventListener("keydown", function (e) {
     let isTabPressed = e.key === "Tab" || e.keyCode === 9;
-
     if (!isTabPressed) {
       return;
     }
-
     if (e.shiftKey) {
       // if shift key pressed for shift + tab combination
       if (document.activeElement === firstFocusableElement) {
