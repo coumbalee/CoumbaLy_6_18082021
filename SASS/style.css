@@ -566,7 +566,7 @@ body {
 
 .lightbox button {
   border: none;
-  background-color: rgba(254, 254, 254, 0.9);
+  background-color: transparent;
   color: #901c1c;
   cursor: pointer;
 }
