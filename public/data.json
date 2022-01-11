@@ -593,7 +593,9 @@
         "tags": ["sport"],
         "likes": 150,
         "date": "2018-02-30",
-        "price": 70
+        "price": 70,
+        "altText":"Femme suspendue en l' air grace à un morceau de tissu et tournant"
+
       },
       {
         "id": 235234343,
@@ -603,7 +605,9 @@
         "tags": ["sport"],
         "likes": 101,
         "date": "2018-03-05",
-        "price": 65
+        "price": 65,
+        "altText":"Femme escaladant une roche à mains nues"
+
       },
       {
         "id": 235343222,
@@ -613,7 +617,9 @@
         "tags": ["sport"],
         "likes": 103,
         "date": "2018-03-10",
-        "price": 70
+        "price": 70,
+        "altText":"Homme surfant une vague d' eau turquoise"
+
       },
       {
         "id": 7775342343,
@@ -623,7 +629,9 @@
         "tags": ["sport"],
         "likes": 77,
         "date": "2018-04-16",
-        "price": 50
+        "price": 50,
+        "altText":"Skieur faisant un saut"
+
       },
       {
         "id": 9253445784,
@@ -633,7 +641,9 @@
         "tags": ["sport"],
         "likes": 88,
         "date": "2018-04-22",
-        "price": 65
+        "price": 65,
+        "altText":"Cinq femmes faisant une course à pied dans un stade "
+
       },
       {
         "id": 22299394,
@@ -643,7 +653,9 @@
         "tags": ["sport"],
         "likes": 95,
         "date": "2018-04-27",
-        "price": 70
+        "price": 70,
+        "altText":"Jeune homme au torse nu faisant une figure de skateboard"
+
       },
       {
         "id": 3452342633,
@@ -653,7 +665,9 @@
         "tags": ["architecture"],
         "likes": 52,
         "date": "2018-05-03",
-        "price": 75
+        "price": 75,
+        "altText":"Verrière blanche vue d'en bas"
+
       },
       {
         "id": 939234243,
@@ -663,7 +677,9 @@
         "tags": ["architecture"],
         "likes": 55,
         "date": "2018-05-10",
-        "price": 72
+        "price": 72,
+        "altText":"Construction moderne d'un batiment ressemblant à une vague d' eau"
+
       },
       {
         "id": 222959233,
@@ -673,7 +689,9 @@
         "tags": ["architecture"],
         "likes": 85,
         "date": "2018-05-15",
-        "price": 71
+        "price": 71,
+        "altText":"Deux batiments face à face ressemblant à un faire à cheval"
+
       },
       {
         "id": 965933434,
@@ -683,7 +701,9 @@
         "tags": ["architecture"],
         "likes": 66,
         "date": "2018-05-20",
-        "price": 58
+        "price": 58,
+        "altText":"Deux batiments de face formant une croix vu du ciel"
+
       },
       {
         "id": 777723343,
@@ -693,7 +713,9 @@
         "tags": ["architecture"],
         "likes": 79,
         "date": "2018-05-21",
-        "price": 80
+        "price": 80,
+        "altText":"Deux batiments incurvés reliés "
+
       }
     ]
   }
