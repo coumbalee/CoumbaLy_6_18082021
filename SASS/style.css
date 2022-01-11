@@ -472,7 +472,7 @@ body {
      object-fit: cover;
   -o-object-position: 50% 30%;
      object-position: 50% 30%;
-  margin-top: 25px;
+  margin-top: 15px;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -501,6 +501,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .lightbox {

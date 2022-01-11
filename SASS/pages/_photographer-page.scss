@@ -96,7 +96,7 @@ body {
     height: 350px;
     object-fit: cover;
     object-position: 50% 30%;
-    margin-top: 25px;
+    margin-top: 15px;
     border-radius: 5px;
     cursor: pointer;
     @media (max-width: 768px) {
@@ -112,6 +112,7 @@ body {
   &__likes {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
   }
 }
 // LIGHTBOX
