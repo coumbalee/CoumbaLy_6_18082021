@@ -70,7 +70,8 @@
         "tags": ["fashion"],
         "likes": 62,
         "date": "2011-12-08",
-        "price": 55
+        "price": 55,
+        "altText":"shooting d'une femme portant un survêtement jaune sur un terrain de basket"
       },
       {
         "id": 8520927,
@@ -80,7 +81,9 @@
         "tags": ["fashion"],
         "likes": 11,
         "date": "2011-11-06",
-        "price": 55
+        "price": 55,
+        "altText":"shooting d' une femme accroupie sur un pont avec une jambe tendue et portant une robe verte"
+
       },
       {
         "id": 9025895,
@@ -90,7 +93,9 @@
         "tags": ["fashion"],
         "likes": 72,
         "date": "2013-08-12",
-        "price": 55
+        "price": 55,
+        "altText":"Femme adossée à un mur et portant une robe à rayures jaunes, noires, turquoises et blanches"
+
       },
       {
         "id": 9275938,
@@ -100,7 +105,9 @@
         "tags": ["events"],
         "likes": 69,
         "date": "2018-02-22",
-        "price": 55
+        "price": 55,
+        "altText":"soirée de mariage avec des guirlandes lumineuses et les jeunes mariés de dos faisant face à une invitée"
+
       },
       {
         "id": 2053494,
@@ -110,7 +117,10 @@
         "tags": ["events"],
         "likes": 2,
         "date": "2020-05-25",
-        "price": 55
+        "price": 55,
+        "altText":"soirée de mariage avec des guirlandes lumineuses et les jeunes mariés de dos faisant face à une invitée"
+
+
       },
       {
         "id": 7324238,
@@ -120,7 +130,9 @@
         "tags": ["events"],
         "likes": 33,
         "date": "2019-06-12",
-        "price": 55
+        "price": 55,
+        "altText":" table dréssée et ballons pour une soirée d'un dix-huitième anniversaire"
+
       },
       {
         "id": 8328953,
@@ -130,7 +142,9 @@
         "tags": ["art"],
         "likes": 24,
         "date": "2011-12-08",
-        "price": 100
+        "price": 100,
+        "altText":"cheval en bois sculpté se trouvant dans un parc"
+
       },
       {
         "id": 7502053,
@@ -140,7 +154,9 @@
         "tags": ["art"],
         "likes": 88,
         "date": "2007-05-07",
-        "price": 55
+        "price": 55,
+        "altText":"peinture colorée sur un mur représentant un tringle central blanc et un le torse d'un homme en arrère plan"
+
       },
       {
         "id": 8523492,
@@ -150,7 +166,9 @@
         "tags": ["art"],
         "likes": 24,
         "date": "2018-05-05",
-        "price": 55
+        "price": 55,
+        "altText":"tunnel d' un métro avec des lumères à dominante violet et des graffitis sur les deux murs"
+
       },
       {
         "id": 75902334,
@@ -160,7 +178,9 @@
         "tags": ["art"],
         "likes": 75,
         "date": "2019-11-25",
-        "price": 55
+        "price": 55,
+        "altText":"peinture sur mur de différents oiseaux aux couleurs bleu, orange et jaune"
+
       },
   
       {
