@@ -191,7 +191,9 @@
         "tags": ["sport"],
         "likes": 52,
         "date": "2013-02-30",
-        "price": 70
+        "price": 70,
+        "altText":"Plusieurs sportifs faisant de l' aviron et vues de haut"
+
       },
       {
         "id": 92758372,
@@ -201,7 +203,9 @@
         "tags": ["fashion"],
         "likes": 58,
         "date": "2018-07-17",
-        "price": 70
+        "price": 70,
+        "altText":"Une femme en robe bleu ciel levant le bras gauche avec derrière elle un homme portant une veste ouverte levant le bras doit"
+
       },
       {
         "id": 32958383,
@@ -211,7 +215,9 @@
         "tags": ["fashion"],
         "likes": 11,
         "date": "2019-08-12",
-        "price": 70
+        "price": 70,
+        "altText":"Femme portant une robe rouge en dentelle et marchant en ville"
+
       },
       {
         "id": 928587383,
@@ -221,7 +227,9 @@
         "tags": ["events"],
         "likes": 2,
         "date": "2019-01-02",
-        "price": 70
+        "price": 70,
+        "altText":"Cinq collègues lors d' une réunion ou une femme dirige la réunion et leur montre des post it au mur"
+
       },
       {
         "id": 725639493,
@@ -231,7 +239,9 @@
         "tags": ["events"],
         "likes": 3,
         "date": "2019-05-20",
-        "price": 70
+        "price": 70,
+        "altText":"Un homme se tenant debout et présentant un produit  à des hommes assis autour de lui"
+
       },
       {
         "id": 23394384,
@@ -241,7 +251,9 @@
         "tags": ["events"],
         "likes": 52,
         "date": "2019-07-18",
-        "price": 70
+        "price": 70,
+        "altText":"Femme jouant du piano sur une scène de festival de musique"
+
       },
       {
         "id": 87367293,
@@ -251,7 +263,8 @@
         "tags": ["events"],
         "likes": 23,
         "date": "2018-02-22",
-        "price": 70
+        "price": 70,
+        "altText":"Chanteuse tenant un micro dans sa gauche et souriant"
       },
       {
         "id": 593834784,
@@ -261,7 +274,9 @@
         "tags": ["animals"],
         "likes": 52,
         "date": "2017-03-13",
-        "price": 70
+        "price": 70,
+        "altText":"Cerf fixant l' objectif"
+
       },
       {
         "id": 83958935,
@@ -271,7 +286,9 @@
         "tags": ["animals"],
         "likes": 52,
         "date": "2016-06-12",
-        "price": 70
+        "price": 70,
+        "altText":"Chiot noir et blanc jouant sur le sable à la plage"
+
       },
   
       {
