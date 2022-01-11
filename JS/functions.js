@@ -73,7 +73,6 @@ export function displayLightbox(mediaArray, baseUrl) {
   const mediaElts = document.querySelectorAll(".media-section__card");
   mediaElts.forEach((element, index) => {
     element.addEventListener("click", (e) => {
-      // let imgTitle = mediaArray[index].title;
       generateLightbox(index, mediaArray, baseUrl, element);
     });
   });
@@ -222,22 +221,26 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
   mediaBox.append(lightbox);
   // BOUTON CLOSE
   const btnClose = document.createElement("button");
-  btnClose.innerHTML += `<i class="fas fa-times " role="button" tabindex="0"></i>`;
+  btnClose.innerHTML += `<i class="fas fa-times " role="button" ></i>`;
   btnClose.classList.add("lightbox__close");
+  btnClose.tabIndex = "0";
   // BOUTON PREV
   const btnPrev = document.createElement("button");
   btnPrev.id = "btnPrev";
   btnPrev.classList.add("lightbox__prev");
-  btnPrev.innerHTML += `<i class="fas fa-chevron-left" role="button" tabindex="0"></i>`;
+  btnPrev.innerHTML += `<i class="fas fa-chevron-left" role="button" ></i>`;
+  btnPrev.tabIndex = "0";
   // imgContainer
   const imgContainer = document.createElement("div");
   imgContainer.classList.add("lightbox__img--container");
+  imgContainer.tabIndex = "0";
 
   // BOUTON NEXT
   const btnNext = document.createElement("button");
   btnNext.id = "btnNext";
   btnNext.classList.add("lightbox__next");
-  btnNext.innerHTML += `<i class="fas fa-chevron-right" role="button" tabindex="0"></i>`;
+  btnNext.innerHTML += `<i class="fas fa-chevron-right" role="button" ></i>`;
+  btnNext.tabIndex = "0";
   lightboxContainer.prepend(btnClose, btnPrev, imgContainer, btnNext);
   console.log(lightboxContainer);
   lightbox.append(lightboxContainer);
@@ -504,6 +507,7 @@ export function generateDropdownMenu() {
     /* For each element, create a new DIV that will act as the selected item: */
     a = document.createElement("DIV");
     a.setAttribute("class", "select-selected");
+    a.setAttribute("aria-haspopup", "listbox");
 
     a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
     a.tabIndex = 0;
