@@ -464,7 +464,6 @@ export function removeModal() {
 }
 export function generateDropdownMenu() {
   const section = document.querySelector(".media-filter-section");
-
   section.innerHTML += `
   <div class="custom-select">
   <label for="select" class="filter-dropdown__label">Trier par : </label> 
@@ -485,7 +484,7 @@ export function generateDropdownMenu() {
     /* For each element, create a new DIV that will act as the selected item: */
     a = document.createElement("DIV");
     a.setAttribute("class", "select-selected");
-    a.setAttribute("aria-haspopup", "listbox");
+    a.setAttribute("role", "button");
     a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
     a.tabIndex = 0;
     x[i].appendChild(a);
@@ -499,13 +498,14 @@ export function generateDropdownMenu() {
       // adding attributes to options
       c.setAttribute("data-filter", selElmnt.options[j].innerHTML);
       c.setAttribute("class", "filter-dropdown__option");
+      c.setAttribute("role", "button");
+
       if (j == 0) {
         c.classList.add("same-as-selected");
       }
       c.tabIndex = 0;
       c.innerHTML = selElmnt.options[j].innerHTML;
       c.addEventListener("click", function (e) {
-        console.log(this);
         /* When an item is clicked, update the original select box,
           and the selected item: */
         let y, i, k, s, h, sl, yl;
