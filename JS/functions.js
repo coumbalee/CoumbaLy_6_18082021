@@ -209,7 +209,6 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
   lightbox.classList.add("lightbox");
   const lightboxContainer = document.createElement("div");
   lightboxContainer.classList.add("lightbox__container");
-
   lightboxContainer.dataset.index = index;
   let imgTitle = mediaArray[index].title;
   mediaBox.append(lightbox);
@@ -227,7 +226,6 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
   // imgContainer
   const imgContainer = document.createElement("div");
   imgContainer.classList.add("lightbox__img--container");
-
   // BOUTON NEXT
   const btnNext = document.createElement("button");
   btnNext.id = "btnNext";
@@ -499,7 +497,6 @@ export function generateDropdownMenu() {
       c.setAttribute("data-filter", selElmnt.options[j].innerHTML);
       c.setAttribute("class", "filter-dropdown__option");
       c.setAttribute("role", "button");
-
       if (j == 0) {
         c.classList.add("same-as-selected");
       }
