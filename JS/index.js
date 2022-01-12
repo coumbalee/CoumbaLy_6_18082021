@@ -102,10 +102,8 @@ export function manageListeners(tags, photographers) {
 async function displayPage() {
   // On attend de récupérer les photographes
   const photographers = await getPhotographersFromJson();
-  console.log(photographers);
   // Récupération de tous les tags
   const tags = getAllTagsFromPhotographers(photographers);
-  console.log(tags);
   // Affichage des tags
   displayTagsMenu(tags);
 
@@ -113,7 +111,6 @@ async function displayPage() {
   showPhotographers(photographers);
   // Recuperer TOUS les tags qui ont la class tag
   const tagsElts = document.querySelectorAll(".tag");
-  console.log(tagsElts);
   // Ajouter un eventListener sur chacun des tags
   manageListeners(tagsElts, photographers);
 }
