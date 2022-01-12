@@ -227,7 +227,6 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
   // imgContainer
   const imgContainer = document.createElement("div");
   imgContainer.classList.add("lightbox__img--container");
-  imgContainer.tabIndex = "0";
 
   // BOUTON NEXT
   const btnNext = document.createElement("button");
@@ -244,6 +243,8 @@ function generateLightbox(index, mediaArray, baseUrl, element) {
   if (checkImageOrVideo(element) === "image") {
     const img = document.createElement("img");
     img.classList.add("lightbox__img");
+    img.tabIndex = "0";
+
     img.src = element.firstElementChild.currentSrc;
     const title = document.createElement("h2");
     title.innerHTML += imgTitle;
