@@ -60,9 +60,7 @@ function getSurname(name) {
 }
 
 document.addEventListener("keyup", (e) => {
-  console.log(e);
   if (e.key === "Enter") {
-    console.log("Enter", e.target);
     e.target.click();
   }
 });
