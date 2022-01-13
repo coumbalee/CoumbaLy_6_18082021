@@ -45,7 +45,7 @@ export function generateHeader() {
   headerLink.classList.add(".header-photographer__link");
   header.appendChild(headerLink);
   const img = document.createElement("img");
-  img.src = "/IMAGES/logo.png";
+  img.src = "./IMAGES/logo.png";
   img.alt = "Fisheye logo";
   headerLink.appendChild(img);
 }
