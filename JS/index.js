@@ -3,7 +3,6 @@ import {
   getPhotographersFromJson,
   getAllTagsFromPhotographers,
 } from "./dataFunction.js";
-// import { removeLightbox } from "./functions.js";
 
 generateIndexHeader();
 generateIndexMain();
@@ -59,7 +58,7 @@ function generateIndexHeader() {
   // insertion du logo
   const logoLink = document.createElement("a");
   const img = document.createElement("img");
-  img.src = "/IMAGES/logo.png";
+  img.src = "./IMAGES/logo.png";
   img.setAttribute("alt", "Fisheye home page");
   logoLink.href = "./index.html";
   logoLink.appendChild(img);
