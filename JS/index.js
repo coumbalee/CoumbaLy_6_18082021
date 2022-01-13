@@ -17,7 +17,7 @@ function showPhotographers(photographers) {
     <a href =" 
     ./photographer.html?id=${
       photographer.id
-    } "><img src ="./IMAGES/Photographers%20ID%20Photos/${
+    } "><img src ="./Photographers%20ID%20Photos/${
       photographer.portrait
     }" class ="photographer__img" alt="image du photographe ${
       photographer.name

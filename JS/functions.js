@@ -28,7 +28,7 @@ export function displayPhotographerInformation(photographer) {
     </div>    
     <button class="photographer-section__button" id="contact" >Contactez moi</button>
     
-    <img src ="./IMAGES/Photographers%20ID%20Photos/${
+    <img src ="./Photographers%20ID%20Photos/${
       photographer.portrait
     }" class ="photographer-section__img" alt="image du photographe ${
     photographer.name
