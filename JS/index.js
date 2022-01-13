@@ -61,8 +61,9 @@ function generateIndexHeader() {
   img.src = "./IMAGES/logo.png";
   img.setAttribute("alt", "Fisheye home page");
   logoLink.href = "./index.html";
-  logoLink.appendChild(img);
-  document.querySelector(".header__logo").appendChild(logoLink);
+  logoLink.prepend(img);
+  const headerLogo = document.querySelector(".header__logo");
+  headerLogo.prepend(logoLink);
 }
 
 function generateIndexMain() {
