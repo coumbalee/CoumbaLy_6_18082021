@@ -1,7 +1,7 @@
 "use strict";
 // fonction qui récupère les données du fichier json
 export async function fetchData() {
-  let response = await fetch("./../public/data.json");
+  let response = await fetch("./public/data.json");
   let data = await response.json();
   return data;
 }
